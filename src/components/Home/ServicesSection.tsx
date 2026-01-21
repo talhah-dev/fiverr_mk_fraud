@@ -5,7 +5,7 @@ import { Radar, ShieldCheck, Users, Layers, ArrowRight, Sparkles } from "lucide-
 import { useState } from "react";
 
 export default function ServicesSection() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const services = [
     {

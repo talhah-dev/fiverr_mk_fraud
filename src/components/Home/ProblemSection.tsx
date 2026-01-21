@@ -4,7 +4,8 @@ import { ShieldAlert, TrendingDown, Users, AlertCircle, ArrowRight } from "lucid
 import { useState } from "react";
 
 export default function ProblemSection() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
 
   const problems = [
     {
