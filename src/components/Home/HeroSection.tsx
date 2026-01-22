@@ -47,7 +47,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center lg:gap-20">
+        <div className="grid grid-cols-1 md:gap-16 gap-8 lg:grid-cols-2 lg:items-center lg:gap-20">
           {/* Left Content */}
           <div className="space-y-8">
             {/* Badge */}
@@ -63,26 +63,13 @@ export default function HeroSection() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-6xl lg:text-7xl">
+            <h1 className="text-5xl font-bold leading-[1.1] tracking-tight capitalize text-[#1d3658] sm:text-6xl lg:text-7xl">
               Fraud is not only a{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 bg-gradient-to-r from-[#1d3658] to-blue-600 bg-clip-text text-transparent">
                   banking
                 </span>
                 <span className="absolute -bottom-2 left-0 h-3 w-full bg-gradient-to-r from-[#1d3658]/20 to-blue-500/20 blur-sm" />
-                <svg
-                  className="absolute -bottom-1 left-0 w-full text-[#1d3658]/30"
-                  height="8"
-                  viewBox="0 0 200 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 4C50 4 50 0 100 0C150 0 150 4 200 4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                </svg>
               </span>{" "}
               problem.
             </h1>
@@ -143,7 +130,7 @@ export default function HeroSection() {
                 <h3 className="max-w-xs text-xl font-bold text-[#1d3658] lg:text-2xl">
                   Where fraud hides in real organisations
                 </h3>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#1d3658] to-blue-600 shadow-lg">
+                <div className="flex h-12 w-12 shrink-0  items-center justify-center rounded-full bg-gradient-to-br from-[#1d3658] to-blue-600 shadow-lg">
                   <AlertTriangle className="h-6 w-6 text-white" />
                 </div>
               </div>
@@ -171,7 +158,7 @@ export default function HeroSection() {
                       <div className="relative flex items-start gap-4">
                         {/* Icon */}
                         <div
-                          className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${point.gradient} p-0.5 shadow-md transition-transform duration-300 ${
+                          className={`flex h-12 w-12 shrink-0 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${point.gradient} p-0.5 shadow-md transition-transform duration-300 ${
                             isHovered ? "rotate-6 scale-110" : ""
                           }`}
                         >

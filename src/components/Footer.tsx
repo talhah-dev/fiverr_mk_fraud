@@ -30,7 +30,7 @@ export default function Footer() {
 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+      <div className="relative mx-auto max-w-7xl px-6 pt-20 lg:px-8 pb-10 lg:pt-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <div className="mb-6 inline-flex items-center gap-3">
@@ -174,23 +174,21 @@ export default function Footer() {
                   Get expert guidance tailored to your organisation's unique risk profile.
                 </p>
               </div>
-              <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 px-8 py-4 font-bold text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
+              <button className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-4 font-bold text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
                 <span className="relative z-10 flex items-center gap-2">
                   Get Started Today
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-blue-600 to-[#1d3658] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </button>
+                </span></button>
             </div>
           </div>
         </div>
 
         <div className="mt-12 border-t border-slate-700/50 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-slate-500 lg:flex-row lg:text-left">
+          <div className="flex flex-col items-center justify-center text-center gap-4 text-center text-sm text-slate-500 lg:flex-row lg:text-left">
             <p>
               © {new Date().getFullYear()} MK Fraud Insights. All rights reserved.
             </p>
-            <div className="flex flex-wrap gap-6">
+            {/* <div className="flex flex-wrap gap-6">
               <a href="#" className="transition-colors hover:text-blue-400">
                 Privacy Policy
               </a>
@@ -200,7 +198,7 @@ export default function Footer() {
               <a href="#" className="transition-colors hover:text-blue-400">
                 Cookie Policy
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

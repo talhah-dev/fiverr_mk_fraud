@@ -41,18 +41,18 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "border-b border-slate-200 bg-white/95 shadow-lg backdrop-blur-xl"
-                    : "bg-white"
+                ? "border-b border-slate-200 bg-white/95 shadow-lg backdrop-blur-xl"
+                : "bg-white"
                 }`}
         >
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="flex h-20 items-center justify-between">
+                <div className="flex h-20 md:h-24 items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#1d3658] via-blue-600 to-cyan-600 shadow-lg">
                             <Shield className="h-7 w-7 text-white" strokeWidth={2.5} />
                         </div>
                         <div>
-                            <h1 className="bg-gradient-to-r from-[#1d3658] via-blue-700 to-cyan-700 bg-clip-text text-xl font-black text-transparent">
+                            <h1 className="bg-gradient-to-r from-[#1d3658] via-blue-700 to-cyan-700 bg-clip-text text-xl font-bold text-transparent">
                                 MK Fraud Insights
                             </h1>
                             <p className="text-xs font-medium text-slate-600">
@@ -113,12 +113,9 @@ export default function Navbar() {
                             <Phone className="h-4 w-4" />
                             <span className="hidden xl:inline">+27 123 456 789</span>
                         </a>
-                        <Button className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 px-6 py-2.5 font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30">
-                            <span className="relative z-10 flex items-center gap-2">
-                                Book a Call
-                                <Mail className="h-4 w-4" />
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-blue-600 to-[#1d3658] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <Button className="group relative overflow-hidden bg-gradient-to-r from-[#1d3658] to-blue-600 px-16 py-6 font-bold shadow-lg transition-all duration-300 hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30">
+                            <Mail className="h-6 w-6" />
+                            Book a Call
                         </Button>
                     </div>
 
@@ -188,8 +185,8 @@ export default function Navbar() {
                             </a>
                             <Button className="w-full rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 py-4 font-bold shadow-lg">
                                 <span className="flex items-center justify-center gap-2">
-                                    Book a Call
                                     <Mail className="h-5 w-5" />
+                                    Book a Call
                                 </span>
                             </Button>
                         </div>

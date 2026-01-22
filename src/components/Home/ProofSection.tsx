@@ -62,7 +62,7 @@ export default function ProofSection() {
             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
           </div>
 
-          <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mb-6 text-4xl font-bold leading-tight capitalize tracking-tight text-white sm:text-5xl lg:text-6xl">
             Built for{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
@@ -162,7 +162,7 @@ export default function ProofSection() {
                           : "border-slate-200 bg-white"
                       }`}
                     >
-                      <div className={`p-5 ${isHovered ? "bg-white/90 backdrop-blur-sm" : ""}`}>
+                      <div className={`p-5 ${isHovered ? "bg-white/90 " : ""}`}>
                         <div className="flex items-center justify-between">
                           <span className={`text-sm font-bold transition-colors ${isHovered ? "text-[#1d3658]" : "text-slate-700"}`}>
                             Learn More About This
@@ -188,47 +188,6 @@ export default function ProofSection() {
               </div>
             );
           })}
-        </div>
-
-        <div className="mt-20 overflow-hidden rounded-3xl border-2 border-blue-400/20 bg-gradient-to-br from-white via-blue-50/30 to-violet-50/30 p-8 shadow-2xl backdrop-blur-xl lg:p-12">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f608_1px,transparent_1px),linear-gradient(to_bottom,#3b82f608_1px,transparent_1px)] bg-[size:30px_30px]" />
-          
-          <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-            <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500/20 to-violet-500/20 px-5 py-2.5 backdrop-blur-xl">
-                <div className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
-                </div>
-                <span className="text-sm font-bold text-[#1d3658]">
-                  Ready to Get Started?
-                </span>
-              </div>
-              <h3 className="mb-4 bg-gradient-to-r from-[#1d3658] via-blue-700 to-[#1d3658] bg-clip-text text-3xl font-black text-transparent lg:text-4xl">
-                Experience the difference of practitioner-led fraud prevention
-              </h3>
-              <p className="text-lg text-slate-600">
-                See how our real-world approach transforms fraud risk management into a strategic advantage.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
-              <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-violet-600 px-8 py-5 font-bold text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Book Your Consultation
-                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-600 via-blue-600 to-[#1d3658] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </button>
-              
-              <button className="group rounded-2xl border-2 border-[#1d3658] bg-white px-8 py-5 font-bold text-[#1d3658] shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500 hover:bg-gradient-to-r hover:from-blue-50 hover:to-violet-50">
-                <span className="flex items-center justify-center gap-2">
-                  View Case Studies
-                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>

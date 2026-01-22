@@ -91,19 +91,16 @@ export default function HowItWorksSection() {
                       : "shadow-lg hover:shadow-xl"
                   }`}
                 >
-                  {/* Gradient Overlay on Hover */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 transition-opacity duration-500 ${
                       isHovered ? "opacity-5" : ""
                     }`}
                   />
 
-                  {/* Number Badge */}
                   <div className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-lg font-bold text-slate-400 transition-all duration-300 group-hover:bg-slate-200">
                     {index + 1}
                   </div>
 
-                  {/* Icon */}
                   <div className="relative mb-6">
                     <div
                       className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${step.color} p-0.5 shadow-lg transition-transform duration-300 ${
@@ -111,7 +108,7 @@ export default function HowItWorksSection() {
                       }`}
                     >
                       <div className="flex h-full w-full items-center justify-center rounded-2xl bg-white">
-                        <Icon className={`h-7 w-7 bg-gradient-to-br ${step.color} bg-clip-text text-transparent`} strokeWidth={2.5} />
+                        <Icon className={`h-7 w-7 bg-gradient-to-br ${step.color} bg-clip-text opacity-75`} strokeWidth={2.5} />
                       </div>
                     </div>
                   </div>

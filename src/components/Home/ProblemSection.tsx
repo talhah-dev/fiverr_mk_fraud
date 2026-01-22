@@ -55,20 +55,19 @@ export default function ProblemSection() {
         {/* Header Section */}
         <div className="mb-20 max-w-3xl">
           {/* Warning Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-red-200 bg-gradient-to-r from-red-50 to-orange-50 px-5 py-2.5 shadow-sm">
-            <AlertCircle className="h-4 w-4 text-red-600" />
-            <span className="text-sm font-bold uppercase tracking-wide text-red-700">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-blue-50 px-5 py-2.5 shadow-sm">
+            <AlertCircle className="h-4 w-4 text-[#1d3658]" />
+            <span className="text-sm font-bold uppercase tracking-wide text-[#1d3658]">
               Critical Business Risk
             </span>
           </div>
 
-          <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
+          <h2 className="mb-6 text-4xl font-bold capitalize leading-[1.2] tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
             Fraud is already in your{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              <span className="relative z-10 bg-gradient-to-r from-[#1d3658] to-blue-600 bg-clip-text text-transparent">
                 operating model
               </span>
-              <span className="absolute -bottom-2 left-0 h-3 w-full bg-gradient-to-r from-red-500/30 to-orange-500/30 blur-md" />
             </span>
           </h2>
 
@@ -160,7 +159,7 @@ export default function ProblemSection() {
                         <div className="flex items-end justify-between">
                           <div>
                             <div
-                              className={`mb-1 bg-gradient-to-r ${problem.gradient} bg-clip-text text-4xl font-black text-transparent`}
+                              className={`mb-1 bg-gradient-to-r ${problem.gradient} bg-clip-text text-4xl font-bold text-transparent`}
                             >
                               {problem.stat}
                             </div>
@@ -202,7 +201,7 @@ export default function ProblemSection() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-16 rounded-3xl border-2 border-[#1d3658]/10 bg-gradient-to-r from-[#1d3658]/5 via-transparent to-blue-500/5 p-8 text-center backdrop-blur-sm lg:p-12">
+        <div className="mt-16 rounded-3xl border-2 border-[#1d3658]/10 bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10 p-8 text-center backdrop-blur-sm lg:p-12">
           <div className="mx-auto max-w-2xl">
             <h3 className="mb-4 text-2xl font-bold text-[#1d3658] lg:text-3xl">
               Don't wait for fraud to become visible

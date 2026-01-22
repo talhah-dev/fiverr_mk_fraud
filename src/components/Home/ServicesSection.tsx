@@ -53,13 +53,12 @@ export default function ServicesSection() {
               </span>
             </div>
 
-            <h2 className="text-4xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-bold leading-[1.1] capitalize tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
               Practical fraud support{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 bg-gradient-to-r from-[#1d3658] to-[#2a5080] bg-clip-text text-transparent">
                   where risk actually lives
                 </span>
-                <span className="absolute -bottom-2 left-0 h-3 w-full bg-gradient-to-r from-[#1d3658]/30 to-[#2a5080]/30 blur-md" />
               </span>
             </h2>
 
@@ -87,7 +86,7 @@ export default function ServicesSection() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 rounded-2xl border-2 border-[#1d3658]/10 bg-gradient-to-br from-white to-slate-50/50 p-6 shadow-sm">
+            {/* <div className="grid grid-cols-2 gap-4 rounded-2xl border-2 border-[#1d3658]/10 bg-gradient-to-br from-white to-slate-50/50 p-6 shadow-sm">
               <div className="text-center">
                 <div className="mb-2 text-3xl font-black text-[#1d3658]">50+</div>
                 <div className="text-sm font-medium text-slate-600">Clients Served</div>
@@ -104,13 +103,13 @@ export default function ServicesSection() {
                 <div className="mb-2 text-3xl font-black text-[#1d3658]">24/7</div>
                 <div className="text-sm font-medium text-slate-600">Support Available</div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="relative">
             <div className="absolute -inset-8 rounded-3xl bg-gradient-to-tr from-[#1d3658]/20 via-transparent to-[#1d3658]/10 blur-3xl" />
 
-            <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
               {services.map((service, index) => {
                 const Icon = service.icon;
                 const isHovered = hoveredCard === index;
@@ -189,33 +188,6 @@ export default function ServicesSection() {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        <div className="mt-20 overflow-hidden rounded-3xl border-2 border-[#1d3658]/10 bg-gradient-to-r from-white via-slate-50/50 to-white p-8 shadow-xl lg:p-12">
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#1d3658]/10 px-5 py-2.5">
-              <div className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#1d3658] opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#1d3658]"></span>
-              </div>
-              <span className="text-sm font-bold uppercase tracking-wide text-[#1d3658]">
-                Custom Solutions Available
-              </span>
-            </div>
-
-            <h3 className="mb-4 max-w-3xl text-3xl font-bold text-[#1d3658] lg:text-4xl">
-              Need a tailored approach to fraud prevention?
-            </h3>
-
-            <p className="mb-8 max-w-2xl text-lg text-slate-600">
-              Every organisation faces unique fraud challenges. We design custom solutions that fit your specific risk profile, operational context, and business goals.
-            </p>
-
-            <button className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#1d3658] to-[#2a5080] px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#1d3658]/20">
-              Discuss Your Requirements
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
           </div>
         </div>
       </div>

@@ -51,25 +51,12 @@ export default function CTASection() {
                   </span>
                 </div>
 
-                <h2 className="mb-6 text-4xl font-black leading-tight tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
+                <h2 className="mb-6 text-4xl font-bold capitalize leading-[1.1] tracking-tight text-[#1d3658] sm:text-5xl">
                   Want a clear fraud plan in{" "}
                   <span className="relative inline-block">
                     <span className="relative z-10 bg-gradient-to-r from-[#1d3658] to-[#2a5080] bg-clip-text text-transparent">
                       30 days?
                     </span>
-                    <svg
-                      className="absolute -bottom-2 left-0 w-full text-[#1d3658]/20"
-                      height="12"
-                      viewBox="0 0 300 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M0 6C75 6 75 0 150 0C225 0 225 6 300 6"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                      />
-                    </svg>
                   </span>
                 </h2>
 
@@ -98,13 +85,13 @@ export default function CTASection() {
 
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <button
-                    className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] to-[#2a5080] px-8 py-5 text-lg font-bold text-white shadow-2xl shadow-[#1d3658]/20 transition-all duration-300 hover:scale-105 hover:shadow-[#1d3658]/30"
+                    className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] to-blue-600 px-7 py-4 text-lg font-semibold text-white shadow-2xl shadow-[#1d3658]/20 transition-all duration-300 hover:scale-105 hover:shadow-[#1d3658]/30"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-3">
                       <Calendar className="h-6 w-6" />
-                      Book Your Strategy Call
+                      Book Your Strategy 
                       <ArrowRight
                         className={`h-6 w-6 transition-transform duration-300 ${
                           isHovered ? "translate-x-2" : ""
@@ -129,9 +116,9 @@ export default function CTASection() {
               </div>
 
               <div className="relative">
-                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#1d3658]/20 to-transparent blur-2xl" />
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-blue-600/10 to-transparent blur-2xl" />
 
-                <div className="relative overflow-hidden rounded-3xl border-2 border-[#1d3658]/10 bg-gradient-to-br from-white to-slate-50/50 p-8 shadow-xl lg:p-10">
+                <div className="relative overflow-hidden rounded-3xl md:border-2 border-[#1d3658]/10 md:bg-gradient-to-br from-white to-slate-50/50 md:p-8 md:shadow-xl lg:p-10">
                   <div className="mb-8 flex items-center justify-between">
                     <h3 className="text-2xl font-bold text-[#1d3658]">
                       What You'll Get
@@ -213,7 +200,7 @@ export default function CTASection() {
           <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-transparent via-[#1d3658] to-transparent opacity-50" />
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {/* <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[
             { number: "30", label: "Days to Strategy" },
             { number: "100%", label: "Customized" },
@@ -224,7 +211,7 @@ export default function CTASection() {
               key={index}
               className="rounded-2xl border-2 border-[#1d3658]/10 bg-white p-6 text-center transition-all duration-300 hover:scale-105 hover:border-[#1d3658]/20 hover:shadow-lg"
             >
-              <div className="mb-2 bg-gradient-to-r from-[#1d3658] to-[#2a5080] bg-clip-text text-4xl font-black text-transparent">
+              <div className="mb-2 bg-gradient-to-r from-[#1d3658] to-[#2a5080] bg-clip-text text-4xl font-bold text-transparent">
                 {stat.number}
               </div>
               <div className="text-sm font-medium text-slate-600">
@@ -232,7 +219,7 @@ export default function CTASection() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
