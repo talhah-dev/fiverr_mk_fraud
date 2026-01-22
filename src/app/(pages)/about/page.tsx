@@ -78,7 +78,7 @@ export default function About() {
                                 </span>
                             </div>
 
-                            <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
                                 MK Fraud{" "}
                                 <span className="relative inline-block">
                                     <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
@@ -164,7 +164,7 @@ export default function About() {
                                 </span>
                             </div>
 
-                            <h2 className="mb-6 text-4xl font-black leading-tight tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
+                            <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
                                 Built by{" "}
                                 <span className="relative inline-block">
                                     <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 bg-clip-text text-transparent">
@@ -209,7 +209,7 @@ export default function About() {
                     <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
                         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
                             <div>
-                                <h2 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+                                <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                                     Our values drive everything we do
                                 </h2>
                                 <p className="mb-8 text-xl leading-relaxed text-blue-100">

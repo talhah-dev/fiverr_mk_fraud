@@ -225,7 +225,7 @@ export default function FraudHealthCheckSection() {
                                     </div>
                                 </div>
 
-                                <Button className="mt-8 w-full rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 py-6 text-lg font-bold shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
+                                <Button className="mt-8 w-full rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600  py-6 text-lg font-semibold shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
                                     Request a Health Check
                                 </Button>
                             </div>

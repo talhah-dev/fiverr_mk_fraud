@@ -82,7 +82,7 @@ export default function ContactUs() {
               </span>
             </div>
 
-            <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight text-[#1d3658] sm:text-6xl lg:text-7xl">
+            <h1 className="mb-6 text-5xl max-w-3xl mx-auto text-center font-bold leading-tight tracking-tight text-[#1d3658] sm:text-6xl lg:text-7xl">
               Let's discuss your{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 bg-clip-text text-transparent">
@@ -249,7 +249,7 @@ export default function ContactUs() {
 
                   <Button
                     onClick={handleSubmit}
-                    className="group w-full rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 py-6 text-lg font-bold shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
+                    className="group w-full rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600 py-6 text-lg font-bold shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Send Message

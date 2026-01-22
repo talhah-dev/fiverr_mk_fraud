@@ -106,7 +106,7 @@ export default function Insights() {
                                 </span>
                             </div>
 
-                            <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
                                 Fraud Risk{" "}
                                 <span className="relative inline-block">
                                     <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
@@ -137,7 +137,7 @@ export default function Insights() {
                                         </span>
                                     </div>
 
-                                    <h2 className="mb-4 text-3xl font-black text-[#1d3658] lg:text-4xl">
+                                    <h2 className="mb-4 text-3xl font-bold text-[#1d3658] lg:text-4xl">
                                         {featuredInsight.title}
                                     </h2>
 
@@ -156,7 +156,7 @@ export default function Insights() {
                                         </div>
                                     </div>
 
-                                    <Button className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 px-8 py-4 text-lg font-bold shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
+                                    <Button className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600 px-8 py-4 text-lg font-semibold shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
                                         <span className="relative z-10 flex items-center gap-2">
                                             Read Full Report
                                             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -165,14 +165,14 @@ export default function Insights() {
                                     </Button>
                                 </div>
 
-                                <div className="relative h-64 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d3658] via-blue-700 to-cyan-700 p-8 shadow-xl lg:h-80">
+                                <div className="relative md:h-64 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d3658] via-blue-700 to-cyan-700 p-8 shadow-xl lg:h-80">
                                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:30px_30px]" />
                                     <div className="relative flex h-full flex-col justify-between">
                                         <div className="space-y-4">
                                             {["Emerging fraud vectors", "Control effectiveness gaps", "Strategic recommendations"].map((item, index) => (
                                                 <div key={index} className="flex items-center gap-3 rounded-xl border-2 border-white/20 bg-white/10 p-3 backdrop-blur-sm">
                                                     <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-400">
-                                                        <span className="text-sm font-black text-white">{index + 1}</span>
+                                                        <span className="text-sm font-bold text-white">{index + 1}</span>
                                                     </div>
                                                     <span className="text-sm font-semibold text-white">{item}</span>
                                                 </div>
@@ -293,7 +293,7 @@ export default function Insights() {
                                     </span>
                                 </div>
 
-                                <h2 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl">
+                                <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
                                     Follow us on LinkedIn for latest insights
                                 </h2>
 
@@ -321,7 +321,7 @@ export default function Insights() {
                                         key={index}
                                         className="rounded-2xl border-2 border-white/20 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/20"
                                     >
-                                        <div className="mb-2 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-4xl font-black text-transparent">
+                                        <div className="mb-2 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-4xl font-bold text-transparent">
                                             {stat.number}
                                         </div>
                                         <div className="text-sm font-medium text-blue-100">
@@ -335,45 +335,47 @@ export default function Insights() {
                 </section>
             </div>
 
-            <div className="mt-20 overflow-hidden rounded-3xl border-2 border-blue-400/20 bg-gradient-to-br from-white via-blue-50/30 to-violet-50/30 p-8 shadow-2xl backdrop-blur-xl lg:p-12">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f608_1px,transparent_1px),linear-gradient(to_bottom,#3b82f608_1px,transparent_1px)] bg-[size:30px_30px]" />
+            <div className="max-w-7xl p-5 mb-16 mx-auto">
+                <div className="mt-20 overflow-hidden rounded-3xl border-2 border-blue-400/20 bg-gradient-to-br from-white via-blue-50/30 to-violet-50/30 md:p-8 py-8 p-5 shadow-2xl backdrop-blur-xl lg:p-12">
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f608_1px,transparent_1px),linear-gradient(to_bottom,#3b82f608_1px,transparent_1px)] bg-[size:30px_30px]" />
 
-                <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-                    <div>
-                        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500/20 to-violet-500/20 px-5 py-2.5 backdrop-blur-xl">
-                            <div className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
+                    <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
+                        <div>
+                            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500/20 to-violet-500/20 px-5 py-2.5 backdrop-blur-xl">
+                                <div className="relative flex h-2 w-2">
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
+                                </div>
+                                <span className="text-sm font-bold text-[#1d3658]">
+                                    Ready to Get Started?
+                                </span>
                             </div>
-                            <span className="text-sm font-bold text-[#1d3658]">
-                                Ready to Get Started?
-                            </span>
+                            <h3 className="mb-4 bg-gradient-to-r from-[#1d3658] via-blue-700 to-[#1d3658] bg-clip-text text-3xl font-bold text-transparent lg:text-4xl">
+                                Experience the difference of practitioner-led fraud prevention
+                            </h3>
+                            <p className="text-lg text-slate-600">
+                                See how our real-world approach transforms fraud risk management into a strategic advantage.
+                            </p>
                         </div>
-                        <h3 className="mb-4 bg-gradient-to-r from-[#1d3658] via-blue-700 to-[#1d3658] bg-clip-text text-3xl font-black text-transparent lg:text-4xl">
-                            Experience the difference of practitioner-led fraud prevention
-                        </h3>
-                        <p className="text-lg text-slate-600">
-                            See how our real-world approach transforms fraud risk management into a strategic advantage.
-                        </p>
-                    </div>
 
-                    <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
-                        <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-violet-600 px-8 py-5 font-bold text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
-                            <span className="relative z-10 flex items-center justify-center gap-2">
-                                Book Your Consultation
-                                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-violet-600 via-blue-600 to-[#1d3658] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        </button>
+                        <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
+                            <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] to-blue-600 px-8 py-5 font-bold text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
+                                <span className="relative z-10 flex items-center justify-center gap-2">
+                                    Book Your Consultation
+                                    <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                                </span>
+                            </button>
 
-                        <button className="group rounded-2xl border-2 border-[#1d3658] bg-white px-8 py-5 font-bold text-[#1d3658] shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500 hover:bg-gradient-to-r hover:from-blue-50 hover:to-violet-50">
-                            <span className="flex items-center justify-center gap-2">
-                                View Case Studies
-                                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                            </span>
-                        </button>
+                            <button className="group rounded-2xl border-2 border-[#1d3658] bg-white px-8 py-5 font-bold text-[#1d3658] shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500 hover:bg-gradient-to-r hover:from-blue-50 hover:to-violet-50">
+                                <span className="flex items-center justify-center gap-2">
+                                    View Case Studies
+                                    <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </Wrapper>
     );

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, CheckCircle2, Sparkles, Target, Users, TrendingUp } from "lucide-react";
+import { ArrowRight, Shield, CheckCircle2, Sparkles, Target, Users, TrendingUp, Star, User } from "lucide-react";
 import { useState } from "react";
 
 export default function ServicesHero() {
@@ -52,26 +52,13 @@ export default function ServicesHero() {
                             <Sparkles className="h-4 w-4 text-cyan-300" />
                         </div>
 
-                        <h1 className="text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                        <h1 className="text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
                             Fraud services that work in{" "}
                             <span className="relative inline-block">
                                 <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
                                     practice
                                 </span>
                                 <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-violet-500/50 blur-xl" />
-                                <svg
-                                    className="absolute -bottom-1 left-0 w-full text-cyan-400/40"
-                                    height="10"
-                                    viewBox="0 0 300 10"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M0 5C75 5 75 0 150 0C225 0 225 5 300 5"
-                                        stroke="currentColor"
-                                        strokeWidth="3"
-                                    />
-                                </svg>
                             </span>
                         </h1>
 
@@ -125,25 +112,21 @@ export default function ServicesHero() {
                             </Button>
                         </div>
 
-                        <div className="flex items-center gap-3 pt-4">
+                        <div className="flex md:flex-row flex-col items-center gap-3 pt-4">
                             <div className="flex -space-x-2">
                                 {[1, 2, 3, 4].map((i) => (
                                     <div
                                         key={i}
-                                        className="h-10 w-10 rounded-full border-2 border-slate-800 bg-gradient-to-br from-blue-500 to-cyan-500"
-                                    />
+                                        className="h-10 flex items-center justify-center text-white/80 w-10 rounded-full border-2 border-slate-800 bg-gradient-to-br from-blue-500 to-cyan-500"
+                                    >
+                                        <User />
+                                    </div>
                                 ))}
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex md:flex-row flex-col items-center gap-2">
                                 <div className="flex">
                                     {[1, 2, 3, 4, 5].map((i) => (
-                                        <svg
-                                            key={i}
-                                            className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                                            viewBox="0 0 20 20"
-                                        >
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
+                                        <Star className="fill-yellow-400 text-yellow-400" />
                                     ))}
                                 </div>
                                 <span className="text-sm font-medium text-slate-300">
@@ -196,7 +179,7 @@ export default function ServicesHero() {
                                 <div className="grid grid-cols-3 gap-4 text-center">
                                     {stats.map((stat, index) => (
                                         <div key={index}>
-                                            <div className="mb-1 bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-3xl font-black text-transparent">
+                                            <div className="mb-1 bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-3xl font-bold text-transparent">
                                                 {stat.number}{stat.suffix}
                                             </div>
                                             <div className="text-xs font-medium text-slate-300">{stat.label}</div>

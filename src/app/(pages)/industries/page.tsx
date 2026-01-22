@@ -134,7 +134,7 @@ export default function Industries() {
                                 </span>
                             </div>
 
-                            <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
                                 Fraud patterns that{" "}
                                 <span className="relative inline-block">
                                     <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
@@ -161,7 +161,7 @@ export default function Industries() {
 
                     <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
                         <div className="mb-16 text-center">
-                            <h2 className="mb-6 text-4xl font-black leading-tight tracking-tight text-[#1d3658] sm:text-5xl">
+                            <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-5xl">
                                 Fraud Vectors
                             </h2>
                             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
@@ -195,26 +195,28 @@ export default function Industries() {
                                                 className="w-full p-8 text-left transition-all duration-300"
                                             >
                                                 <div className="flex items-center gap-6">
-                                                    <div
-                                                        className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${vector.gradient} shadow-lg transition-all duration-500 ${isSelected ? "rotate-12 scale-110" : ""
-                                                            }`}
-                                                    >
-                                                        <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
-                                                    </div>
+                                                    <div className="flex md:flex-row flex-col md:items-center gap-6">
+                                                        <div
+                                                            className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${vector.gradient} shadow-lg transition-all duration-500 ${isSelected ? "rotate-12 scale-110" : ""
+                                                                }`}
+                                                        >
+                                                            <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
+                                                        </div>
 
-                                                    <div className="flex-1">
-                                                        <h3 className="mb-2 text-2xl font-bold text-[#1d3658]">
-                                                            {vector.title}
-                                                        </h3>
-                                                        <div className="flex flex-wrap gap-2">
-                                                            {vector.affectedSectors.map((sector, idx) => (
-                                                                <span
-                                                                    key={idx}
-                                                                    className={`rounded-full bg-gradient-to-r ${vector.gradient} px-3 py-1 text-xs font-semibold text-white`}
-                                                                >
-                                                                    {sector}
-                                                                </span>
-                                                            ))}
+                                                        <div className="flex-1">
+                                                            <h3 className="mb-2 text-2xl font-bold text-[#1d3658]">
+                                                                {vector.title}
+                                                            </h3>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {vector.affectedSectors.map((sector, idx) => (
+                                                                    <span
+                                                                        key={idx}
+                                                                        className={`rounded-full bg-gradient-to-r ${vector.gradient} px-3 py-1 text-xs font-semibold text-white`}
+                                                                    >
+                                                                        {sector}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -307,7 +309,7 @@ export default function Industries() {
                     <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
                         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
                             <div>
-                                <h2 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+                                <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                                     Not limited by sector labels
                                 </h2>
                                 <p className="mb-8 text-xl leading-relaxed text-blue-100">
