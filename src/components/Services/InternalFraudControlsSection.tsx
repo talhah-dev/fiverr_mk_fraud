@@ -58,7 +58,7 @@ export default function InternalFraudControlsSection() {
     ];
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1d3658] to-slate-800">
+        <section id="controls" className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1d3658] to-slate-800">
             <div className="absolute inset-0">
                 <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-blue-500/10 blur-3xl" />
                 <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-purple-500/10 blur-3xl" />

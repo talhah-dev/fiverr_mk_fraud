@@ -3,6 +3,7 @@
 import { Shield, Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,10 +27,10 @@ export default function Navbar() {
             name: "Services",
             href: "/services",
             dropdown: [
-                { name: "Fraud Health Check", href: "/services/health-check" },
-                { name: "Programme Design", href: "/services/programme-design" },
-                { name: "Awareness & Resilience", href: "/services/awareness" },
-                { name: "Internal Controls", href: "/services/controls" },
+                { name: "Fraud Health Check", href: "/services#health-check" },
+                { name: "Programme Design", href: "/services#programme-design" },
+                { name: "Awareness & Resilience", href: "/services#awareness" },
+                { name: "Internal Controls", href: "/services#controls" },
             ],
         },
         { name: "Industries", href: "/industries" },
@@ -69,9 +70,9 @@ export default function Navbar() {
                                 onMouseEnter={() => link.dropdown && setActiveDropdown(link.name)}
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
-                                <a
+                                <Link
                                     href={link.href}
-                                    className="group flex items-center gap-1 font-semibold text-slate-700 transition-colors hover:text-[#1d3658]"
+                                    className="group flex items-center py-3 gap-1 font-semibold text-slate-700 transition-colors hover:text-blue-600"
                                 >
                                     {link.name}
                                     {link.dropdown && (
@@ -80,14 +81,13 @@ export default function Navbar() {
                                                 }`}
                                         />
                                     )}
-                                    <span className="absolute -bottom-2 left-0 h-0.5 w-0 bg-gradient-to-r from-[#1d3658] to-blue-600 transition-all duration-300 group-hover:w-full" />
-                                </a>
+                                </Link>
 
                                 {link.dropdown && activeDropdown === link.name && (
-                                    <div className="absolute left-0 top-full mt-2 w-64 overflow-hidden rounded-2xl border-2 border-slate-200 bg-white shadow-2xl">
+                                    <div className="absolute left-0 top-full mt-0 w-64 overflow-hidden rounded-2xl border-2 border-slate-200 bg-white shadow-2xl">
                                         <div className="p-2">
                                             {link.dropdown.map((item) => (
-                                                <a
+                                                <Link
                                                     key={item.name}
                                                     href={item.href}
                                                     className="group flex items-center gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50"
@@ -96,7 +96,7 @@ export default function Navbar() {
                                                     <span className="font-semibold text-slate-700 transition-colors group-hover:text-[#1d3658]">
                                                         {item.name}
                                                     </span>
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
@@ -106,17 +106,19 @@ export default function Navbar() {
                     </div>
 
                     <div className="hidden items-center gap-4 lg:flex">
-                        <a
+                        <Link
                             href="tel:+27123456789"
                             className="flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#1d3658]"
                         >
                             <Phone className="h-4 w-4" />
                             <span className="hidden xl:inline">+27 123 456 789</span>
-                        </a>
-                        <Button className="group relative overflow-hidden bg-gradient-to-r from-[#1d3658] to-blue-600 px-16 py-6 font-bold shadow-lg transition-all duration-300 hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30">
-                            <Mail className="h-6 w-6" />
-                            Book a Call
-                        </Button>
+                        </Link>
+                        <Link href={"/contact"}>
+                            <Button className="group relative overflow-hidden bg-gradient-to-r from-[#1d3658] to-blue-600 px-16 py-6 font-bold shadow-lg transition-all duration-300 hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30">
+                                <Mail className="h-6 w-6" />
+                                Book a Call
+                            </Button>
+                        </Link>
                     </div>
 
                     <button
@@ -131,12 +133,17 @@ export default function Navbar() {
                     </button>
                 </div>
 
-                {isMobileMenuOpen && (
-                    <div className="border-t border-slate-200 py-4 lg:hidden">
+                <div
+                    className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen
+                        ? "max-h-[800px] opacity-100"
+                        : "max-h-0 opacity-0"
+                        }`}
+                >
+                    <div className="border-t border-slate-200 py-4">
                         <div className="space-y-1">
                             {navLinks.map((link) => (
                                 <div key={link.name}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="flex items-center justify-between rounded-xl p-4 font-semibold text-slate-700 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 hover:text-[#1d3658]"
                                         onClick={() => {
@@ -156,18 +163,18 @@ export default function Navbar() {
                                                     }`}
                                             />
                                         )}
-                                    </a>
+                                    </Link>
                                     {link.dropdown && activeDropdown === link.name && (
                                         <div className="ml-4 space-y-1 border-l-2 border-slate-200 pl-4">
                                             {link.dropdown.map((item) => (
-                                                <a
+                                                <Link
                                                     key={item.name}
                                                     href={item.href}
                                                     className="block rounded-lg p-3 text-sm font-medium text-slate-600 transition-all duration-300 hover:bg-blue-50 hover:text-[#1d3658]"
                                                     onClick={() => setIsMobileMenuOpen(false)}
                                                 >
                                                     {item.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     )}
@@ -176,22 +183,24 @@ export default function Navbar() {
                         </div>
 
                         <div className="mt-4 space-y-3 border-t border-slate-200 pt-4">
-                            <a
+                            <Link
                                 href="tel:+27123456789"
                                 className="flex items-center gap-3 rounded-xl border-2 border-slate-200 bg-white p-4 font-semibold text-slate-700 transition-all duration-300 hover:border-[#1d3658] hover:bg-slate-50"
                             >
                                 <Phone className="h-5 w-5 text-[#1d3658]" />
                                 +27 123 456 789
-                            </a>
-                            <Button className="w-full rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 py-4 font-bold shadow-lg">
-                                <span className="flex items-center justify-center gap-2">
-                                    <Mail className="h-5 w-5" />
-                                    Book a Call
-                                </span>
-                            </Button>
+                            </Link>
+                            <Link href={"/contact"}>
+                                <Button className="w-full rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 py-4 font-bold shadow-lg">
+                                    <span className="flex items-center justify-center gap-2">
+                                        <Mail className="h-5 w-5" />
+                                        Book a Call
+                                    </span>
+                                </Button>
+                            </Link>
                         </div>
                     </div>
-                )}
+                </div>
             </div>
         </nav>
     );

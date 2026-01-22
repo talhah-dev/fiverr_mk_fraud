@@ -52,7 +52,7 @@ export default function FraudHealthCheckSection() {
     ];
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
+        <section id="health-check" className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
             <div className="absolute inset-0 -z-10">
                 <div className="absolute left-0 top-1/4 h-[500px] w-[500px] rounded-full bg-[#1d3658]/5 blur-3xl" />
                 <div className="absolute right-0 bottom-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-3xl" />

@@ -126,7 +126,7 @@ export default function ServicesHero() {
                             <div className="flex md:flex-row flex-col items-center gap-2">
                                 <div className="flex">
                                     {[1, 2, 3, 4, 5].map((i) => (
-                                        <Star className="fill-yellow-400 text-yellow-400" />
+                                        <Star key={i} className="fill-yellow-400 text-yellow-400" />
                                     ))}
                                 </div>
                                 <span className="text-sm font-medium text-slate-300">
