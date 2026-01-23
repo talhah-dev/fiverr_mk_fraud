@@ -1,59 +1,53 @@
 "use client";
 
-import { ShieldCheck, AlertTriangle, Users, TrendingDown, CheckCircle2, ArrowRight, Lock, Zap } from "lucide-react";
+import { ShieldCheck, AlertTriangle, Eye, TrendingUp, CheckCircle2, ArrowRight, Lock, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function InternalFraudControlsSection() {
-    const [hoveredFocus, setHoveredFocus] = useState<number | null>(null);
+export default function ControlsMonitoringSection() {
+    const [hoveredOutput, setHoveredOutput] = useState<number | null>(null);
 
-    const focusAreas = [
+    const outputs = [
         {
-            icon: Zap,
-            title: "Simplifying existing controls",
-            description: "Rather than adding layers, we streamline and strengthen what you already have",
+            icon: ShieldCheck,
+            title: "Preventive and detective control design",
+            description: "Controls that stop fraud before it happens and detect it when prevention fails",
             gradient: "from-[#1d3658] to-blue-600",
         },
         {
-            icon: Users,
-            title: "Strengthening accountability",
-            description: "Clear ownership at key decision points where fraud risks are highest",
+            icon: Eye,
+            title: "Monitoring and escalation logic",
+            description: "Clear processes for identifying issues and ensuring they reach the right people",
             gradient: "from-blue-600 to-cyan-600",
         },
         {
-            icon: AlertTriangle,
-            title: "Early-warning signals",
-            description: "Proactive detection instead of reactive investigations after the fact",
+            icon: TrendingUp,
+            title: "Practical control recommendations",
+            description: "Solutions tailored to your systems and processes, not generic frameworks",
             gradient: "from-cyan-600 to-violet-600",
-        },
-        {
-            icon: ShieldCheck,
-            title: "Vendor and procurement risk",
-            description: "Third-party controls embedded into daily operations, not separate processes",
-            gradient: "from-violet-600 to-purple-600",
         },
     ];
 
     const benefits = [
         {
-            title: "Simplified Controls",
-            description: "Remove complexity while increasing effectiveness",
-            icon: Zap,
+            title: "Embedded Controls",
+            description: "Work within existing systems",
+            icon: Settings,
         },
         {
-            title: "Embedded Accountability",
-            description: "Clear responsibility at decision points",
-            icon: Users,
-        },
-        {
-            title: "Proactive Detection",
-            description: "Catch issues before they become losses",
+            title: "Clear Escalation",
+            description: "Issues reach decision-makers",
             icon: AlertTriangle,
         },
         {
+            title: "Prevention Focus",
+            description: "Stop fraud before it occurs",
+            icon: ShieldCheck,
+        },
+        {
             title: "Operational Flow",
-            description: "Protection without business slowdown",
-            icon: TrendingDown,
+            description: "No business slowdown",
+            icon: TrendingUp,
         },
     ];
 
@@ -72,22 +66,22 @@ export default function InternalFraudControlsSection() {
                     <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-purple-400/30 bg-gradient-to-r from-purple-500/20 to-blue-500/20 px-5 py-2.5 shadow-lg backdrop-blur-xl">
                         <Lock className="h-4 w-4 text-purple-300" />
                         <span className="text-sm font-bold uppercase tracking-wide text-purple-100">
-                            Control Service
+                            Service Four
                         </span>
                     </div>
 
-                    <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-                        Internal Fraud &{" "}
+                    <h2 className="mb-6 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                        Controls &{" "}
                         <span className="relative inline-block">
                             <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
-                                Procurement Controls
+                                Monitoring Design
                             </span>
                             <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-purple-500/50 blur-xl" />
                         </span>
                     </h2>
 
                     <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-                        Review and strengthening of internal and third-party controls to prevent abuse while keeping processes efficient.
+                        Support in designing and embedding fraud controls that work within existing systems and processes.
                     </p>
                 </div>
 
@@ -95,34 +89,34 @@ export default function InternalFraudControlsSection() {
                     <div>
                         <div className="mb-8">
                             <h3 className="mb-4 text-3xl font-bold text-white">
-                                Focus Areas
+                                What You Receive
                             </h3>
                             <p className="text-lg text-slate-300">
-                                We strengthen controls where they matter most — at the points where fraud actually occurs in your operations.
+                                Practical control designs that integrate with your operations without adding unnecessary complexity.
                             </p>
                         </div>
 
                         <div className="space-y-4">
-                            {focusAreas.map((area, index) => {
-                                const Icon = area.icon;
-                                const isHovered = hoveredFocus === index;
+                            {outputs.map((output, index) => {
+                                const Icon = output.icon;
+                                const isHovered = hoveredOutput === index;
 
                                 return (
                                     <div
                                         key={index}
                                         className="group relative"
-                                        onMouseEnter={() => setHoveredFocus(index)}
-                                        onMouseLeave={() => setHoveredFocus(null)}
+                                        onMouseEnter={() => setHoveredOutput(index)}
+                                        onMouseLeave={() => setHoveredOutput(null)}
                                     >
                                         <div
-                                            className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${area.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-60" : ""
+                                            className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${output.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-60" : ""
                                                 }`}
                                         />
 
                                         <div
                                             className={`relative overflow-hidden rounded-2xl border-2 bg-gradient-to-br from-white/10 to-white/5 p-6 backdrop-blur-xl transition-all duration-500 ${isHovered
-                                                ? "scale-105 border-purple-400/30 shadow-2xl shadow-purple-500/20"
-                                                : "border-white/10 shadow-lg"
+                                                    ? "scale-105 border-purple-400/30 shadow-2xl shadow-purple-500/20"
+                                                    : "border-white/10 shadow-lg"
                                                 }`}
                                         >
                                             <div
@@ -132,7 +126,7 @@ export default function InternalFraudControlsSection() {
 
                                             <div className="relative flex items-start gap-4">
                                                 <div
-                                                    className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${area.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110 shadow-purple-500/50" : ""
+                                                    className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${output.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110 shadow-purple-500/50" : ""
                                                         }`}
                                                 >
                                                     <Icon className="h-7 w-7 text-white" strokeWidth={2.5} />
@@ -140,10 +134,10 @@ export default function InternalFraudControlsSection() {
 
                                                 <div className="flex-1">
                                                     <h4 className="mb-2 text-lg font-bold text-white">
-                                                        {area.title}
+                                                        {output.title}
                                                     </h4>
                                                     <p className="text-sm leading-relaxed text-slate-300">
-                                                        {area.description}
+                                                        {output.description}
                                                     </p>
                                                 </div>
                                             </div>
@@ -156,14 +150,14 @@ export default function InternalFraudControlsSection() {
                         <div className="mt-8 overflow-hidden rounded-2xl border-2 border-white/10 bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-6 backdrop-blur-xl">
                             <div className="flex items-start gap-3">
                                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/20">
-                                    <ShieldCheck className="h-5 w-5 text-white" />
+                                    <Settings className="h-5 w-5 text-white" />
                                 </div>
                                 <div>
                                     <p className="mb-2 text-sm font-bold text-white">
-                                        Balance of Protection & Efficiency
+                                        Embedded in Your Systems
                                     </p>
                                     <p className="text-sm text-slate-300">
-                                        Our approach ensures controls protect value without creating bureaucracy or slowing down critical business processes.
+                                        We design controls that work within your existing technology and processes, ensuring they are practical and sustainable.
                                     </p>
                                 </div>
                             </div>
@@ -175,7 +169,7 @@ export default function InternalFraudControlsSection() {
                             <div className="overflow-hidden rounded-3xl border-2 border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 shadow-2xl backdrop-blur-xl lg:p-10">
                                 <div className="mb-8 flex items-center justify-between">
                                     <h3 className="text-2xl font-bold text-white">
-                                        Service Outcome
+                                        Service Benefits
                                     </h3>
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg">
                                         <Lock className="h-6 w-6 text-white" />
@@ -184,7 +178,7 @@ export default function InternalFraudControlsSection() {
 
                                 <div className="mb-8 rounded-2xl border-2 border-white/10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 p-6 backdrop-blur-sm">
                                     <p className="text-lg font-semibold text-white">
-                                        Controls that protect value <span className="text-cyan-300">and</span> keep the business moving.
+                                        Controls designed to work in practice, not just on paper.
                                     </p>
                                 </div>
 
@@ -214,14 +208,14 @@ export default function InternalFraudControlsSection() {
                             <div className="overflow-hidden rounded-3xl border-2 border-white/10 bg-white/5 p-8 backdrop-blur-xl">
                                 <div className="mb-6">
                                     <h4 className="mb-3 text-xl font-bold text-white">
-                                        What You'll Strengthen
+                                        Deliverables
                                     </h4>
                                     <div className="space-y-3">
                                         {[
-                                            "Existing control frameworks",
-                                            "Accountability at decision points",
-                                            "Early warning mechanisms",
-                                            "Vendor & procurement processes",
+                                            "Control design documentation",
+                                            "Monitoring framework",
+                                            "Escalation pathways",
+                                            "Implementation guidance",
                                         ].map((item, index) => (
                                             <div key={index} className="flex items-center gap-3">
                                                 <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-400">
@@ -239,17 +233,17 @@ export default function InternalFraudControlsSection() {
                                         <span className="text-sm font-bold text-white">Typical Timeline</span>
                                     </div>
                                     <div className="flex items-baseline gap-2">
-                                        <span className="text-3xl font-bold text-white">6-10</span>
+                                        <span className="text-3xl font-black text-white">6-8</span>
                                         <span className="text-lg font-semibold text-slate-300">weeks</span>
                                     </div>
                                     <p className="mt-2 text-xs text-slate-400">
-                                        From assessment to strengthened controls
+                                        From discovery to control implementation
                                     </p>
                                 </div>
 
                                 <Button className="mt-6 w-full rounded-xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 py-6 text-lg font-bold shadow-2xl shadow-purple-500/40 transition-all duration-300 hover:scale-105 hover:shadow-purple-500/60">
                                     <span className="flex items-center justify-center gap-2">
-                                        Strengthen Your Controls
+                                        Design Your Controls
                                         <ArrowRight className="h-5 w-5" />
                                     </span>
                                 </Button>

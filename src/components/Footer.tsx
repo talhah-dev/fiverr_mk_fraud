@@ -185,7 +185,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-slate-700/50 pt-8">
-          <div className="flex flex-col items-center justify-center text-center gap-4 text-center text-sm text-slate-500 lg:flex-row lg:text-left">
+          <div className="flex flex-col items-center justify-center md:justify-between text-center gap-4 text-center text-sm text-slate-500 lg:flex-row lg:text-left">
             <p>
               © {new Date().getFullYear()} MK Fraud Insights. All rights reserved.
             </p>

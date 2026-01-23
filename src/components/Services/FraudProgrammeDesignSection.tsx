@@ -1,44 +1,38 @@
 "use client";
 
-import { Layers, Users, FileCheck, BarChart3, Shield, CheckCircle2, ArrowRight, Target } from "lucide-react";
+import { Layers, Users, Shield, CheckCircle2, ArrowRight, Target, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function FraudProgrammeDesignSection() {
-    const [hoveredFocus, setHoveredFocus] = useState<number | null>(null);
+    const [hoveredOutput, setHoveredOutput] = useState<number | null>(null);
 
-    const focusAreas = [
+    const outputs = [
         {
-            icon: Users,
-            title: "Fraud governance, ownership, and decision rights",
-            description: "Clear accountability structures and decision-making frameworks",
+            icon: Layers,
+            title: "Fraud strategy and operating model",
+            description: "Clear direction on how fraud prevention, detection, and response work in your organisation",
             gradient: "from-[#1d3658] to-blue-600",
         },
         {
-            icon: Layers,
-            title: "Practical operating model",
-            description: "Prevention, detection, and response mechanisms that work in reality",
+            icon: Users,
+            title: "Roles and accountability definition",
+            description: "Who owns what, who decides what, and who is accountable for fraud outcomes",
             gradient: "from-blue-600 to-cyan-600",
         },
         {
-            icon: FileCheck,
-            title: "Usable policies and standards",
-            description: "Documentation that's practical, not theoretical",
+            icon: Shield,
+            title: "Governance and escalation design",
+            description: "How issues are identified, escalated, and resolved at the right level",
             gradient: "from-cyan-600 to-violet-600",
-        },
-        {
-            icon: BarChart3,
-            title: "Metrics and reporting",
-            description: "Data that supports management decisions, not just compliance",
-            gradient: "from-violet-600 to-purple-600",
         },
     ];
 
     const benefits = [
-        "Framework aligned to your business reality",
-        "Clear ownership and accountability",
-        "Practical controls that enable operations",
-        "Metrics that drive real decisions",
+        "Strategic clarity on fraud priorities",
+        "Clear roles and decision rights",
+        "Practical governance structure",
+        "Escalation pathways that work",
     ];
 
     return (
@@ -56,7 +50,7 @@ export default function FraudProgrammeDesignSection() {
                     <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-cyan-400/30 bg-gradient-to-r from-cyan-500/20 to-violet-500/20 px-5 py-2.5 shadow-lg backdrop-blur-xl">
                         <Layers className="h-4 w-4 text-cyan-300" />
                         <span className="text-sm font-bold uppercase tracking-wide text-cyan-100">
-                            Strategic Service
+                            Service Two
                         </span>
                     </div>
 
@@ -71,7 +65,7 @@ export default function FraudProgrammeDesignSection() {
                     </h2>
 
                     <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-                        Design or refresh of a fraud framework that fits how your organisation really works.
+                        Design or refresh your fraud strategy, governance model, and operating framework to match your risk exposure and maturity.
                     </p>
                 </div>
 
@@ -79,27 +73,27 @@ export default function FraudProgrammeDesignSection() {
                     <div>
                         <div className="mb-8">
                             <h3 className="mb-4 text-3xl font-bold text-white">
-                                Focus Areas
+                                Outputs
                             </h3>
                             <p className="text-lg text-slate-300">
-                                We design comprehensive fraud programmes that support the business — not ones that exist only for audit or compliance.
+                                A comprehensive fraud framework tailored to your organisation's needs and operational reality.
                             </p>
                         </div>
 
                         <div className="space-y-4">
-                            {focusAreas.map((area, index) => {
-                                const Icon = area.icon;
-                                const isHovered = hoveredFocus === index;
+                            {outputs.map((output, index) => {
+                                const Icon = output.icon;
+                                const isHovered = hoveredOutput === index;
 
                                 return (
                                     <div
                                         key={index}
                                         className="group relative"
-                                        onMouseEnter={() => setHoveredFocus(index)}
-                                        onMouseLeave={() => setHoveredFocus(null)}
+                                        onMouseEnter={() => setHoveredOutput(index)}
+                                        onMouseLeave={() => setHoveredOutput(null)}
                                     >
                                         <div
-                                            className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${area.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-60" : ""
+                                            className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${output.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-60" : ""
                                                 }`}
                                         />
 
@@ -116,7 +110,7 @@ export default function FraudProgrammeDesignSection() {
 
                                             <div className="relative flex items-start gap-4">
                                                 <div
-                                                    className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${area.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110 shadow-cyan-500/50" : ""
+                                                    className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${output.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110 shadow-cyan-500/50" : ""
                                                         }`}
                                                 >
                                                     <Icon className="h-7 w-7 text-white" strokeWidth={2.5} />
@@ -124,10 +118,10 @@ export default function FraudProgrammeDesignSection() {
 
                                                 <div className="flex-1">
                                                     <h4 className="mb-2 text-lg font-bold text-white">
-                                                        {area.title}
+                                                        {output.title}
                                                     </h4>
                                                     <p className="text-sm leading-relaxed text-slate-300">
-                                                        {area.description}
+                                                        {output.description}
                                                     </p>
                                                 </div>
                                             </div>
@@ -136,6 +130,22 @@ export default function FraudProgrammeDesignSection() {
                                 );
                             })}
                         </div>
+
+                        <div className="mt-8 overflow-hidden rounded-2xl border-2 border-white/10 bg-gradient-to-r from-blue-500/20 to-violet-500/20 p-6 backdrop-blur-xl">
+                            <div className="flex items-start gap-3">
+                                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/20">
+                                    <FileCheck className="h-5 w-5 text-white" />
+                                </div>
+                                <div>
+                                    <p className="mb-2 text-sm font-bold text-white">
+                                        Aligned to Your Maturity
+                                    </p>
+                                    <p className="text-sm text-slate-300">
+                                        Programme design matches your current fraud risk exposure and organisational maturity level.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div>
@@ -143,7 +153,7 @@ export default function FraudProgrammeDesignSection() {
                             <div className="overflow-hidden rounded-3xl border-2 border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 shadow-2xl backdrop-blur-xl lg:p-10">
                                 <div className="mb-8 flex items-center justify-between">
                                     <h3 className="text-2xl font-bold text-white">
-                                        Programme Outcome
+                                        Programme Benefits
                                     </h3>
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 shadow-lg">
                                         <Target className="h-6 w-6 text-white" />
@@ -152,7 +162,7 @@ export default function FraudProgrammeDesignSection() {
 
                                 <div className="mb-8 rounded-2xl border-2 border-white/10 bg-gradient-to-r from-cyan-500/20 to-violet-500/20 p-6 backdrop-blur-sm">
                                     <p className="text-lg font-semibold text-white">
-                                        A fraud programme that supports the business — not one that exists only for audit or compliance.
+                                        A fraud programme designed for how your organisation actually operates.
                                     </p>
                                 </div>
 
@@ -174,15 +184,16 @@ export default function FraudProgrammeDesignSection() {
                                     <div className="border-b border-white/10 p-5">
                                         <div className="flex items-center gap-3">
                                             <Shield className="h-5 w-5 text-cyan-300" />
-                                            <span className="text-sm font-bold text-white">What You'll Build</span>
+                                            <span className="text-sm font-bold text-white">Programme Components</span>
                                         </div>
                                     </div>
                                     <div className="space-y-3 p-5">
                                         {[
-                                            "Governance framework & decision rights",
-                                            "Operating model (prevent, detect, respond)",
-                                            "Practical policies & standards",
-                                            "Management metrics & reporting",
+                                            "Fraud strategy document",
+                                            "Operating model design",
+                                            "Roles and responsibilities matrix",
+                                            "Governance structure",
+                                            "Escalation procedures",
                                         ].map((item, index) => (
                                             <div key={index} className="flex items-start gap-3">
                                                 <div className="mt-0.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-400" />
@@ -198,17 +209,17 @@ export default function FraudProgrammeDesignSection() {
                                         <span className="text-sm font-bold text-white">Typical Timeline</span>
                                     </div>
                                     <div className="flex items-baseline gap-2">
-                                        <span className="text-3xl font-black text-white">8-12</span>
+                                        <span className="text-3xl font-black text-white">8-10</span>
                                         <span className="text-lg font-semibold text-slate-300">weeks</span>
                                     </div>
                                     <p className="mt-2 text-xs text-slate-400">
-                                        From design to implementation roadmap
+                                        From discovery to final programme design
                                     </p>
                                 </div>
 
                                 <Button className="w-full rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-violet-600 py-6 text-lg font-bold shadow-2xl shadow-cyan-500/40 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/60">
                                     <span className="flex items-center justify-center gap-2">
-                                        Discuss Programme Design
+                                        Design Your Programme
                                         <ArrowRight className="h-5 w-5" />
                                     </span>
                                 </Button>

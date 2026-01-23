@@ -1,54 +1,47 @@
 "use client";
 
-import { Search, Target, CheckCircle2, FileText, Calendar, TrendingUp, Shield, Award } from "lucide-react";
+import { Search, FileCheck, CheckCircle2, AlertTriangle, Award, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function FraudHealthCheckSection() {
-    const [hoveredDiff, setHoveredDiff] = useState<number | null>(null);
+    const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
-    const differentiators = [
+    const whatYouReceive = [
         {
-            icon: Search,
-            title: "Beyond policies to reality",
-            description: "Looks beyond policies to how fraud actually happens in day-to-day operations",
+            icon: FileCheck,
+            title: "Prioritised fraud risk register",
+            description: "Clear view of your fraud exposures ranked by impact and likelihood",
             gradient: "from-[#1d3658] to-blue-600",
         },
         {
-            icon: Target,
-            title: "Tests real effectiveness",
-            description: "Tests whether controls are understood, applied, and effective — not just documented",
+            icon: Search,
+            title: "Control gap analysis",
+            description: "Detailed assessment of where your controls are failing or missing",
             gradient: "from-blue-600 to-cyan-600",
         },
         {
-            icon: TrendingUp,
-            title: "People & process insights",
-            description: "Uses people and process insights, not only incidents",
+            icon: CheckCircle2,
+            title: "Practical recommendations",
+            description: "Actionable steps tailored to your operational environment",
             gradient: "from-cyan-600 to-violet-600",
+        },
+        {
+            icon: ArrowRight,
+            title: "Clear next-step roadmap",
+            description: "Sequenced plan showing what to fix first and why",
+            gradient: "from-violet-600 to-purple-600",
         },
     ];
 
-    const outputs = [
-        {
-            title: "Clear Findings Report",
-            description: "Detailed analysis of where fraud is entering and why controls aren't stopping it",
-            icon: FileText,
-        },
-        {
-            title: "30-Day Quick Wins",
-            description: "Immediate actions that close critical gaps",
-            icon: Calendar,
-        },
-        {
-            title: "60-Day Improvements",
-            description: "Medium-term enhancements to strengthen defenses",
-            icon: TrendingUp,
-        },
-        {
-            title: "90-Day Strategic Build",
-            description: "Long-term initiatives aligned to your operating reality",
-            icon: Shield,
-        },
+    const thisIs = [
+        "Diagnostic and action-oriented",
+    ];
+
+    const thisIsNot = [
+        "A forensic investigation",
+        "A regulatory audit",
+        "A guarantee of zero fraud",
     ];
 
     return (
@@ -65,7 +58,7 @@ export default function FraudHealthCheckSection() {
                     <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-[#1d3658]/20 bg-gradient-to-r from-[#1d3658]/10 to-blue-500/10 px-5 py-2.5 shadow-sm backdrop-blur-sm">
                         <Award className="h-4 w-4 text-[#1d3658]" />
                         <span className="text-sm font-bold uppercase tracking-wide text-[#1d3658]">
-                            Flagship Service
+                            Service One
                         </span>
                     </div>
 
@@ -80,7 +73,7 @@ export default function FraudHealthCheckSection() {
                     </h2>
 
                     <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-                        A focused diagnostic to understand <span className="font-bold text-[#1d3658]">where fraud is entering</span>, <span className="font-bold text-[#1d3658]">why current controls are not stopping it</span>, and <span className="font-bold text-[#1d3658]">what will have the biggest impact if fixed first</span>.
+                        A structured assessment of fraud risk across your organisation, focusing on how fraud actually occurs in day-to-day operations.
                     </p>
                 </div>
 
@@ -88,27 +81,24 @@ export default function FraudHealthCheckSection() {
                     <div>
                         <div className="mb-8">
                             <h3 className="mb-6 text-3xl font-bold text-[#1d3658]">
-                                What makes this different
+                                What you receive
                             </h3>
-                            <p className="text-lg text-slate-600">
-                                We go beyond surface-level audits to understand the real fraud pathways in your organization.
-                            </p>
                         </div>
 
-                        <div className="space-y-6">
-                            {differentiators.map((diff, index) => {
-                                const Icon = diff.icon;
-                                const isHovered = hoveredDiff === index;
+                        <div className="space-y-4">
+                            {whatYouReceive.map((item, index) => {
+                                const Icon = item.icon;
+                                const isHovered = hoveredItem === index;
 
                                 return (
                                     <div
                                         key={index}
                                         className="group relative"
-                                        onMouseEnter={() => setHoveredDiff(index)}
-                                        onMouseLeave={() => setHoveredDiff(null)}
+                                        onMouseEnter={() => setHoveredItem(index)}
+                                        onMouseLeave={() => setHoveredItem(null)}
                                     >
                                         <div
-                                            className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${diff.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-30" : ""
+                                            className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${item.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-30" : ""
                                                 }`}
                                         />
 
@@ -125,18 +115,18 @@ export default function FraudHealthCheckSection() {
 
                                             <div className="relative flex items-start gap-4">
                                                 <div
-                                                    className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${diff.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110" : ""
+                                                    className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110" : ""
                                                         }`}
                                                 >
-                                                    <Icon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                                                    <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
                                                 </div>
 
                                                 <div className="flex-1">
-                                                    <h4 className="mb-2 text-xl font-bold text-[#1d3658]">
-                                                        {diff.title}
+                                                    <h4 className="mb-2 text-lg font-bold text-[#1d3658]">
+                                                        {item.title}
                                                     </h4>
-                                                    <p className="leading-relaxed text-slate-600">
-                                                        {diff.description}
+                                                    <p className="text-sm leading-relaxed text-slate-600">
+                                                        {item.description}
                                                     </p>
                                                 </div>
                                             </div>
@@ -148,86 +138,83 @@ export default function FraudHealthCheckSection() {
                     </div>
 
                     <div>
-                        <div className="sticky top-8">
-                            <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-2xl lg:p-10">
-                                <div className="mb-8 flex items-center justify-between">
-                                    <h3 className="text-2xl font-bold text-[#1d3658]">
-                                        Your Action Plan
-                                    </h3>
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#1d3658] to-blue-600 shadow-lg">
-                                        <FileText className="h-6 w-6 text-white" />
-                                    </div>
-                                </div>
+                        <div className="sticky top-8 space-y-6">
+                            <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-2xl">
+                                <h3 className="mb-6 text-2xl font-bold text-[#1d3658]">
+                                    This is
+                                </h3>
 
-                                <p className="mb-8 text-slate-600">
-                                    Clear findings + a prioritized <span className="font-bold text-[#1d3658]">30/60/90-day action plan</span> aligned to your operating reality.
-                                </p>
-
-                                <div className="space-y-4">
-                                    {outputs.map((output, index) => {
-                                        const Icon = output.icon;
-                                        return (
-                                            <div
-                                                key={index}
-                                                className="group overflow-hidden rounded-2xl border-2 border-slate-200 bg-white p-5 transition-all duration-300 hover:scale-105 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/20"
-                                            >
-                                                <div className="flex items-start gap-4">
-                                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-md transition-transform duration-300 group-hover:rotate-6">
-                                                        <Icon className="h-6 w-6 text-white" />
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <h4 className="mb-1 font-bold text-[#1d3658]">
-                                                            {output.title}
-                                                        </h4>
-                                                        <p className="text-sm text-slate-600">
-                                                            {output.description}
-                                                        </p>
-                                                    </div>
-                                                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1d3658] to-blue-600">
-                                                        <CheckCircle2 className="h-5 w-5 text-white" />
-                                                    </div>
-                                                </div>
+                                <div className="space-y-3">
+                                    {thisIs.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-3 rounded-xl border-2 border-green-200 bg-green-50 p-4"
+                                        >
+                                            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-500">
+                                                <CheckCircle2 className="h-4 w-4 text-white" strokeWidth={3} />
                                             </div>
-                                        );
-                                    })}
+                                            <p className="font-semibold text-green-900">{item}</p>
+                                        </div>
+                                    ))}
                                 </div>
 
-                                <div className="mt-8 rounded-2xl bg-gradient-to-r from-[#1d3658]/10 via-blue-500/10 to-cyan-500/10 p-6 backdrop-blur-sm">
-                                    <div className="mb-4 flex items-center gap-3">
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#1d3658] to-blue-600">
-                                            <Calendar className="h-5 w-5 text-white" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-bold text-[#1d3658]">
-                                                Timeline: 4-6 Weeks
-                                            </p>
-                                            <p className="text-xs text-slate-600">
-                                                From kickoff to actionable plan
-                                            </p>
-                                        </div>
-                                    </div>
+                                <h3 className="mb-6 mt-8 text-2xl font-bold text-[#1d3658]">
+                                    This is not
+                                </h3>
 
-                                    <div className="space-y-2">
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="text-slate-600">Discovery & Assessment</span>
-                                            <span className="font-semibold text-[#1d3658]">Week 1-3</span>
+                                <div className="space-y-3">
+                                    {thisIsNot.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-3 rounded-xl border-2 border-slate-200 bg-white p-4"
+                                        >
+                                            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-200">
+                                                <svg
+                                                    className="h-4 w-4 text-slate-600"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={3}
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M6 18L18 6M6 6l12 12"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <p className="font-semibold text-slate-700">{item}</p>
                                         </div>
-                                        <div className="h-2 overflow-hidden rounded-full bg-white">
-                                            <div className="h-full w-3/5 rounded-full bg-gradient-to-r from-[#1d3658] to-blue-600" />
-                                        </div>
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="text-slate-600">Analysis & Planning</span>
-                                            <span className="font-semibold text-[#1d3658]">Week 4-6</span>
-                                        </div>
-                                        <div className="h-2 overflow-hidden rounded-full bg-white">
-                                            <div className="h-full w-2/5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600" />
-                                        </div>
-                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-[#1d3658] to-blue-900 p-8 shadow-2xl">
+                                <div className="mb-6">
+                                    <h4 className="mb-2 text-xl font-bold text-white">
+                                        Ready to understand your fraud risk?
+                                    </h4>
+                                    <p className="text-blue-100">
+                                        Get clear visibility into where fraud is happening and what to fix first.
+                                    </p>
                                 </div>
 
-                                <Button className="mt-8 w-full rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600  py-6 text-lg font-semibold shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
-                                    Request a Health Check
+                                <Button className="w-full rounded-xl border-2 border-white/30 bg-white/20 py-6 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/30 hover:shadow-xl">
+                                    <span className="flex items-center justify-center gap-2">
+                                        Request a Health Check
+                                        <ArrowRight className="h-5 w-5" />
+                                    </span>
                                 </Button>
+
+                                <div className="mt-6 rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+                                    <div className="flex items-center gap-2">
+                                        <AlertTriangle className="h-5 w-5 text-cyan-300" />
+                                        <div>
+                                            <p className="text-sm font-bold text-white">Typical Duration</p>
+                                            <p className="text-xs text-blue-100">4-6 weeks from start to actionable plan</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

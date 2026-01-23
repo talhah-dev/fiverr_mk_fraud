@@ -76,29 +76,26 @@ export default function HeroSection() {
 
             {/* Description */}
             <p className="max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-              MK Fraud Insights helps organisations uncover hidden fraud exposure
-              and build intelligence-led strategies that{" "}
-              <span className="font-semibold text-[#1d3658]">reduce losses</span>,{" "}
-              <span className="font-semibold text-[#1d3658]">strengthen controls</span>, and enable people to respond with confidence.
-            </p>
+              We help non-financial organisations identify, understand, and reduce fraud risk across
+              operations, digital channels, and frontline environments </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex flex-col gap-4 ">
               <Button
                 size="lg"
-                className="group relative overflow-hidden bg-gradient-to-r from-[#1d3658] to-[#2a4a7a] px-8 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#1d3658]/20"
+                className="group w-full relative overflow-hidden bg-gradient-to-r from-[#1d3658] to-[#2a4a7a] px-8 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#1d3658]/20"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Book a Call
+                  Book a Fraud Readiness Call
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
                 <div className="absolute inset-0 -z-0 bg-gradient-to-r from-[#2a4a7a] to-[#1d3658] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Button>
-              
+
               <Button
                 size="lg"
                 variant="outline"
-                className="group border-2 border-[#1d3658]/30 px-8 text-base font-semibold text-[#1d3658] transition-all duration-300 hover:border-[#1d3658] hover:bg-[#1d3658]/5"
+                className="group w-full border-2 border-[#1d3658]/30 px-8 text-base font-semibold text-[#1d3658] transition-all duration-300 hover:border-[#1d3658] hover:bg-[#1d3658]/5"
               >
                 <TrendingDown className="mr-2 h-5 w-5" />
                 Download Fraud Readiness Checklist
@@ -150,17 +147,15 @@ export default function HeroSection() {
                     >
                       {/* Gradient Overlay */}
                       <div
-                        className={`absolute inset-0 bg-gradient-to-br ${point.gradient} opacity-0 transition-opacity duration-300 ${
-                          isHovered ? "opacity-5" : ""
-                        }`}
+                        className={`absolute inset-0 bg-gradient-to-br ${point.gradient} opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-5" : ""
+                          }`}
                       />
 
                       <div className="relative flex items-start gap-4">
                         {/* Icon */}
                         <div
-                          className={`flex h-12 w-12 shrink-0 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${point.gradient} p-0.5 shadow-md transition-transform duration-300 ${
-                            isHovered ? "rotate-6 scale-110" : ""
-                          }`}
+                          className={`flex h-12 w-12 shrink-0 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${point.gradient} p-0.5 shadow-md transition-transform duration-300 ${isHovered ? "rotate-6 scale-110" : ""
+                            }`}
                         >
                           <div className="flex h-full w-full items-center justify-center rounded-xl bg-white">
                             <Icon className="h-5 w-5 text-[#1d3658]" strokeWidth={2.5} />
@@ -180,9 +175,8 @@ export default function HeroSection() {
 
                       {/* Bottom accent line */}
                       <div
-                        className={`absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r ${point.gradient} transition-all duration-300 ${
-                          isHovered ? "opacity-100" : "opacity-0"
-                        }`}
+                        className={`absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r ${point.gradient} transition-all duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+                          }`}
                       />
                     </div>
                   );
