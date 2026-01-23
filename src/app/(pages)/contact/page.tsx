@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Linkedin, MessageSquare, Calendar, ArrowRight } from "lucide-react";
+import { Mail, CheckCircle2, Linkedin, MessageSquare, Send, Clock, Shield, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Wrapper from "@/app/Wrapper";
@@ -15,10 +15,23 @@ export default function ContactUs() {
     message: "",
   });
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+      setIsSubmitted(false);
+    }, 5000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -27,33 +40,6 @@ export default function ContactUs() {
       [e.target.name]: e.target.value,
     });
   };
-
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: "Email Us",
-      description: "Our team responds within 24 hours",
-      value: "hello@mkfraud.co.za",
-      gradient: "from-[#1d3658] to-blue-600",
-      link: "mailto:hello@mkfraud.co.za",
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      description: "Mon-Fri from 8am to 6pm",
-      value: "+27 (0) 123 456 789",
-      gradient: "from-cyan-600 to-blue-600",
-      link: "tel:+27123456789",
-    },
-    {
-      icon: Linkedin,
-      title: "Connect on LinkedIn",
-      description: "Follow our latest insights",
-      value: "MK Fraud Insights",
-      gradient: "from-violet-600 to-purple-600",
-      link: "#",
-    },
-  ];
 
   const benefits = [
     "Free 30-minute consultation",
@@ -82,7 +68,7 @@ export default function ContactUs() {
               </span>
             </div>
 
-            <h1 className="mb-6 text-5xl max-w-3xl mx-auto text-center font-bold leading-tight tracking-tight text-[#1d3658] sm:text-6xl lg:text-7xl">
+            <h1 className="mx-auto mb-6 max-w-3xl text-center text-5xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-6xl lg:text-7xl">
               Let's discuss your{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 bg-clip-text text-transparent">
@@ -97,8 +83,8 @@ export default function ContactUs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
-            <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+            <div>
               <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-2xl lg:p-12">
                 <div className="mb-8">
                   <h2 className="mb-2 text-3xl font-bold text-[#1d3658]">
@@ -109,197 +95,235 @@ export default function ContactUs() {
                   </p>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                        Full Name *
-                      </label>
-                      <div className="relative">
+                {isSubmitted ? (
+                  <div className="rounded-2xl border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-8 text-center">
+                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-500">
+                      <CheckCircle2 className="h-8 w-8 text-white" strokeWidth={3} />
+                    </div>
+                    <h3 className="mb-2 text-2xl font-bold text-green-900">
+                      Message Sent Successfully!
+                    </h3>
+                    <p className="text-green-700">
+                      Thank you for contacting us. We'll review your message and respond within 24 hours during business days.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#1d3658]">
+                          Full Name *
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            value={formData.name}
+                            onChange={handleChange}
+                            onFocus={() => setFocusedField("name")}
+                            onBlur={() => setFocusedField(null)}
+                            className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "name"
+                              ? "border-blue-500 shadow-lg shadow-blue-500/20"
+                              : "border-slate-200"
+                              }`}
+                            placeholder="John Doe"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#1d3658]">
+                          Email Address *
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            onFocus={() => setFocusedField("email")}
+                            onBlur={() => setFocusedField(null)}
+                            className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "email"
+                              ? "border-blue-500 shadow-lg shadow-blue-500/20"
+                              : "border-slate-200"
+                              }`}
+                            placeholder="john@company.com"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="company" className="mb-2 block text-sm font-semibold text-[#1d3658]">
+                          Company Name
+                        </label>
                         <input
                           type="text"
-                          id="name"
-                          name="name"
-                          required
-                          value={formData.name}
+                          id="company"
+                          name="company"
+                          value={formData.company}
                           onChange={handleChange}
-                          onFocus={() => setFocusedField("name")}
+                          onFocus={() => setFocusedField("company")}
                           onBlur={() => setFocusedField(null)}
-                          className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "name"
-                              ? "border-blue-500 shadow-lg shadow-blue-500/20"
-                              : "border-slate-200"
+                          className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "company"
+                            ? "border-cyan-500 shadow-lg shadow-cyan-500/20"
+                            : "border-slate-200"
                             }`}
-                          placeholder="John Doe"
+                          placeholder="Your Company Ltd"
                         />
                       </div>
-                    </div>
 
-                    <div>
-                      <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                        Email Address *
-                      </label>
-                      <div className="relative">
+                      <div>
+                        <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-[#1d3658]">
+                          Phone Number
+                        </label>
                         <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          value={formData.email}
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
                           onChange={handleChange}
-                          onFocus={() => setFocusedField("email")}
+                          onFocus={() => setFocusedField("phone")}
                           onBlur={() => setFocusedField(null)}
-                          className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "email"
-                              ? "border-blue-500 shadow-lg shadow-blue-500/20"
-                              : "border-slate-200"
+                          className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "phone"
+                            ? "border-cyan-500 shadow-lg shadow-cyan-500/20"
+                            : "border-slate-200"
                             }`}
-                          placeholder="john@company.com"
+                          placeholder="+27 123 456 789"
                         />
                       </div>
                     </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="company" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                        Company Name
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("company")}
-                        onBlur={() => setFocusedField(null)}
-                        className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "company"
-                            ? "border-cyan-500 shadow-lg shadow-cyan-500/20"
-                            : "border-slate-200"
-                          }`}
-                        placeholder="Your Company Ltd"
-                      />
-                    </div>
 
                     <div>
-                      <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                        Phone Number
+                      <label htmlFor="service" className="mb-2 block text-sm font-semibold text-[#1d3658]">
+                        Service Interested In *
                       </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
+                      <select
+                        id="service"
+                        name="service"
+                        required
+                        value={formData.service}
                         onChange={handleChange}
-                        onFocus={() => setFocusedField("phone")}
+                        onFocus={() => setFocusedField("service")}
                         onBlur={() => setFocusedField(null)}
-                        className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "phone"
-                            ? "border-cyan-500 shadow-lg shadow-cyan-500/20"
-                            : "border-slate-200"
-                          }`}
-                        placeholder="+27 123 456 789"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="service" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                      Service Interested In *
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      required
-                      value={formData.service}
-                      onChange={handleChange}
-                      onFocus={() => setFocusedField("service")}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "service"
+                        className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "service"
                           ? "border-violet-500 shadow-lg shadow-violet-500/20"
                           : "border-slate-200"
-                        }`}
+                          }`}
+                      >
+                        <option value="">Select a service</option>
+                        <option value="fraud-health-check">Fraud Health Check</option>
+                        <option value="programme-design">Fraud Programme Design</option>
+                        <option value="awareness">Awareness & Resilience</option>
+                        <option value="controls">Internal Fraud Controls</option>
+                        <option value="other">Other / Not Sure</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#1d3658]">
+                        Message *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("message")}
+                        onBlur={() => setFocusedField(null)}
+                        className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "message"
+                          ? "border-violet-500 shadow-lg shadow-violet-500/20"
+                          : "border-slate-200"
+                          }`}
+                        placeholder="Tell us about your fraud challenges and how we can help..."
+                      />
+                    </div>
+
+                    <Button
+                      onClick={handleSubmit}
+                      className="group w-full rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600 py-6 text-lg font-bold shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
                     >
-                      <option value="">Select a service</option>
-                      <option value="fraud-health-check">Fraud Health Check</option>
-                      <option value="programme-design">Fraud Programme Design</option>
-                      <option value="awareness">Awareness & Resilience</option>
-                      <option value="controls">Internal Fraud Controls</option>
-                      <option value="other">Other / Not Sure</option>
-                    </select>
+                      <span className="flex items-center justify-center gap-2">
+                        Send Message
+                        <Send className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </Button>
                   </div>
+                )}
+              </div>
 
+              <div className="grid grid-cols-1 mt-16 gap-4 sm:grid-cols-2">
+                <div className="overflow-hidden rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-lg">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#1d3658] to-blue-600">
+                    <Mail className="h-6 w-6 text-white" />
+                  </div>
+                  <h4 className="mb-2 font-bold text-[#1d3658]">Email Us</h4>
+                  <a href="mailto:hello@mkfraud.co.za" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
+                    hello@mkfraud.co.za
+                  </a>
+                </div>
+
+                <div className="overflow-hidden rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-lg">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-purple-600">
+                    <Linkedin className="h-6 w-6 text-white" />
+                  </div>
+                  <h4 className="mb-2 font-bold text-[#1d3658]">LinkedIn</h4>
+                  <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
+                    MK Fraud Insights
+                  </a>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 shadow-xl">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600">
+                    <MapPin className="h-6 w-6 text-white" />
+                  </div>
                   <div>
-                    <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      onFocus={() => setFocusedField("message")}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "message"
-                          ? "border-violet-500 shadow-lg shadow-violet-500/20"
-                          : "border-slate-200"
-                        }`}
-                      placeholder="Tell us about your fraud challenges and how we can help..."
-                    />
+                    <h4 className="mb-2 font-bold text-[#1d3658]">Our Location</h4>
+                    <p className="text-sm text-slate-600">South Africa</p>
+                    <p className="mt-2 text-xs text-slate-500">
+                      Serving clients across Africa and internationally
+                    </p>
                   </div>
-
-                  <Button
-                    onClick={handleSubmit}
-                    className="group w-full rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600 py-6 text-lg font-bold shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Send Message
-                      <Send className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                  </Button>
                 </div>
               </div>
             </div>
 
             <div className="space-y-6">
-              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-xl">
-                <h3 className="mb-6 text-2xl font-bold text-[#1d3658]">
-                  Contact Information
-                </h3>
-
-                <div className="space-y-4">
-                  {contactMethods.map((method, index) => {
-                    const Icon = method.icon;
-                    return (
-                      <a
-                        key={index}
-                        href={method.link}
-                        className="group block overflow-hidden rounded-2xl border-2 border-slate-200 bg-white p-4 transition-all duration-300 hover:scale-105 hover:border-transparent hover:shadow-xl"
-                      >
-                        <div className="flex items-start gap-4">
-                          <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${method.gradient} shadow-lg`}>
-                            <Icon className="h-6 w-6 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="mb-1 font-bold text-[#1d3658]">{method.title}</h4>
-                            <p className="mb-1 text-xs text-slate-500">{method.description}</p>
-                            <p className="text-sm font-semibold text-blue-600">{method.value}</p>
-                          </div>
-                          <ArrowRight className="h-5 w-5 flex-shrink-0 text-slate-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-600" />
-                        </div>
-                      </a>
-                    );
-                  })}
+              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-2xl">
+                <div className="bg-gradient-to-r from-[#1d3658] to-blue-700 p-6">
+                  <h3 className="text-2xl font-bold text-white">
+                    Book a Consultation
+                  </h3>
+                  <p className="mt-2 text-blue-100">
+                    Schedule a time that works for you
+                  </p>
+                </div>
+                <div className="h-[600px] bg-slate-50 p-4">
+                  <div className="flex h-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-white">
+                    <div className="text-center">
+                      <Shield className="mx-auto mb-4 h-12 w-12 text-slate-400" />
+                      <p className="mb-2 font-semibold text-slate-700">Calendly Embed</p>
+                      <p className="text-sm text-slate-500">Booking calendar will be embedded here</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-[#1d3658] to-blue-900 p-8 shadow-xl">
                 <div className="mb-6 flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-                    <Calendar className="h-6 w-6 text-white" />
+                    <CheckCircle2 className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
-                    What to Expect
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white">What to Expect</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -322,23 +346,6 @@ export default function ContactUs() {
                         We typically respond within 24 hours during business days
                       </p>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 shadow-xl">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-purple-600">
-                    <MapPin className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="mb-2 font-bold text-[#1d3658]">Our Location</h4>
-                    <p className="text-sm text-slate-600">
-                      South Africa
-                    </p>
-                    <p className="mt-2 text-xs text-slate-500">
-                      Serving clients across Africa and internationally
-                    </p>
                   </div>
                 </div>
               </div>

@@ -189,17 +189,17 @@ export default function Footer() {
             <p>
               © {new Date().getFullYear()} MK Fraud Insights. All rights reserved.
             </p>
-            {/* <div className="flex flex-wrap gap-6">
-              <Link href="#" className="transition-colors hover:text-blue-400">
+            <div className="flex flex-wrap gap-6">
+              <Link href="/privacy-policy" className="transition-colors hover:text-blue-400">
                 Privacy Policy
               </Link>
-              <Link href="#" className="transition-colors hover:text-blue-400">
-                Terms of Service
+              <Link href="/terms-of-use" className="transition-colors hover:text-blue-400">
+                Terms of use
               </Link>
-              <Link href="#" className="transition-colors hover:text-blue-400">
+              {/* <Link href="#" className="transition-colors hover:text-blue-400">
                 Cookie Policy
-              </Link>
-            </div> */}
+              </Link> */}
+            </div>
           </div>
         </div>
       </div>

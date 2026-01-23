@@ -4,6 +4,7 @@ import { Shield, Target, Users, TrendingUp, CheckCircle2, Lightbulb, Award, Arro
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Wrapper from "@/app/Wrapper";
+import HowWeWorkSection from "@/components/About/HowWeWorkSection";
 
 export default function About() {
     const [hoveredValue, setHoveredValue] = useState<number | null>(null);
@@ -203,6 +204,8 @@ export default function About() {
                     </div>
                 </section>
 
+                <HowWeWorkSection />
+
                 <section className="relative overflow-hidden bg-gradient-to-br from-[#1d3658] via-blue-800 to-cyan-700">
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
 
@@ -266,6 +269,8 @@ export default function About() {
                         </div>
                     </div>
                 </section>
+
+
 
                 <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
                     <div className="absolute inset-0 -z-10">

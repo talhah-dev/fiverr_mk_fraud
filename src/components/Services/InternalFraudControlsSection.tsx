@@ -76,7 +76,7 @@ export default function InternalFraudControlsSection() {
                         </span>
                     </div>
 
-                    <h2 className="mb-6 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
                         Internal Fraud &{" "}
                         <span className="relative inline-block">
                             <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
@@ -121,8 +121,8 @@ export default function InternalFraudControlsSection() {
 
                                         <div
                                             className={`relative overflow-hidden rounded-2xl border-2 bg-gradient-to-br from-white/10 to-white/5 p-6 backdrop-blur-xl transition-all duration-500 ${isHovered
-                                                    ? "scale-105 border-purple-400/30 shadow-2xl shadow-purple-500/20"
-                                                    : "border-white/10 shadow-lg"
+                                                ? "scale-105 border-purple-400/30 shadow-2xl shadow-purple-500/20"
+                                                : "border-white/10 shadow-lg"
                                                 }`}
                                         >
                                             <div
@@ -239,7 +239,7 @@ export default function InternalFraudControlsSection() {
                                         <span className="text-sm font-bold text-white">Typical Timeline</span>
                                     </div>
                                     <div className="flex items-baseline gap-2">
-                                        <span className="text-3xl font-black text-white">6-10</span>
+                                        <span className="text-3xl font-bold text-white">6-10</span>
                                         <span className="text-lg font-semibold text-slate-300">weeks</span>
                                     </div>
                                     <p className="mt-2 text-xs text-slate-400">
