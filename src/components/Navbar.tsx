@@ -237,7 +237,7 @@ export default function Navbar() {
                                     </button>
                                 </div>
 
-                                <div className="px-4 py-4">
+                                <div className="px-4 py-4 overflow-auto">
                                     <div className="space-y-2">
                                         {navLinks.map((link) => {
                                             if (!link.dropdown) {

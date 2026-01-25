@@ -246,7 +246,7 @@ export default function HowItWorksSection() {
             })}
           </div>
 
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm sm:flex-row sm:justify-between sm:text-left">
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 rounded-3xl relative z-10 border border-slate-200 bg-white p-8 text-center shadow-sm sm:flex-row sm:justify-between sm:text-left">
             <div>
               <p className="text-sm font-semibold text-[#1d3658]">Ready to get started?</p>
               <p className="mt-1 text-lg font-bold text-[#001030]">Let’s map your fraud exposure and prioritise fixes.</p>
