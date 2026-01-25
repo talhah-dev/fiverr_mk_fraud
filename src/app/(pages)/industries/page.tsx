@@ -1,369 +1,464 @@
 "use client";
 
-import { ShoppingCart, Truck, Building2, Zap, GraduationCap, Globe, AlertTriangle, ArrowRight, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import {
+    ShoppingCart,
+    Truck,
+    Building2,
+    Zap,
+    GraduationCap,
+    Globe,
+    AlertTriangle,
+    CheckCircle2,
+    ArrowRight,
+} from "lucide-react";
 import Wrapper from "@/app/Wrapper";
+import { Button } from "@/components/ui/button";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function Industries() {
-    const [selectedIndustry, setSelectedIndustry] = useState<number | null>(null);
-
     const industries = [
         {
+            key: "retail",
             icon: ShoppingCart,
             title: "Retail & Consumer Businesses",
-            whatItLooksLike: [
+            summary:
+                "High-volume transactions create perfect cover for refund abuse, loyalty exploitation, and employee-enabled loss.",
+            what: [
                 "Refund abuse, returns manipulation, and false claims",
                 "Loyalty and rewards programme exploitation",
                 "Employee-assisted theft and internal collusion",
             ],
-            whyItPersists: [
+            why: [
                 "High transaction volumes mask small but frequent abuse",
-                "Frontline staff are pressured to prioritise customer experience over controls",
+                "Frontline staff prioritise customer experience over controls",
                 "Limited visibility across channels (in-store, online, customer service)",
             ],
-            affects: [
-                "Revenue leakage",
-                "Customer trust",
-                "Staff morale and accountability",
-            ],
-            gradient: "from-[#1d3658] to-blue-600",
-            bgGradient: "from-blue-50 to-slate-50",
+            affects: ["Revenue leakage", "Customer trust", "Staff accountability"],
         },
         {
+            key: "logistics",
             icon: Truck,
             title: "Logistics, Distribution & Supply Chains",
-            whatItLooksLike: [
+            summary:
+                "Fraud hides where physical movement and system records don’t reconcile — often across third parties.",
+            what: [
                 "Ghost deliveries and falsified proof of delivery",
                 "Inventory shrinkage and stock diversion",
                 "Supplier and employee collusion",
             ],
-            whyItPersists: [
-                "Heavy reliance on manual processes and third-party operators",
-                "Weak reconciliation between physical movement and system records",
+            why: [
+                "Manual processes and third-party operators",
+                "Weak reconciliation between movement and system records",
                 "Limited oversight across extended supply chains",
             ],
-            affects: [
-                "Cost of goods sold",
-                "Operational efficiency",
-                "Supplier relationships",
-            ],
-            gradient: "from-blue-600 to-cyan-600",
-            bgGradient: "from-cyan-50 to-blue-50",
+            affects: ["Cost of goods sold", "Operational efficiency", "Supplier relationships"],
         },
         {
+            key: "public",
             icon: Building2,
             title: "Public Sector & State-Linked Entities",
-            whatItLooksLike: [
+            summary:
+                "Complex rules, fragmented accountability, and weak consequences create repeatable control failures.",
+            what: [
                 "Procurement manipulation and bid rigging",
                 "Identity misuse and benefit fraud",
                 "Asset misappropriation",
             ],
-            whyItPersists: [
+            why: [
                 "Complex procurement rules create loopholes",
                 "Fragmented accountability and oversight",
                 "Limited consequences for control failures",
             ],
-            affects: [
-                "Public funds",
-                "Institutional credibility",
-                "Service delivery",
-            ],
-            gradient: "from-cyan-600 to-violet-600",
-            bgGradient: "from-violet-50 to-cyan-50",
+            affects: ["Public funds", "Institutional credibility", "Service delivery"],
         },
         {
+            key: "utilities",
             icon: Zap,
             title: "Utilities & Infrastructure Providers",
-            whatItLooksLike: [
+            summary:
+                "Legacy environments + large physical networks make monitoring hard and manipulation easy.",
+            what: [
                 "Meter tampering and usage manipulation",
                 "Billing fraud and account interference",
                 "Contractor and maintenance collusion",
             ],
-            whyItPersists: [
+            why: [
                 "Legacy systems with limited monitoring",
                 "Operational focus on continuity over control",
                 "Large physical networks that are hard to supervise",
             ],
-            affects: [
-                "Revenue assurance",
-                "Infrastructure sustainability",
-                "Customer trust",
-            ],
-            gradient: "from-violet-600 to-purple-600",
-            bgGradient: "from-purple-50 to-violet-50",
+            affects: ["Revenue assurance", "Infrastructure sustainability", "Customer trust"],
         },
         {
+            key: "social",
             icon: GraduationCap,
             title: "Education, Healthcare & Social Services",
-            whatItLooksLike: [
+            summary:
+                "Trust-based models and admin complexity create blind spots for eligibility, claims, and supplier fraud.",
+            what: [
                 "False claims and eligibility abuse",
                 "Procurement and supplier fraud",
                 "Identity and access misuse",
             ],
-            whyItPersists: [
+            why: [
                 "High administrative complexity",
                 "Trust-based operating models",
                 "Underinvestment in fraud controls",
             ],
-            affects: [
-                "Funding and budgets",
-                "Service quality",
-                "Reputational integrity",
-            ],
-            gradient: "from-purple-600 to-pink-600",
-            bgGradient: "from-pink-50 to-purple-50",
+            affects: ["Funding and budgets", "Service quality", "Reputational integrity"],
         },
         {
+            key: "digital",
             icon: Globe,
             title: "Digital Platforms & Service Providers",
-            whatItLooksLike: [
+            summary:
+                "Fast growth without matching controls leads to account takeovers, policy abuse, and insider-enabled loss.",
+            what: [
                 "Account takeovers and identity abuse",
                 "Platform manipulation and policy exploitation",
                 "Insider-enabled abuse",
             ],
-            whyItPersists: [
+            why: [
                 "Rapid scaling without proportional control design",
-                "Reliance on automated decisioning without human oversight",
-                "Misalignment between product growth and risk management",
+                "Over-reliance on automated decisioning without oversight",
+                "Misalignment between growth and risk management",
             ],
-            affects: [
-                "Platform integrity",
-                "User trust",
-                "Regulatory exposure",
-            ],
-            gradient: "from-[#1d3658] to-blue-600",
-            bgGradient: "from-blue-50 to-slate-50",
+            affects: ["Platform integrity", "User trust", "Regulatory exposure"],
         },
     ];
 
     return (
         <Wrapper>
             <div className="bg-white">
-                <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1d3658] to-slate-800">
+                {/* HERO (dark) */}
+                <section className="relative overflow-hidden bg-[#001030]">
                     <div className="absolute inset-0">
-                        <div className="absolute left-0 top-0 h-[700px] w-[700px] rounded-full bg-blue-500/10 blur-3xl" />
-                        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-cyan-500/10 blur-3xl" />
-                        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-3xl" />
+                        <div className="absolute -left-24 -top-24 h-[520px] w-[520px] rounded-full bg-white/5 blur-3xl" />
+                        <div className="absolute -right-28 -bottom-28 h-[640px] w-[640px] rounded-full bg-[#1d3658]/25 blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:56px_56px]" />
                     </div>
 
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-                    <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="text-center">
-                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-blue-400/30 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-5 py-2.5 shadow-lg backdrop-blur-xl">
-                                <AlertTriangle className="h-4 w-4 text-blue-300" />
-                                <span className="text-sm font-bold uppercase tracking-wide text-blue-100">
-                                    Industry Focus
+                    <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+                        <div className="mx-auto max-w-3xl text-center">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 backdrop-blur">
+                                <AlertTriangle className="h-4 w-4 text-white" />
+                                <span className="text-sm font-bold uppercase tracking-wide text-white">
+                                    Industry focus
                                 </span>
                             </div>
 
-                            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                            <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
                                 Fraud risk does not follow{" "}
                                 <span className="relative inline-block">
-                                    <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-                                        industry labels
-                                    </span>
-                                    <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-violet-500/50 blur-xl" />
+                                    <span className="relative z-10 text-[#c8d6ff]">industry labels</span>
+                                    <span className="absolute -bottom-2 left-0 h-3 w-full bg-white/10 blur-sm" />
                                 </span>
                             </h1>
 
-                            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
-                                It follows operational patterns, incentives, and control weaknesses. We focus on how fraud manifests in real operating environments — not generic sector classifications.
+                            <p className="mt-5 text-lg leading-relaxed text-slate-200">
+                                It follows operational patterns, incentives, and control weaknesses. We focus on how
+                                fraud manifests in real operating environments.
+                            </p>
+
+                            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                                <Link href="/contact" className="w-full sm:w-auto">
+                                    <Button className="w-full rounded-xl bg-white px-8 py-6 text-base font-semibold text-[#001030] shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-slate-100">
+                                        Book a strategy call
+                                        <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                                <Link href="/services" className="w-full sm:w-auto">
+                                    <Button
+                                        variant="outline"
+                                        className="w-full rounded-xl border-2 border-white/25 bg-transparent px-8 py-6 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
+                                    >
+                                        View services
+                                        <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* CONTENT (light) */}
+                <section className="relative overflow-hidden bg-white">
+                    <div className="absolute inset-0 -z-10">
+                        <div className="absolute -left-24 top-24 h-[520px] w-[520px] rounded-full bg-[#1d3658]/8 blur-3xl" />
+                        <div className="absolute -right-24 bottom-0 h-[560px] w-[560px] rounded-full bg-slate-900/5 blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0b12240a_1px,transparent_1px),linear-gradient(to_bottom,#0b12240a_1px,transparent_1px)] bg-[size:56px_56px]" />
+                    </div>
+
+                    <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+                        <div className="mx-auto mb-10 max-w-3xl text-center">
+                            <h2 className="text-3xl font-bold tracking-tight text-[#001030] sm:text-4xl">
+                                Choose your operating environment
+                            </h2>
+                            <p className="mt-3 text-lg leading-relaxed text-slate-600">
+                                On mobile, tap an industry to expand details in-place (no jumping to the bottom).
                             </p>
                         </div>
-                    </div>
-                </section>
 
-                <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
-                    <div className="absolute inset-0 -z-10">
-                        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-[#1d3658]/5 blur-3xl" />
-                        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-blue-500/5 blur-3xl" />
-                    </div>
-
-                    <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-                    <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32 lg:pt-20">
-                        <div className="space-y-6">
-                            {industries.map((industry, index) => {
-                                const Icon = industry.icon;
-                                const isSelected = selectedIndustry === index;
-
-                                return (
-                                    <div key={index} className="group relative">
-                                        <div
-                                            className={`absolute -inset-1 rounded-3xl bg-gradient-to-r ${industry.gradient} opacity-0 blur-xl transition-all duration-500 ${isSelected ? "opacity-30" : ""
-                                                }`}
-                                        />
-
-                                        <div
-                                            className={`relative overflow-hidden rounded-3xl border-2 bg-white shadow-xl transition-all duration-500 ${isSelected
-                                                ? "border-transparent shadow-2xl"
-                                                : "border-slate-200 hover:border-slate-300"
-                                                }`}
+                        {/* MOBILE: accordion */}
+                        <div className="lg:hidden">
+                            <Accordion type="single" collapsible className="space-y-4">
+                                {industries.map((industry) => {
+                                    const Icon = industry.icon;
+                                    return (
+                                        <AccordionItem
+                                            key={industry.key}
+                                            value={industry.key}
+                                            className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
                                         >
-                                            <button
-                                                onClick={() => setSelectedIndustry(isSelected ? null : index)}
-                                                className="w-full p-8 text-left transition-all duration-300"
-                                            >
-                                                <div className="flex items-center gap-6 justify-between">
-                                                    <div className="flex md:flex-row flex-col gap-6 md:items-center">
-                                                        <div
-                                                            className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${industry.gradient} shadow-lg transition-all duration-500 ${isSelected ? "rotate-12 scale-110" : ""
-                                                                }`}
-                                                        >
-                                                            <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
-                                                        </div>
-
-                                                        <div className="flex-1">
-                                                            <h3 className="text-2xl font-bold text-[#1d3658]">
-                                                                {industry.title}
-                                                            </h3>
-                                                        </div>
+                                            <AccordionTrigger className="px-5 py-5 text-left hover:no-underline">
+                                                <div className="flex w-full items-start gap-4">
+                                                    <div className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                                                        <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
                                                     </div>
-
-                                                    <div
-                                                        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 transition-all duration-300 ${isSelected ? "rotate-180" : ""
-                                                            }`}
-                                                    >
-                                                        <svg
-                                                            className={`h-5 w-5 transition-all ${isSelected ? "text-[#1d3658]" : "text-slate-400"
-                                                                }`}
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M19 9l-7 7-7-7"
-                                                            />
-                                                        </svg>
+                                                    <div className="flex-1">
+                                                        <p className="text-base font-bold text-[#001030]">{industry.title}</p>
+                                                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                                                            {industry.summary}
+                                                        </p>
                                                     </div>
                                                 </div>
-                                            </button>
+                                            </AccordionTrigger>
 
-                                            {isSelected && (
-                                                <div className={`border-t-2 border-slate-200 bg-gradient-to-br ${industry.bgGradient} p-8`}>
-                                                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                                            <AccordionContent className="px-5 pb-6">
+                                                <div className="mt-2 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                                    <div className="space-y-5">
                                                         <div>
-                                                            <div className="mb-4 flex items-center gap-2">
-                                                                <AlertTriangle className="h-5 w-5 text-[#1d3658]" />
-                                                                <h4 className="text-lg font-bold text-[#1d3658]">
-                                                                    What it looks like
-                                                                </h4>
+                                                            <div className="mb-2 flex items-center gap-2">
+                                                                <AlertTriangle className="h-4 w-4 text-[#001030]" />
+                                                                <p className="text-sm font-bold text-[#001030]">What it looks like</p>
                                                             </div>
-                                                            <div className="space-y-3">
-                                                                {industry.whatItLooksLike.map((item, idx) => (
-                                                                    <div key={idx} className="flex items-start gap-2">
-                                                                        <span className="mt-1 text-[#1d3658]">•</span>
-                                                                        <p className="text-sm font-medium text-slate-700">{item}</p>
-                                                                    </div>
+                                                            <ul className="space-y-2">
+                                                                {industry.what.map((t) => (
+                                                                    <li key={t} className="flex items-start gap-2">
+                                                                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#001030]" />
+                                                                        <span className="text-sm font-medium text-slate-700">{t}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+
+                                                        <div>
+                                                            <div className="mb-2 flex items-center gap-2">
+                                                                <AlertTriangle className="h-4 w-4 text-[#001030]" />
+                                                                <p className="text-sm font-bold text-[#001030]">Why it persists</p>
+                                                            </div>
+                                                            <ul className="space-y-2">
+                                                                {industry.why.map((t) => (
+                                                                    <li key={t} className="flex items-start gap-2">
+                                                                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#001030]" />
+                                                                        <span className="text-sm font-medium text-slate-700">{t}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+
+                                                        <div>
+                                                            <div className="mb-2 flex items-center gap-2">
+                                                                <CheckCircle2 className="h-4 w-4 text-[#001030]" />
+                                                                <p className="text-sm font-bold text-[#001030]">Affects</p>
+                                                            </div>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {industry.affects.map((t) => (
+                                                                    <span
+                                                                        key={t}
+                                                                        className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700"
+                                                                    >
+                                                                        {t}
+                                                                    </span>
                                                                 ))}
                                                             </div>
                                                         </div>
 
-                                                        <div>
-                                                            <div className="mb-4 flex items-center gap-2">
-                                                                <AlertTriangle className="h-5 w-5 text-[#1d3658]" />
-                                                                <h4 className="text-lg font-bold text-[#1d3658]">
-                                                                    Why it persists
-                                                                </h4>
-                                                            </div>
-                                                            <div className="space-y-3">
-                                                                {industry.whyItPersists.map((item, idx) => (
-                                                                    <div key={idx} className="flex items-start gap-2">
-                                                                        <span className="mt-1 text-[#1d3658]">•</span>
-                                                                        <p className="text-sm font-medium text-slate-700">{item}</p>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className="mb-4 flex items-center gap-2">
-                                                                <CheckCircle2 className="h-5 w-5 text-[#1d3658]" />
-                                                                <h4 className="text-lg font-bold text-[#1d3658]">
-                                                                    Affects
-                                                                </h4>
-                                                            </div>
-                                                            <div className="space-y-3">
-                                                                {industry.affects.map((item, idx) => (
-                                                                    <div key={idx} className="flex items-start gap-2">
-                                                                        <span className="mt-1 text-[#1d3658]">•</span>
-                                                                        <p className="text-sm font-medium text-slate-700">{item}</p>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
+                                                        <div className="flex gap-3 pt-2">
+                                                            <Link href="/contact" className="w-full">
+                                                                <Button className="w-full rounded-xl bg-[#001030] py-6 text-base font-semibold text-white hover:bg-[#0b1b44]">
+                                                                    Discuss this risk
+                                                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                                                </Button>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    );
+                                })}
+                            </Accordion>
                         </div>
 
-                        <div className="mt-16 rounded-3xl border-2 border-[#1d3658]/10 bg-gradient-to-r from-blue-50 to-cyan-50 p-8 lg:p-10">
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#1d3658] to-blue-600">
-                                    <CheckCircle2 className="h-6 w-6 text-white" />
+                        {/* DESKTOP: list + sticky detail (no mobile jump problem) */}
+                        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8">
+                            <div className="lg:col-span-5">
+                                <div className="space-y-4">
+                                    {industries.map((industry) => {
+                                        const Icon = industry.icon;
+                                        return (
+                                            <a
+                                                key={industry.key}
+                                                href={`#${industry.key}`}
+                                                className="group flex items-start gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1d3658]/25 hover:shadow-lg"
+                                            >
+                                                <div className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                                                    <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
+                                                </div>
+                                                <div>
+                                                    <p className="text-base font-bold text-[#001030]">{industry.title}</p>
+                                                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                                                        {industry.summary}
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        );
+                                    })}
                                 </div>
-                                <div>
-                                    <p className="mb-2 text-lg font-bold text-[#1d3658]">
-                                        Our Focus
-                                    </p>
-                                    <p className="leading-relaxed text-slate-700">
-                                        Across industries, fraud thrives where controls are misaligned with how work actually gets done. Our focus is on identifying those gaps — and helping organisations close them practically.
-                                    </p>
+
+                                <div className="mt-6 rounded-3xl border border-[#1d3658]/12 bg-white p-6 shadow-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                                            <CheckCircle2 className="h-6 w-6 text-white" strokeWidth={2.5} />
+                                        </div>
+                                        <div>
+                                            <p className="text-lg font-bold text-[#001030]">Our focus</p>
+                                            <p className="mt-1 leading-relaxed text-slate-700">
+                                                Across industries, fraud thrives where controls are misaligned with how work
+                                                actually gets done. We help you identify those gaps and close them
+                                                practically.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="lg:col-span-7">
+                                <div className="sticky top-24 space-y-5">
+                                    {industries.map((industry) => {
+                                        const Icon = industry.icon;
+                                        return (
+                                            <div
+                                                key={industry.key}
+                                                id={industry.key}
+                                                className="scroll-mt-24 rounded-3xl border border-slate-200 bg-white p-8 shadow-xl"
+                                            >
+                                                <div className="flex items-start justify-between gap-6">
+                                                    <div className="flex items-start gap-4">
+                                                        <div className="mt-0.5 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                                                            <Icon className="h-7 w-7 text-white" strokeWidth={2.5} />
+                                                        </div>
+                                                        <div>
+                                                            <h3 className="text-2xl font-bold text-[#001030]">{industry.title}</h3>
+                                                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                                                                {industry.summary}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+                                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                                        <p className="mb-3 text-sm font-bold text-[#001030]">What it looks like</p>
+                                                        <ul className="space-y-2">
+                                                            {industry.what.map((t) => (
+                                                                <li key={t} className="flex items-start gap-2">
+                                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#001030]" />
+                                                                    <span className="text-sm font-medium text-slate-700">{t}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+
+                                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                                        <p className="mb-3 text-sm font-bold text-[#001030]">Why it persists</p>
+                                                        <ul className="space-y-2">
+                                                            {industry.why.map((t) => (
+                                                                <li key={t} className="flex items-start gap-2">
+                                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#001030]" />
+                                                                    <span className="text-sm font-medium text-slate-700">{t}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+
+                                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                                        <p className="mb-3 text-sm font-bold text-[#001030]">Affects</p>
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {industry.affects.map((t) => (
+                                                                <span
+                                                                    key={t}
+                                                                    className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700"
+                                                                >
+                                                                    {t}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+
+                                                        <div className="mt-5">
+                                                            <Link href="/contact">
+                                                                <Button className="w-full rounded-xl bg-[#001030] py-6 text-base font-semibold text-white hover:bg-[#0b1b44]">
+                                                                    Book a call
+                                                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                                                </Button>
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section className="relative overflow-hidden bg-gradient-to-br from-[#1d3658] via-blue-800 to-cyan-700">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
+                {/* CTA (dark) */}
+                <section className="relative overflow-hidden bg-[#001030]">
+                    <div className="absolute inset-0">
+                        <div className="absolute -left-28 -bottom-28 h-[640px] w-[640px] rounded-full bg-white/5 blur-3xl" />
+                        <div className="absolute -right-24 -top-24 h-[520px] w-[520px] rounded-full bg-[#1d3658]/20 blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:56px_56px]" />
+                    </div>
 
-                    <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                            <div>
-                                <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+                    <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+                        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+                            <div className="lg:col-span-7">
+                                <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
                                     Ready to address fraud risk in your industry?
                                 </h2>
-                                <p className="mb-8 text-xl leading-relaxed text-blue-100">
-                                    Book a call to discuss how fraud manifests in your operating environment and how we can help you build effective defences.
+                                <p className="mt-3 text-lg leading-relaxed text-slate-200">
+                                    Book a call to discuss how fraud manifests in your operating environment and how
+                                    we can help you build effective defences.
                                 </p>
-
-                                <div className="space-y-4">
-                                    <Button className="w-full rounded-xl border-2 border-white/30 bg-white/20 py-6 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/30 hover:shadow-xl sm:w-auto">
-                                        <span className="flex items-center justify-center gap-2">
-                                            Book a Strategy Call
-                                            <ArrowRight className="h-5 w-5" />
-                                        </span>
-                                    </Button>
-                                </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
-                                {[
-                                    { number: "6", label: "Industry Sectors" },
-                                    { number: "15+", label: "Fraud Patterns" },
-                                    { number: "50+", label: "Clients Served" },
-                                    { number: "100%", label: "Customized Solutions" },
-                                ].map((stat, index) => (
-                                    <div
-                                        key={index}
-                                        className="rounded-2xl border-2 border-white/20 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/20"
-                                    >
-                                        <div className="mb-2 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-4xl font-bold text-transparent">
-                                            {stat.number}
-                                        </div>
-                                        <div className="text-sm font-medium text-blue-100">{stat.label}</div>
-                                    </div>
-                                ))}
+                            <div className="lg:col-span-5">
+                                <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+                                    <Link href="/contact" className="w-full sm:w-auto">
+                                        <Button className="w-full rounded-xl bg-white px-8 py-6 text-base font-semibold text-[#001030] shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-slate-100">
+                                            Book a strategy call
+                                            <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
+                                    </Link>
+                                    <Link href="/services" className="w-full sm:w-auto">
+                                        <Button
+                                            variant="outline"
+                                            className="w-full rounded-xl border-2 border-white/25 bg-transparent px-8 py-6 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
+                                        >
+                                            Explore services
+                                            <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

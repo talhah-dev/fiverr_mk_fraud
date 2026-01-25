@@ -1,9 +1,22 @@
 "use client";
 
-import { BookOpen, TrendingUp, Shield, AlertTriangle, Calendar, ArrowRight, ExternalLink, Linkedin, FileText, Clock, Tag } from "lucide-react";
+import {
+    BookOpen,
+    TrendingUp,
+    Shield,
+    AlertTriangle,
+    Calendar,
+    ArrowRight,
+    ExternalLink,
+    Linkedin,
+    FileText,
+    Clock,
+    Tag,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Wrapper from "@/app/Wrapper";
+import Link from "next/link";
 
 export default function Insights() {
     const [activeCategory, setActiveCategory] = useState("all");
@@ -20,132 +33,151 @@ export default function Insights() {
         {
             category: "fraud-trends",
             title: "The Rise of Social Engineering in Non-Financial Sectors",
-            excerpt: "Understanding how fraud patterns from banking are now affecting retail, logistics, and public sector organizations across South Africa.",
+            excerpt:
+                "Understanding how fraud patterns from banking are now affecting retail, logistics, and public sector organizations across South Africa.",
             date: "January 15, 2026",
             readTime: "5 min read",
             type: "Article",
-            gradient: "from-[#1d3658] to-blue-600",
         },
         {
             category: "controls",
             title: "Building Fraud Controls That Don't Slow Your Business",
-            excerpt: "A practical guide to embedding fraud prevention in daily operations without creating bureaucratic friction.",
+            excerpt:
+                "A practical guide to embedding fraud prevention in daily operations without creating bureaucratic friction.",
             date: "January 10, 2026",
             readTime: "7 min read",
             type: "Guide",
-            gradient: "from-blue-600 to-cyan-600",
         },
         {
             category: "case-studies",
             title: "How a Retail Organization Reduced Procurement Fraud by 60%",
-            excerpt: "Real-world case study showing how simplified controls and better accountability transformed fraud outcomes.",
+            excerpt:
+                "Real-world case study showing how simplified controls and better accountability transformed fraud outcomes.",
             date: "January 5, 2026",
             readTime: "8 min read",
             type: "Case Study",
-            gradient: "from-cyan-600 to-violet-600",
         },
         {
             category: "fraud-trends",
             title: "Account Takeover Patterns in Loyalty Programmes",
-            excerpt: "Analysis of how fraudsters exploit weak identity controls in customer benefit schemes.",
+            excerpt:
+                "Analysis of how fraudsters exploit weak identity controls in customer benefit schemes.",
             date: "December 28, 2025",
             readTime: "6 min read",
             type: "Analysis",
-            gradient: "from-violet-600 to-purple-600",
         },
         {
             category: "controls",
             title: "Third-Party Fraud Risk: What Your Vendor Due Diligence Misses",
-            excerpt: "Beyond paperwork compliance: how to identify real fraud risks in your supplier relationships.",
+            excerpt:
+                "Beyond paperwork compliance: how to identify real fraud risks in your supplier relationships.",
             date: "December 20, 2025",
             readTime: "5 min read",
             type: "Article",
-            gradient: "from-[#1d3658] to-blue-600",
         },
         {
             category: "fraud-trends",
             title: "Internal Fraud Red Flags Often Hidden in Plain Sight",
-            excerpt: "Behavioral indicators and process anomalies that signal potential internal fraud before it becomes a major loss.",
+            excerpt:
+                "Behavioral indicators and process anomalies that signal potential internal fraud before it becomes a major loss.",
             date: "December 15, 2025",
             readTime: "6 min read",
             type: "Guide",
-            gradient: "from-blue-600 to-cyan-600",
         },
     ];
 
-    const filteredInsights = activeCategory === "all"
-        ? insights
-        : insights.filter(insight => insight.category === activeCategory);
+    const filteredInsights = useMemo(() => {
+        if (activeCategory === "all") return insights;
+        return insights.filter((i) => i.category === activeCategory);
+    }, [activeCategory]);
 
     const featuredInsight = {
         title: "2026 Fraud Risk Outlook: What Non-Financial Sectors Need to Know",
-        excerpt: "Our comprehensive analysis of emerging fraud trends, control gaps, and strategic priorities for South African organizations outside the financial sector.",
+        excerpt:
+            "Our comprehensive analysis of emerging fraud trends, control gaps, and strategic priorities for South African organizations outside the financial sector.",
         date: "January 20, 2026",
         readTime: "12 min read",
-        gradient: "from-[#1d3658] via-blue-700 to-cyan-700",
     };
+
+    const categoryLabel = (id: string) => categories.find((c) => c.id === id)?.label ?? "";
 
     return (
         <Wrapper>
             <div className="bg-white">
-                <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1d3658] to-slate-800">
+                <section className="relative overflow-hidden bg-[#001030]">
                     <div className="absolute inset-0">
-                        <div className="absolute left-0 top-0 h-[700px] w-[700px] rounded-full bg-blue-500/10 blur-3xl" />
-                        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-cyan-500/10 blur-3xl" />
-                        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-3xl" />
+                        <div className="absolute -left-24 -top-24 h-[520px] w-[520px] rounded-full bg-white/5 blur-3xl" />
+                        <div className="absolute -right-28 -bottom-28 h-[640px] w-[640px] rounded-full bg-[#1d3658]/20 blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:56px_56px]" />
                     </div>
 
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
-
                     <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="mb-12 text-center">
-                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-blue-400/30 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-5 py-2.5 shadow-lg backdrop-blur-xl">
-                                <BookOpen className="h-4 w-4 text-blue-300" />
-                                <span className="text-sm font-bold uppercase tracking-wide text-blue-100">
-                                    Knowledge Hub
+                        <div className="mx-auto max-w-3xl text-center">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 shadow-sm backdrop-blur">
+                                <BookOpen className="h-4 w-4 text-white" />
+                                <span className="text-sm font-bold uppercase tracking-wide text-white">
+                                    Knowledge hub
                                 </span>
                             </div>
 
-                            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                            <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
                                 Fraud Risk{" "}
                                 <span className="relative inline-block">
-                                    <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-                                        Insights
-                                    </span>
-                                    <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-violet-500/50 blur-xl" />
+                                    <span className="relative z-10 text-[#c8d6ff]">Insights</span>
+                                    <span className="absolute -bottom-2 left-0 h-3 w-full bg-white/10 blur-sm" />
                                 </span>
                             </h1>
 
-                            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
-                                Practical guidance, fraud trends, and real-world strategies for organisations managing fraud risk in non-financial sectors.
+                            <p className="mt-6 text-lg leading-relaxed text-slate-200 sm:text-xl">
+                                Practical guidance, fraud trends, and real-world strategies for organisations
+                                managing fraud risk in non-financial sectors.
                             </p>
+
+                            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                                <Link href="#featured" className="w-full sm:w-auto">
+                                    <Button className="w-full rounded-xl bg-white px-8 py-6 text-base font-semibold text-[#001030] shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-slate-100">
+                                        Explore featured report
+                                        <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                                <Link href="#latest" className="w-full sm:w-auto">
+                                    <Button
+                                        variant="outline"
+                                        className="w-full rounded-xl border-2 border-white/25 bg-transparent px-8 py-6 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
+                                    >
+                                        Browse latest
+                                        <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                <section className="relative -mt-20 overflow-hidden">
+                <section id="featured" className="relative -mt-16 overflow-hidden">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50 shadow-2xl">
-                            <div className={`absolute inset-0 bg-gradient-to-r ${featuredInsight.gradient} opacity-5`} />
+                        <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                            <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_18%_20%,rgba(29,54,88,0.10),transparent_60%)]" />
+                            <div className="absolute inset-0 bg-[linear-gradient(to_right,#0b12240a_1px,transparent_1px),linear-gradient(to_bottom,#0b12240a_1px,transparent_1px)] bg-[size:56px_56px]" />
 
-                            <div className="relative grid grid-cols-1 items-center gap-8 p-8 lg:grid-cols-2 lg:p-12">
-                                <div>
-                                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#1d3658]/10 to-blue-500/10 px-4 py-2">
+                            <div className="relative grid grid-cols-1 gap-10 p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
+                                <div className="lg:col-span-7">
+                                    <div className="inline-flex items-center gap-2 rounded-full border border-[#1d3658]/15 bg-white px-4 py-2 shadow-sm">
                                         <AlertTriangle className="h-4 w-4 text-[#1d3658]" />
-                                        <span className="text-sm font-bold uppercase tracking-wide text-[#1d3658]">
-                                            Featured Report
+                                        <span className="text-sm font-bold uppercase tracking-wide text-[#001030]">
+                                            Featured report
                                         </span>
                                     </div>
 
-                                    <h2 className="mb-4 text-3xl font-bold text-[#1d3658] lg:text-4xl">
+                                    <h2 className="mt-5 text-3xl font-bold leading-tight text-[#001030] lg:text-4xl">
                                         {featuredInsight.title}
                                     </h2>
 
-                                    <p className="mb-6 text-lg leading-relaxed text-slate-600">
+                                    <p className="mt-4 text-lg leading-relaxed text-slate-600">
                                         {featuredInsight.excerpt}
                                     </p>
 
-                                    <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-600">
+                                    <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-600">
                                         <div className="flex items-center gap-2">
                                             <Calendar className="h-4 w-4" />
                                             <span>{featuredInsight.date}</span>
@@ -156,27 +188,72 @@ export default function Insights() {
                                         </div>
                                     </div>
 
-                                    <Button className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600 px-8 py-4 text-lg font-semibold shadow-xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
-                                        <span className="relative z-10 flex items-center gap-2">
-                                            Read Full Report
-                                            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                                        </span>
-                                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-blue-600 to-[#1d3658] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                                    </Button>
+                                    <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                                        <Button className="group rounded-xl bg-[#001030] px-8 py-6 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-[#0b1b44]">
+                                            <span className="flex items-center gap-2">
+                                                Read full report
+                                                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                                            </span>
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            className="rounded-xl border-2 border-[#1d3658]/25 bg-white px-8 py-6 text-base font-semibold text-[#001030] transition-all duration-300 hover:border-[#1d3658]/45 hover:bg-[#1d3658]/5"
+                                        >
+                                            Download PDF
+                                            <ExternalLink className="ml-2 h-5 w-5" />
+                                        </Button>
+                                    </div>
                                 </div>
 
-                                <div className="relative md:h-64 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d3658] via-blue-700 to-cyan-700 p-8 shadow-xl lg:h-80">
-                                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:30px_30px]" />
-                                    <div className="relative flex h-full flex-col justify-between">
-                                        <div className="space-y-4">
-                                            {["Emerging fraud vectors", "Control effectiveness gaps", "Strategic recommendations"].map((item, index) => (
-                                                <div key={index} className="flex items-center gap-3 rounded-xl border-2 border-white/20 bg-white/10 p-3 backdrop-blur-sm">
-                                                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-400">
-                                                        <span className="text-sm font-bold text-white">{index + 1}</span>
-                                                    </div>
-                                                    <span className="text-sm font-semibold text-white">{item}</span>
+                                <div className="lg:col-span-5">
+                                    <div className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm lg:p-8">
+                                        <div
+                                            className="absolute inset-0 opacity-70"
+                                            style={{
+                                                background:
+                                                    "linear-gradient(135deg, rgba(29,54,88,0.08) 0%, rgba(0,16,48,0.05) 55%, rgba(64,80,80,0.04) 100%)",
+                                            }}
+                                        />
+                                        <div className="relative">
+                                            <div className="flex items-start justify-between">
+                                                <div>
+                                                    <p className="text-sm font-bold uppercase tracking-wide text-slate-600">
+                                                        Inside the report
+                                                    </p>
+                                                    <p className="mt-2 text-xl font-bold text-[#001030]">
+                                                        What you&apos;ll learn
+                                                    </p>
                                                 </div>
-                                            ))}
+                                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-[#1d3658]/15">
+                                                    <Tag className="h-6 w-6 text-[#1d3658]" />
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-6 space-y-4">
+                                                {[
+                                                    "Emerging fraud vectors",
+                                                    "Control effectiveness gaps",
+                                                    "Strategic recommendations",
+                                                ].map((item, idx) => (
+                                                    <div
+                                                        key={item}
+                                                        className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4"
+                                                    >
+                                                        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-[#001030]">
+                                                            <span className="text-sm font-bold text-white">{idx + 1}</span>
+                                                        </div>
+                                                        <span className="text-sm font-semibold text-[#001030]">{item}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5">
+                                                <p className="text-sm font-bold text-[#001030]">Best for</p>
+                                                <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                                                    Risk owners, operations leaders, and compliance teams who need practical
+                                                    next steps.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -185,22 +262,40 @@ export default function Insights() {
                     </div>
                 </section>
 
-                <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
-                    <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
+                <section id="latest" className="relative overflow-hidden bg-white">
+                    <div className="absolute inset-0 -z-10">
+                        <div className="absolute -left-24 top-24 h-[480px] w-[480px] rounded-full bg-[#1d3658]/8 blur-3xl" />
+                        <div className="absolute -right-24 bottom-0 h-[520px] w-[520px] rounded-full bg-slate-900/5 blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0b12240a_1px,transparent_1px),linear-gradient(to_bottom,#0b12240a_1px,transparent_1px)] bg-[size:56px_56px]" />
+                    </div>
 
                     <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="mb-12 flex flex-wrap items-center justify-center gap-4">
+                        <div className="mx-auto mb-10 max-w-4xl text-center">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-[#1d3658]/15 bg-white px-5 py-2.5 shadow-sm">
+                                <span className="flex h-2 w-2 rounded-full bg-[#1d3658]" />
+                                <span className="text-sm font-bold uppercase tracking-wide text-[#001030]">
+                                    Latest
+                                </span>
+                            </div>
+                            <h2 className="mt-6 text-4xl font-bold tracking-tight text-[#001030] sm:text-5xl">
+                                Browse insights by category
+                            </h2>
+                            <p className="mt-4 text-lg text-slate-600">
+                                Select a category to filter content. New posts are added regularly.
+                            </p>
+                        </div>
+
+                        <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
                             {categories.map((category) => {
                                 const Icon = category.icon;
                                 const isActive = activeCategory === category.id;
-
                                 return (
                                     <button
                                         key={category.id}
                                         onClick={() => setActiveCategory(category.id)}
-                                        className={`group flex items-center gap-2 rounded-full border-2 px-6 py-3 font-bold transition-all duration-300 ${isActive
-                                            ? "border-[#1d3658] bg-gradient-to-r from-[#1d3658] to-blue-600 text-white shadow-lg"
-                                            : "border-slate-200 bg-white text-slate-700 hover:border-[#1d3658] hover:bg-slate-50"
+                                        className={`group flex items-center gap-2 rounded-full border px-6 py-3 font-bold transition-all duration-300 ${isActive
+                                                ? "border-[#001030] bg-[#001030] text-white shadow-lg"
+                                                : "border-slate-200 bg-white text-slate-700 hover:border-[#1d3658]/40 hover:bg-slate-50"
                                             }`}
                                     >
                                         <Icon className="h-5 w-5" />
@@ -213,48 +308,50 @@ export default function Insights() {
                         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {filteredInsights.map((insight, index) => {
                                 const isHovered = hoveredCard === index;
-
                                 return (
-                                    <div
-                                        key={index}
+                                    <article
+                                        key={`${insight.title}-${index}`}
                                         className="group relative"
                                         onMouseEnter={() => setHoveredCard(index)}
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
                                         <div
-                                            className={`absolute -inset-1 rounded-3xl bg-gradient-to-r ${insight.gradient} opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-30" : ""
+                                            className={`absolute -inset-1 rounded-3xl bg-[#1d3658]/15 opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-100" : ""
                                                 }`}
                                         />
 
                                         <div
-                                            className={`relative h-full overflow-hidden rounded-3xl border-2 bg-white shadow-lg transition-all duration-500 ${isHovered
-                                                ? "scale-105 border-transparent shadow-2xl"
-                                                : "border-slate-200"
+                                            className={`relative h-full overflow-hidden rounded-3xl border bg-white shadow-lg transition-all duration-500 ${isHovered
+                                                    ? "scale-[1.03] border-[#1d3658]/20 shadow-2xl"
+                                                    : "border-slate-200"
                                                 }`}
                                         >
-                                            <div className={`h-48 bg-gradient-to-br ${insight.gradient} p-6`}>
-                                                <div className="flex h-full flex-col justify-between">
-                                                    <div className="flex items-start justify-between">
-                                                        <div className="rounded-full bg-white/20 px-3 py-1 backdrop-blur-sm">
-                                                            <span className="text-xs font-bold text-white">
-                                                                {insight.type}
+                                            <div className="border-b border-slate-200 bg-white p-6">
+                                                <div className="flex items-start justify-between gap-4">
+                                                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1">
+                                                        <span className="text-xs font-bold text-[#001030]">{insight.type}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="rounded-full bg-[#1d3658]/10 px-3 py-1">
+                                                            <span className="text-xs font-bold text-[#1d3658]">
+                                                                {categoryLabel(insight.category)}
                                                             </span>
                                                         </div>
-                                                        <Tag className="h-5 w-5 text-white/60" />
+                                                        <Tag className="h-4 w-4 text-slate-400" />
                                                     </div>
                                                 </div>
+
+                                                <h3 className="mt-4 text-xl font-bold leading-snug text-[#001030] transition-colors duration-300 group-hover:text-[#1d3658]">
+                                                    {insight.title}
+                                                </h3>
                                             </div>
 
                                             <div className="p-6">
-                                                <h3 className="mb-3 text-xl font-bold text-[#1d3658] transition-colors duration-300 group-hover:text-blue-600">
-                                                    {insight.title}
-                                                </h3>
-
-                                                <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-slate-600">
+                                                <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-slate-600">
                                                     {insight.excerpt}
                                                 </p>
 
-                                                <div className="mb-4 flex items-center gap-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
+                                                <div className="flex items-center gap-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
                                                     <div className="flex items-center gap-1">
                                                         <Calendar className="h-3 w-3" />
                                                         <span>{insight.date}</span>
@@ -265,117 +362,124 @@ export default function Insights() {
                                                     </div>
                                                 </div>
 
-                                                <button
-                                                    className={`flex w-full items-center justify-between rounded-xl bg-gradient-to-r ${insight.gradient} px-4 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg`}
-                                                >
-                                                    <span>Read Article</span>
-                                                    <ArrowRight className="h-4 w-4" />
-                                                </button>
+                                                <div className="mt-5">
+                                                    <Button className="w-full rounded-xl bg-[#001030] py-6 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#0b1b44]">
+                                                        <span className="flex items-center justify-between">
+                                                            Read
+                                                            <ArrowRight className="h-4 w-4" />
+                                                        </span>
+                                                    </Button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </article>
                                 );
                             })}
                         </div>
                     </div>
                 </section>
 
-                <section className="relative overflow-hidden bg-gradient-to-br from-[#1d3658] via-blue-800 to-cyan-700">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
+                <section className="relative overflow-hidden bg-[#001030]">
+                    <div className="absolute inset-0">
+                        {/* <div className="absolute -left-28 -bottom-28 h-[640px] w-[640px] rounded-full bg-white/5 blur-3xl" /> */}
+                        <div className="absolute -right-24 -top-24 h-[520px] w-[520px] rounded-full bg-[#1d3658]/20 blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:56px_56px]" />
+                    </div>
 
                     <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-                            <div>
-                                <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
-                                    <Linkedin className="h-4 w-4 text-cyan-300" />
+                        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+                            <div className="lg:col-span-7">
+                                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 shadow-sm backdrop-blur">
+                                    <Linkedin className="h-4 w-4 text-white" />
                                     <span className="text-sm font-bold uppercase tracking-wide text-white">
-                                        Stay Connected
+                                        Stay connected
                                     </span>
                                 </div>
 
-                                <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
-                                    Follow us on LinkedIn for latest insights
+                                <h2 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
+                                    Follow us on LinkedIn for the latest insights
                                 </h2>
 
-                                <p className="mb-8 text-xl text-blue-100">
-                                    Get fraud risk insights, industry updates, and practical guidance delivered directly to your feed.
+                                <p className="mt-5 text-lg leading-relaxed text-slate-200">
+                                    Get fraud risk updates and practical guidance delivered directly to your feed.
                                 </p>
 
-                                <Button className="group rounded-2xl border-2 border-white/30 bg-white/20 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/30 hover:shadow-xl">
-                                    <span className="flex items-center gap-2">
-                                        <Linkedin className="h-5 w-5" />
-                                        Follow on LinkedIn
-                                        <ExternalLink className="h-4 w-4" />
-                                    </span>
-                                </Button>
+                                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                                    <Button className="rounded-xl bg-white px-8 py-6 text-base font-semibold text-[#001030] shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-slate-100">
+                                        <span className="flex items-center gap-2">
+                                            <Linkedin className="h-5 w-5" />
+                                            Follow on LinkedIn
+                                            <ExternalLink className="h-4 w-4" />
+                                        </span>
+                                    </Button>
+                                    <Link href="/contact" className="w-full sm:w-auto">
+                                        <Button
+                                            variant="outline"
+                                            className="w-full rounded-xl border-2 border-white/25 bg-transparent px-8 py-6 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
+                                        >
+                                            Book a call
+                                            <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
-                                {[
-                                    { number: "50+", label: "Articles Published" },
-                                    { number: "15k+", label: "Monthly Readers" },
-                                    { number: "100+", label: "Fraud Patterns Analyzed" },
-                                    { number: "25+", label: "Case Studies Shared" },
-                                ].map((stat, index) => (
-                                    <div
-                                        key={index}
-                                        className="rounded-2xl border-2 border-white/20 bg-white/10 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/20"
-                                    >
-                                        <div className="mb-2 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-4xl font-bold text-transparent">
-                                            {stat.number}
+                            <div className="lg:col-span-5">
+                                <div className="grid grid-cols-2 gap-4">
+                                    {[
+                                        { number: "50+", label: "Articles published" },
+                                        { number: "15k+", label: "Monthly readers" },
+                                        { number: "100+", label: "Patterns analysed" },
+                                        { number: "25+", label: "Case studies" },
+                                    ].map((stat) => (
+                                        <div
+                                            key={stat.label}
+                                            className="rounded-3xl border border-white/12 bg-white/5 p-6 text-center backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/8"
+                                        >
+                                            <div className="text-4xl font-bold text-white">{stat.number}</div>
+                                            <div className="mt-2 text-sm font-semibold text-slate-200">{stat.label}</div>
                                         </div>
-                                        <div className="text-sm font-medium text-blue-100">
-                                            {stat.label}
-                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-14 overflow-hidden rounded-3xl border border-white/12 bg-white/5 p-8 backdrop-blur">
+                            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
+                                <div className="lg:col-span-8">
+                                    <p className="text-sm font-bold uppercase tracking-wide text-slate-200">
+                                        Ready to get started?
+                                    </p>
+                                    <h3 className="mt-3 text-3xl font-bold leading-tight text-white lg:text-4xl">
+                                        Experience the difference of practitioner-led fraud prevention
+                                    </h3>
+                                    <p className="mt-3 text-lg text-slate-200">
+                                        See how our real-world approach transforms fraud risk management into a strategic
+                                        advantage.
+                                    </p>
+                                </div>
+
+                                <div className="lg:col-span-4">
+                                    <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                                        <Link href="/contact" className="w-full">
+                                            <Button className="w-full rounded-xl bg-white px-8 py-6 text-base font-semibold text-[#001030] shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-slate-100">
+                                                Book your consultation
+                                                <ArrowRight className="ml-2 h-5 w-5" />
+                                            </Button>
+                                        </Link>
+                                        <Button
+                                            variant="outline"
+                                            className="w-full rounded-xl border-2 border-white/25 bg-transparent px-8 py-6 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
+                                        >
+                                            View case studies
+                                            <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
                                     </div>
-                                ))}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-            </div>
-
-            <div className="max-w-7xl p-5 mb-16 mx-auto">
-                <div className="mt-20 overflow-hidden rounded-3xl border-2 border-blue-400/20 bg-gradient-to-br from-white via-blue-50/30 to-violet-50/30 md:p-8 py-8 p-5 shadow-2xl backdrop-blur-xl lg:p-12">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f608_1px,transparent_1px),linear-gradient(to_bottom,#3b82f608_1px,transparent_1px)] bg-[size:30px_30px]" />
-
-                    <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-                        <div>
-                            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500/20 to-violet-500/20 px-5 py-2.5 backdrop-blur-xl">
-                                <div className="relative flex h-2 w-2">
-                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
-                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
-                                </div>
-                                <span className="text-sm font-bold text-[#1d3658]">
-                                    Ready to Get Started?
-                                </span>
-                            </div>
-                            <h3 className="mb-4 bg-gradient-to-r from-[#1d3658] via-blue-700 to-[#1d3658] bg-clip-text text-3xl font-bold text-transparent lg:text-4xl">
-                                Experience the difference of practitioner-led fraud prevention
-                            </h3>
-                            <p className="text-lg text-slate-600">
-                                See how our real-world approach transforms fraud risk management into a strategic advantage.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
-                            <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d3658] to-blue-600 px-8 py-5 font-bold text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50">
-                                <span className="relative z-10 flex items-center justify-center gap-2">
-                                    Book Your Consultation
-                                    <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                                </span>
-                            </button>
-
-                            <button className="group rounded-2xl border-2 border-[#1d3658] bg-white px-8 py-5 font-bold text-[#1d3658] shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500 hover:bg-gradient-to-r hover:from-blue-50 hover:to-violet-50">
-                                <span className="flex items-center justify-center gap-2">
-                                    View Case Studies
-                                    <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </Wrapper>
     );

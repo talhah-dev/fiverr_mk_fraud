@@ -1,9 +1,20 @@
 "use client";
 
-import { Mail, CheckCircle2, Linkedin, MessageSquare, Send, Clock, Shield, MapPin } from "lucide-react";
+import {
+  Mail,
+  CheckCircle2,
+  Linkedin,
+  MessageSquare,
+  Send,
+  Clock,
+  Shield,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Wrapper from "@/app/Wrapper";
+import Link from "next/link";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -19,7 +30,6 @@ export default function ContactUs() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     setIsSubmitted(true);
     setTimeout(() => {
       setFormData({
@@ -34,7 +44,9 @@ export default function ContactUs() {
     }, 5000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -50,309 +62,402 @@ export default function ContactUs() {
 
   return (
     <Wrapper>
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50">
+      <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-[#1d3658]/5 blur-3xl" />
-          <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-blue-500/5 blur-3xl" />
-          <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-3xl" />
+          <div className="absolute -left-24 -top-24 h-[520px] w-[520px] rounded-full bg-[#1d3658]/10 blur-3xl" />
+          <div className="absolute -right-28 -bottom-28 h-[620px] w-[620px] rounded-full bg-slate-900/5 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#0b12240a_1px,transparent_1px),linear-gradient(to_bottom,#0b12240a_1px,transparent_1px)] bg-[size:56px_56px]" />
         </div>
 
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
-
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <div className="mb-16 text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-[#1d3658]/20 bg-gradient-to-r from-[#1d3658]/10 to-blue-500/10 px-5 py-2.5 shadow-sm backdrop-blur-sm">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#1d3658]/15 bg-white px-5 py-2.5 shadow-sm">
               <MessageSquare className="h-4 w-4 text-[#1d3658]" />
-              <span className="text-sm font-bold uppercase tracking-wide text-[#1d3658]">
-                Get In Touch
+              <span className="text-sm font-bold uppercase tracking-wide text-[#001030]">
+                Get in touch
               </span>
             </div>
 
-            <h1 className="mx-auto mb-6 max-w-3xl text-center text-5xl font-bold leading-tight tracking-tight text-[#1d3658] sm:text-6xl lg:text-7xl">
-              Let's discuss your{" "}
+            <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight text-[#001030] sm:text-6xl lg:text-7xl">
+              Let&apos;s discuss your{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 bg-clip-text text-transparent">
-                  fraud strategy
-                </span>
-                <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/40 via-cyan-500/40 to-violet-500/40 blur-xl" />
+                <span className="relative z-10 text-[#1d3658]">fraud strategy</span>
+                <span className="absolute -bottom-2 left-0 h-3 w-full bg-[#1d3658]/15 blur-sm" />
               </span>
             </h1>
 
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-              Book a free consultation to explore how we can help strengthen your fraud defences and build resilience across your organisation.
+            <p className="mt-6 text-lg leading-relaxed text-slate-600 sm:text-xl">
+              Book a free consultation to explore how we can strengthen your fraud defences and
+              build resilience across your organisation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-            <div>
-              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-2xl lg:p-12">
-                <div className="mb-8">
-                  <h2 className="mb-2 text-3xl font-bold text-[#1d3658]">
-                    Send us a message
-                  </h2>
-                  <p className="text-slate-600">
-                    Fill out the form below and we'll get back to you within 24 hours.
+          <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-7">
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+                <div className="border-b border-slate-200 bg-white px-8 py-7 lg:px-10">
+                  <h2 className="text-3xl font-bold text-[#001030]">Send us a message</h2>
+                  <p className="mt-2 text-slate-600">
+                    Fill out the form and we&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
 
-                {isSubmitted ? (
-                  <div className="rounded-2xl border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-8 text-center">
-                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-500">
-                      <CheckCircle2 className="h-8 w-8 text-white" strokeWidth={3} />
+                <div className="p-8 lg:p-10">
+                  {isSubmitted ? (
+                    <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+                      <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#001030]">
+                        <CheckCircle2 className="h-7 w-7 text-white" strokeWidth={3} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#001030]">Message sent</h3>
+                      <p className="mt-2 text-slate-600">
+                        Thanks — we&apos;ll review your message and reply within 24 hours during business
+                        days.
+                      </p>
                     </div>
-                    <h3 className="mb-2 text-2xl font-bold text-green-900">
-                      Message Sent Successfully!
-                    </h3>
-                    <p className="text-green-700">
-                      Thank you for contacting us. We'll review your message and respond within 24 hours during business days.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                          Full Name *
-                        </label>
-                        <div className="relative">
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <div>
+                          <label
+                            htmlFor="name"
+                            className="mb-2 block text-sm font-semibold text-[#001030]"
+                          >
+                            Full name <span className="text-[#1d3658]">*</span>
+                          </label>
                           <input
-                            type="text"
                             id="name"
                             name="name"
+                            type="text"
                             required
                             value={formData.name}
                             onChange={handleChange}
                             onFocus={() => setFocusedField("name")}
                             onBlur={() => setFocusedField(null)}
-                            className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "name"
-                              ? "border-blue-500 shadow-lg shadow-blue-500/20"
-                              : "border-slate-200"
+                            className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "name"
+                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                                : "border-slate-200"
                               }`}
                             placeholder="John Doe"
                           />
                         </div>
-                      </div>
 
-                      <div>
-                        <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                          Email Address *
-                        </label>
-                        <div className="relative">
+                        <div>
+                          <label
+                            htmlFor="email"
+                            className="mb-2 block text-sm font-semibold text-[#001030]"
+                          >
+                            Email <span className="text-[#1d3658]">*</span>
+                          </label>
                           <input
-                            type="email"
                             id="email"
                             name="email"
+                            type="email"
                             required
                             value={formData.email}
                             onChange={handleChange}
                             onFocus={() => setFocusedField("email")}
                             onBlur={() => setFocusedField(null)}
-                            className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "email"
-                              ? "border-blue-500 shadow-lg shadow-blue-500/20"
-                              : "border-slate-200"
+                            className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "email"
+                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                                : "border-slate-200"
                               }`}
                             placeholder="john@company.com"
                           />
                         </div>
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="company" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          onFocus={() => setFocusedField("company")}
-                          onBlur={() => setFocusedField(null)}
-                          className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "company"
-                            ? "border-cyan-500 shadow-lg shadow-cyan-500/20"
-                            : "border-slate-200"
-                            }`}
-                          placeholder="Your Company Ltd"
-                        />
+                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <div>
+                          <label
+                            htmlFor="company"
+                            className="mb-2 block text-sm font-semibold text-[#001030]"
+                          >
+                            Company
+                          </label>
+                          <input
+                            id="company"
+                            name="company"
+                            type="text"
+                            value={formData.company}
+                            onChange={handleChange}
+                            onFocus={() => setFocusedField("company")}
+                            onBlur={() => setFocusedField(null)}
+                            className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "company"
+                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                                : "border-slate-200"
+                              }`}
+                            placeholder="Your Company Ltd"
+                          />
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="phone"
+                            className="mb-2 block text-sm font-semibold text-[#001030]"
+                          >
+                            Phone
+                          </label>
+                          <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            onFocus={() => setFocusedField("phone")}
+                            onBlur={() => setFocusedField(null)}
+                            className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "phone"
+                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                                : "border-slate-200"
+                              }`}
+                            placeholder="+27 123 456 789"
+                          />
+                        </div>
                       </div>
 
                       <div>
-                        <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                          Phone Number
+                        <label
+                          htmlFor="service"
+                          className="mb-2 block text-sm font-semibold text-[#001030]"
+                        >
+                          Service interested in <span className="text-[#1d3658]">*</span>
                         </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
+                        <select
+                          id="service"
+                          name="service"
+                          required
+                          value={formData.service}
                           onChange={handleChange}
-                          onFocus={() => setFocusedField("phone")}
+                          onFocus={() => setFocusedField("service")}
                           onBlur={() => setFocusedField(null)}
-                          className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "phone"
-                            ? "border-cyan-500 shadow-lg shadow-cyan-500/20"
-                            : "border-slate-200"
+                          className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "service"
+                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                              : "border-slate-200"
                             }`}
-                          placeholder="+27 123 456 789"
+                        >
+                          <option value="">Select a service</option>
+                          <option value="fraud-health-check">Fraud Health Check</option>
+                          <option value="programme-design">Fraud Programme Design</option>
+                          <option value="awareness">Awareness & Resilience</option>
+                          <option value="controls">Internal Fraud Controls</option>
+                          <option value="other">Other / Not Sure</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="message"
+                          className="mb-2 block text-sm font-semibold text-[#001030]"
+                        >
+                          Message <span className="text-[#1d3658]">*</span>
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          required
+                          rows={6}
+                          value={formData.message}
+                          onChange={handleChange}
+                          onFocus={() => setFocusedField("message")}
+                          onBlur={() => setFocusedField(null)}
+                          className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "message"
+                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                              : "border-slate-200"
+                            }`}
+                          placeholder="Tell us about your fraud challenges and what you want to achieve..."
                         />
                       </div>
-                    </div>
 
-                    <div>
-                      <label htmlFor="service" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                        Service Interested In *
-                      </label>
-                      <select
-                        id="service"
-                        name="service"
-                        required
-                        value={formData.service}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("service")}
-                        onBlur={() => setFocusedField(null)}
-                        className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "service"
-                          ? "border-violet-500 shadow-lg shadow-violet-500/20"
-                          : "border-slate-200"
-                          }`}
+                      <Button
+                        type="submit"
+                        className="group w-full rounded-xl bg-[#001030] py-6 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-[#0b1b44]"
                       >
-                        <option value="">Select a service</option>
-                        <option value="fraud-health-check">Fraud Health Check</option>
-                        <option value="programme-design">Fraud Programme Design</option>
-                        <option value="awareness">Awareness & Resilience</option>
-                        <option value="controls">Internal Fraud Controls</option>
-                        <option value="other">Other / Not Sure</option>
-                      </select>
-                    </div>
+                        <span className="flex items-center justify-center gap-2">
+                          Send message
+                          <Send className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
+                      </Button>
 
-                    <div>
-                      <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#1d3658]">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("message")}
-                        onBlur={() => setFocusedField(null)}
-                        className={`w-full rounded-xl border-2 bg-slate-50 px-4 py-3 text-slate-900 transition-all duration-300 focus:bg-white focus:outline-none ${focusedField === "message"
-                          ? "border-violet-500 shadow-lg shadow-violet-500/20"
-                          : "border-slate-200"
-                          }`}
-                        placeholder="Tell us about your fraud challenges and how we can help..."
-                      />
-                    </div>
-
-                    <Button
-                      onClick={handleSubmit}
-                      className="group w-full rounded-xl bg-gradient-to-r from-[#1d3658] to-blue-600 py-6 text-lg font-bold shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
-                    >
-                      <span className="flex items-center justify-center gap-2">
-                        Send Message
-                        <Send className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                      </span>
-                    </Button>
-                  </div>
-                )}
+                      <p className="flex items-center gap-2 text-sm text-slate-500">
+                        <CheckCircle2 className="h-4 w-4 text-[#1d3658]" />
+                        No commitment required • Free consultation
+                      </p>
+                    </form>
+                  )}
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 mt-16 gap-4 sm:grid-cols-2">
-                <div className="overflow-hidden rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-lg">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#1d3658] to-blue-600">
+              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#001030]">
                     <Mail className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="mb-2 font-bold text-[#1d3658]">Email Us</h4>
-                  <a href="mailto:hello@mkfraud.co.za" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
+                  <p className="text-sm font-semibold text-slate-500">Email</p>
+                  <a
+                    href="mailto:hello@mkfraud.co.za"
+                    className="mt-1 block font-bold text-[#001030] hover:text-[#1d3658]"
+                  >
                     hello@mkfraud.co.za
                   </a>
                 </div>
 
-                <div className="overflow-hidden rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-lg">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-purple-600">
+                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#001030]">
                     <Linkedin className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="mb-2 font-bold text-[#1d3658]">LinkedIn</h4>
-                  <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
+                  <p className="text-sm font-semibold text-slate-500">LinkedIn</p>
+                  <a href="#" className="mt-1 block font-bold text-[#001030] hover:text-[#1d3658]">
                     MK Fraud Insights
                   </a>
                 </div>
-              </div>
 
-              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 shadow-xl">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600">
-                    <MapPin className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="mb-2 font-bold text-[#1d3658]">Our Location</h4>
-                    <p className="text-sm text-slate-600">South Africa</p>
-                    <p className="mt-2 text-xs text-slate-500">
-                      Serving clients across Africa and internationally
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-2xl">
-                <div className="bg-gradient-to-r from-[#1d3658] to-blue-700 p-6">
-                  <h3 className="text-2xl font-bold text-white">
-                    Book a Consultation
-                  </h3>
-                  <p className="mt-2 text-blue-100">
-                    Schedule a time that works for you
-                  </p>
-                </div>
-                <div className="h-[600px] bg-slate-50 p-4">
-                  <div className="flex h-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-white">
-                    <div className="text-center">
-                      <Shield className="mx-auto mb-4 h-12 w-12 text-slate-400" />
-                      <p className="mb-2 font-semibold text-slate-700">Calendly Embed</p>
-                      <p className="text-sm text-slate-500">Booking calendar will be embedded here</p>
+                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-lg sm:col-span-2">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                      <MapPin className="h-6 w-6 text-white" />
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-[#1d3658] to-blue-900 p-8 shadow-xl">
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-                    <CheckCircle2 className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">What to Expect</h3>
-                </div>
-
-                <div className="space-y-4">
-                  {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-400">
-                        <CheckCircle2 className="h-4 w-4 text-white" strokeWidth={3} />
-                      </div>
-                      <span className="text-sm font-medium text-white">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
-                  <div className="flex items-start gap-3">
-                    <Clock className="h-5 w-5 flex-shrink-0 text-cyan-300" />
                     <div>
-                      <p className="mb-1 text-sm font-bold text-white">Response Time</p>
-                      <p className="text-xs text-blue-100">
-                        We typically respond within 24 hours during business days
+                      <p className="font-bold text-[#001030]">South Africa</p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Serving clients across Africa and internationally.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div className="lg:col-span-5">
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+                <div className="border-b border-slate-200 bg-white px-8 py-7">
+                  <div className="flex items-start justify-between gap-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-[#001030]">Book a consultation</h3>
+                      <p className="mt-2 text-slate-600">Schedule a time that works for you.</p>
+                    </div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#001030]">
+                      <Shield className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <div className="h-[520px] rounded-2xl border border-dashed border-slate-300 bg-white">
+                    <div className="flex h-full items-center justify-center px-6">
+                      <div className="max-w-sm text-center">
+                        <CalendarIcon />
+                        <p className="mt-4 font-semibold text-slate-700">Calendly embed</p>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                          Replace this box with your Calendly component or embed code.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
+                <div className="flex items-start gap-4">
+                  {/* <div className="flex flex-col h-12 w-12 items-center justify-center rounded-2xl bg-[#001030]">
+                    <CheckCircle2 className="h-6 w-6 text-white" />
+                  </div> */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-[#001030]">What to expect</h3>
+                    <div className="mt-5 grid grid-cols-1 gap-3">
+                      {benefits.map((b) => (
+                        <div key={b} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#1d3658]/10">
+                            <CheckCircle2 className="h-5 w-5 text-[#1d3658]" strokeWidth={2.5} />
+                          </div>
+                          <span className="text-sm font-semibold text-[#001030]">{b}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5">
+                      <div className="flex items-start gap-3">
+                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                          <Clock className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-[#001030]">Response time</p>
+                          <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                            We typically respond within 24 hours during business days.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <a
+                        href="tel:+27123456789"
+                        className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                      >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#001030]">
+                          <Phone className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-slate-500">Phone</p>
+                          <p className="text-sm font-bold text-[#001030]">+27 123 456 789</p>
+                        </div>
+                      </a>
+
+                      <Link
+                        href="/services"
+                        className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                      >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#001030]">
+                          <Shield className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-slate-500">Explore</p>
+                          <p className="text-sm font-bold text-[#001030]">View services</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </Wrapper>
+  );
+}
+
+function CalendarIcon() {
+  return (
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#001030]">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8 2V5"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M16 2V5"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M3 9H21"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6 4H18C19.1046 4 20 4.89543 20 6V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19V6C4 4.89543 4.89543 4 6 4Z"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
   );
 }

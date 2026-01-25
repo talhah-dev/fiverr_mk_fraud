@@ -1,43 +1,89 @@
 "use client";
 
-import { Shield, Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
+import { Menu, X, ChevronDown, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import {
+    Sheet,
+    SheetContent,
+    SheetTrigger,
+    SheetHeader,
+    SheetTitle,
+} from "@/components/ui/sheet";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+type NavLink =
+    | { name: string; href: string; dropdown?: undefined }
+    | {
+        name: string;
+        href: string;
+        dropdown: { name: string; href: string }[];
+    };
+
+const BRAND = {
+    navy: "#001030",
+    navy2: "#1d3658",
+    gray: "#405050",
+};
 
 export default function Navbar() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [isSheetOpen, setIsSheetOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-    useState(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+    const navLinks: NavLink[] = useMemo(
+        () => [
+            { name: "Home", href: "/" },
+            {
+                name: "Services",
+                href: "/services",
+                dropdown: [
+                    { name: "Fraud Health Check", href: "/services#health-check" },
+                    { name: "Programme Design", href: "/services#programme-design" },
+                    { name: "Awareness & Resilience", href: "/services#awareness" },
+                    { name: "Internal Controls", href: "/services#controls" },
+                ],
+            },
+            { name: "Industries", href: "/industries" },
+            { name: "About", href: "/about" },
+            { name: "Insights", href: "/insights" },
+            { name: "Contact", href: "/contact" },
+        ],
+        []
+    );
+
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        setActiveDropdown(null);
+        setIsSheetOpen(false);
+    }, [pathname]);
+
+    useEffect(() => {
+        const onClickOutside = (e: MouseEvent) => {
+            if (!dropdownRef.current) return;
+            if (!dropdownRef.current.contains(e.target as Node)) setActiveDropdown(null);
         };
+        document.addEventListener("mousedown", onClickOutside);
+        return () => document.removeEventListener("mousedown", onClickOutside);
+    }, []);
 
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll);
-        }
-    });
-
-    const navLinks = [
-        { name: "Home", href: "/" },
-        {
-            name: "Services",
-            href: "/services",
-            dropdown: [
-                { name: "Fraud Health Check", href: "/services#health-check" },
-                { name: "Programme Design", href: "/services#programme-design" },
-                { name: "Awareness & Resilience", href: "/services#awareness" },
-                { name: "Internal Controls", href: "/services#controls" },
-            ],
-        },
-        { name: "Industries", href: "/industries" },
-        { name: "About", href: "/about" },
-        { name: "Insights", href: "/insights" },
-        { name: "Contact", href: "/contact" },
-    ];
+    const isServicesOpen = activeDropdown === "Services";
 
     return (
         <nav
@@ -47,158 +93,229 @@ export default function Navbar() {
                 }`}
         >
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="flex h-20 md:h-24 items-center justify-between">
+                <div className="flex h-20 items-center justify-between md:h-24">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#1d3658] via-blue-600 to-cyan-600 shadow-lg">
-                            <Shield className="h-7 w-7 text-white" strokeWidth={2.5} />
-                        </div>
-                        <div>
-                            <h1 className="bg-gradient-to-r from-[#1d3658] via-blue-700 to-cyan-700 bg-clip-text text-xl font-bold text-transparent">
-                                MK Fraud Insights
-                            </h1>
-                            <p className="text-xs font-medium text-slate-600">
-                                Fraud Risk Strategy
-                            </p>
-                        </div>
+                        <Link href="/" className="flex items-center">
+                            <Image src="/logo.png" width={170} height={44} alt="MK Fraud Insights" priority />
+                        </Link>
                     </div>
 
                     <div className="hidden items-center gap-8 lg:flex">
-                        {navLinks.map((link) => (
-                            <div
-                                key={link.name}
-                                className="relative"
-                                onMouseEnter={() => link.dropdown && setActiveDropdown(link.name)}
-                                onMouseLeave={() => setActiveDropdown(null)}
-                            >
-                                <Link
-                                    href={link.href}
-                                    className="group flex items-center py-3 gap-1 font-semibold text-slate-700 transition-colors hover:text-blue-600"
-                                >
-                                    {link.name}
-                                    {link.dropdown && (
+                        {navLinks.map((link) => {
+                            if (!link.dropdown) {
+                                return (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        className="flex items-center gap-1 py-3 font-semibold text-slate-700 transition-colors hover:text-[var(--brand-navy)]"
+                                        style={{ ["--brand-navy" as any]: BRAND.navy }}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                );
+                            }
+
+                            return (
+                                <div key={link.name} className="relative" ref={dropdownRef}>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setActiveDropdown((v) => (v === link.name ? null : link.name))
+                                        }
+                                        className="group flex items-center gap-1 py-3 font-semibold text-slate-700 transition-colors hover:text-[var(--brand-navy)]"
+                                        style={{ ["--brand-navy" as any]: BRAND.navy }}
+                                        aria-haspopup="menu"
+                                        aria-expanded={isServicesOpen}
+                                    >
+                                        {link.name}
                                         <ChevronDown
-                                            className={`h-4 w-4 transition-transform duration-300 ${activeDropdown === link.name ? "rotate-180" : ""
+                                            className={`h-4 w-4 transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""
                                                 }`}
                                         />
-                                    )}
-                                </Link>
+                                    </button>
 
-                                {link.dropdown && activeDropdown === link.name && (
-                                    <div className="absolute left-0 top-full mt-0 w-64 overflow-hidden rounded-2xl border-2 border-slate-200 bg-white shadow-2xl">
-                                        <div className="p-2">
-                                            {link.dropdown.map((item) => (
+                                    {isServicesOpen && (
+                                        <div
+                                            role="menu"
+                                            className="absolute left-0 top-full mt-0 w-72 overflow-hidden rounded-2xl border-2 border-slate-200 bg-white shadow-2xl"
+                                        >
+                                            <div className="p-2">
+                                                {link.dropdown.map((item) => (
+                                                    <Link
+                                                        key={item.name}
+                                                        href={item.href}
+                                                        className="group flex items-center gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100"
+                                                        onClick={() => setActiveDropdown(null)}
+                                                    >
+                                                        <div
+                                                            className="flex h-2 w-2 rounded-full opacity-0 transition-opacity group-hover:opacity-100"
+                                                            style={{
+                                                                backgroundImage: `linear-gradient(to right, ${BRAND.navy}, ${BRAND.gray})`,
+                                                            }}
+                                                        />
+                                                        <span
+                                                            className="font-semibold text-slate-700 transition-colors group-hover:text-[var(--brand-navy)]"
+                                                            style={{ ["--brand-navy" as any]: BRAND.navy }}
+                                                        >
+                                                            {item.name}
+                                                        </span>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                            <div className="border-t border-slate-200 p-3">
                                                 <Link
-                                                    key={item.name}
-                                                    href={item.href}
-                                                    className="group flex items-center gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50"
+                                                    href="/services"
+                                                    className="block rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[var(--brand-navy)]"
+                                                    style={{ ["--brand-navy" as any]: BRAND.navy }}
+                                                    onClick={() => setActiveDropdown(null)}
                                                 >
-                                                    <div className="flex h-2 w-2 rounded-full bg-gradient-to-r from-[#1d3658] to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
-                                                    <span className="font-semibold text-slate-700 transition-colors group-hover:text-[#1d3658]">
-                                                        {item.name}
-                                                    </span>
+                                                    View all services
                                                 </Link>
-                                            ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
 
-                    <div className="hidden items-center gap-4 lg:flex">
+                    <div className="hidden items-center gap-3 lg:flex">
                         <Link
-                            href="tel:+27123456789"
-                            className="flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#1d3658]"
+                            href="mailto:hello@mkfraud.co.za"
+                            className="flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[var(--brand-navy)]"
+                            style={{ ["--brand-navy" as any]: BRAND.navy }}
                         >
-                            <Phone className="h-4 w-4" />
-                            <span className="hidden xl:inline">+27 123 456 789</span>
+                            <Mail className="h-4 w-4" />
+                            <span className="hidden xl:inline">hello@mkfraud.co.za</span>
                         </Link>
-                        <Link href={"/contact"}>
-                            <Button className="group relative overflow-hidden bg-gradient-to-r from-[#1d3658] to-blue-600 px-16 py-6 font-bold shadow-lg transition-all duration-300 hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30">
-                                <Mail className="h-6 w-6" />
+
+                        <Link href="/contact">
+                            <Button
+                                className="group relative overflow-hidden px-8 py-6 font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl bg-[#04123b]"
+                            // style={{
+                            //   backgroundImage: `linear-gradient(to right, ${BRAND.navy}, ${BRAND.navy2}, ${BRAND.gray})`,
+                            //   boxShadow: "0 10px 30px rgba(0,16,48,0.18)",
+                            // }}
+                            >
                                 Book a Call
                             </Button>
                         </Link>
                     </div>
 
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-slate-200 bg-white transition-all duration-300 hover:border-[#1d3658] hover:bg-slate-50 lg:hidden"
-                    >
-                        {isMobileMenuOpen ? (
-                            <X className="h-5 w-5 text-[#1d3658]" />
-                        ) : (
-                            <Menu className="h-5 w-5 text-[#1d3658]" />
-                        )}
-                    </button>
-                </div>
-
-                <div
-                    className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen
-                        ? "max-h-[800px] opacity-100"
-                        : "max-h-0 opacity-0"
-                        }`}
-                >
-                    <div className="border-t border-slate-200 py-4">
-                        <div className="space-y-1">
-                            {navLinks.map((link) => (
-                                <div key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="flex items-center justify-between rounded-xl p-4 font-semibold text-slate-700 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 hover:text-[#1d3658]"
-                                        onClick={() => {
-                                            if (link.dropdown) {
-                                                setActiveDropdown(
-                                                    activeDropdown === link.name ? null : link.name
-                                                );
-                                            } else {
-                                                setIsMobileMenuOpen(false);
-                                            }
-                                        }}
-                                    >
-                                        {link.name}
-                                        {link.dropdown && (
-                                            <ChevronDown
-                                                className={`h-4 w-4 transition-transform duration-300 ${activeDropdown === link.name ? "rotate-180" : ""
-                                                    }`}
-                                            />
-                                        )}
-                                    </Link>
-                                    {link.dropdown && activeDropdown === link.name && (
-                                        <div className="ml-4 space-y-1 border-l-2 border-slate-200 pl-4">
-                                            {link.dropdown.map((item) => (
-                                                <Link
-                                                    key={item.name}
-                                                    href={item.href}
-                                                    className="block rounded-lg p-3 text-sm font-medium text-slate-600 transition-all duration-300 hover:bg-blue-50 hover:text-[#1d3658]"
-                                                    onClick={() => setIsMobileMenuOpen(false)}
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            ))}
-                                        </div>
+                    <div className="lg:hidden">
+                        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                            <SheetTrigger asChild>
+                                <button
+                                    className="flex h-10  w-10 items-center justify-center rounded-lg border-2 border-slate-200 bg-white transition-all duration-300 hover:bg-slate-50"
+                                    style={{ borderColor: isSheetOpen ? BRAND.navy : undefined }}
+                                    aria-label="Open menu"
+                                >
+                                    {isSheetOpen ? (
+                                        <X className="h-5 w-5" style={{ color: BRAND.navy }} />
+                                    ) : (
+                                        <Menu className="h-5 w-5" style={{ color: BRAND.navy }} />
                                     )}
-                                </div>
-                            ))}
-                        </div>
+                                </button>
+                            </SheetTrigger>
 
-                        <div className="mt-4 space-y-3 border-t border-slate-200 pt-4">
-                            <Link
-                                href="tel:+27123456789"
-                                className="flex items-center gap-3 rounded-xl border-2 border-slate-200 bg-white p-4 font-semibold text-slate-700 transition-all duration-300 hover:border-[#1d3658] hover:bg-slate-50"
-                            >
-                                <Phone className="h-5 w-5 text-[#1d3658]" />
-                                +27 123 456 789
-                            </Link>
-                            <Link href={"/contact"}>
-                                <Button className="w-full rounded-xl bg-gradient-to-r from-[#1d3658] via-blue-600 to-cyan-600 py-4 font-bold shadow-lg">
-                                    <span className="flex items-center justify-center gap-2">
-                                        <Mail className="h-5 w-5" />
-                                        Book a Call
-                                    </span>
-                                </Button>
-                            </Link>
-                        </div>
+                            <SheetContent side="right" className="w-[92vw] max-w-md p-0">
+                                <SheetHeader className="sr-only">
+                                    <SheetTitle>Navigation menu</SheetTitle>
+                                </SheetHeader>
+
+                                <div className="flex items-sta justify-between border-b border-slate-200 px-4 py-4">
+                                    <Link href="/" className="flex items-center" onClick={() => setIsSheetOpen(false)}>
+                                        <Image src="/logo.png" width={160} height={42} alt="MK Fraud Insights" />
+                                    </Link>
+                                    <button
+                                        onClick={() => setIsSheetOpen(false)}
+                                        className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-slate-200 bg-white relative z-50 transition-all duration-300 hover:bg-slate-50"
+                                        style={{ borderColor: BRAND.navy }}
+                                        aria-label="Close menu"
+                                    >
+                                        <X className="h-5 w-5" style={{ color: BRAND.navy }} />
+                                    </button>
+                                </div>
+
+                                <div className="px-4 py-4">
+                                    <div className="space-y-2">
+                                        {navLinks.map((link) => {
+                                            if (!link.dropdown) {
+                                                return (
+                                                    <Link
+                                                        key={link.name}
+                                                        href={link.href}
+                                                        onClick={() => setIsSheetOpen(false)}
+                                                        className="flex items-center justify-between rounded-xl border bg-white px-4 py-4 font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-50"
+                                                        style={{ borderColor: "rgb(226 232 240)" }}
+                                                    >
+                                                        <span className="transition-colors" style={{ color: BRAND.navy }}>
+                                                            {link.name}
+                                                        </span>
+                                                    </Link>
+                                                );
+                                            }
+
+                                            return (
+                                                <Accordion key={link.name} type="single" collapsible className="w-full">
+                                                    <AccordionItem value="services" className="border-0">
+                                                        <AccordionTrigger
+                                                            className="rounded-xl border bg-white px-4 py-4 font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-50 [&[data-state=open]]:bg-slate-50"
+                                                            style={{ borderColor: "rgb(226 232 240)", color: BRAND.navy }}
+                                                        >
+                                                            {link.name}
+                                                        </AccordionTrigger>
+                                                        <AccordionContent className="pb-0 pt-2">
+                                                            <div className="space-y-2 rounded-xl border bg-white p-2" style={{ borderColor: "rgb(226 232 240)" }}>
+                                                                {link.dropdown.map((item) => (
+                                                                    <Link
+                                                                        key={item.name}
+                                                                        href={item.href}
+                                                                        onClick={() => setIsSheetOpen(false)}
+                                                                        className="block rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100"
+                                                                        style={{ color: BRAND.navy }}
+                                                                    >
+                                                                        {item.name}
+                                                                    </Link>
+                                                                ))}
+                                                                <Link
+                                                                    href="/services"
+                                                                    onClick={() => setIsSheetOpen(false)}
+                                                                    className="block rounded-lg px-3 py-3 text-sm font-semibold transition-colors"
+                                                                    style={{ color: BRAND.gray }}
+                                                                >
+                                                                    View all services
+                                                                </Link>
+                                                            </div>
+                                                        </AccordionContent>
+                                                    </AccordionItem>
+                                                </Accordion>
+                                            );
+                                        })}
+                                    </div>
+
+                                    <div className="mt-5 space-y-3 border-t border-slate-200 pt-5">
+                                        <Link
+                                            href="mailto:hello@mkfraud.co.za"
+                                            className="flex items-center gap-3 rounded-xl border-2 bg-white p-4 font-semibold transition-all duration-300 hover:bg-slate-50"
+                                            style={{ borderColor: "rgb(226 232 240)", color: BRAND.navy }}
+                                            onClick={() => setIsSheetOpen(false)}
+                                        >
+                                            <Mail className="h-5 w-5" style={{ color: BRAND.navy }} />
+                                            hello@mkfraud.co.za
+                                        </Link>
+
+                                        <Link href="/contact" onClick={() => setIsSheetOpen(false)}>
+                                            <Button
+                                                className="w-full rounded-xl py-6 font-bold shadow-lg bg-[#04123b]"
+                                            >
+                                                Book a Call
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </SheetContent>
+                        </Sheet>
                     </div>
                 </div>
             </div>

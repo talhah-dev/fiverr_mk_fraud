@@ -1,267 +1,274 @@
 "use client";
 
-import { Users, TrendingUp, Eye, CheckCircle2, ArrowRight, Lightbulb, Shield } from "lucide-react";
+import {
+    Users,
+    TrendingUp,
+    Eye,
+    CheckCircle2,
+    ArrowRight,
+    Lightbulb,
+    Shield,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function FraudAwarenessTrainingSection() {
-    const [hoveredFocus, setHoveredFocus] = useState<number | null>(null);
-
+    /**
+     * Logo palette (single-theme, no cyan/blue accents)
+     * - Primary: #1d3658
+     * - Deep:    #001030
+     * - Tints:   derived via opacity
+     */
     const focusAreas = [
         {
             icon: Users,
             title: "Frontline awareness",
-            description: "Helping frontline staff recognise fraud risks they encounter daily and know how to respond",
-            gradient: "from-[#1d3658] to-blue-600",
+            description:
+                "Helping frontline staff recognise fraud risks they encounter daily and know how to respond.",
         },
         {
             icon: TrendingUp,
             title: "Manager escalation",
-            description: "Equipping managers to identify patterns, assess risks, and escalate issues effectively",
-            gradient: "from-blue-600 to-cyan-600",
+            description:
+                "Equipping managers to identify patterns, assess risks, and escalate issues effectively.",
         },
         {
             icon: Eye,
             title: "Executive oversight",
-            description: "Providing executives with visibility into fraud risks and control effectiveness",
-            gradient: "from-cyan-600 to-violet-600",
+            description:
+                "Providing executives with visibility into fraud risks and control effectiveness.",
         },
     ];
 
     const benefits = [
-        {
-            title: "Role-Specific",
-            description: "Tailored to each level",
-            icon: Users,
-        },
-        {
-            title: "Practical Focus",
-            description: "Real scenarios and risks",
-            icon: Shield,
-        },
-        {
-            title: "Clear Actions",
-            description: "Know what to do next",
-            icon: CheckCircle2,
-        },
-        {
-            title: "Ongoing Support",
-            description: "Not one-time training",
-            icon: Lightbulb,
-        },
+        { title: "Role-specific", description: "Tailored to each level", icon: Users },
+        { title: "Practical focus", description: "Real scenarios and risks", icon: Shield },
+        { title: "Clear actions", description: "Know what to do next", icon: CheckCircle2 },
+        { title: "Ongoing support", description: "Not one-time training", icon: Lightbulb },
+    ];
+
+    const approachPoints = [
+        "Scenarios based on real fraud patterns",
+        "Practical examples from your industry",
+        "Clear guidance on what to do and who to tell",
+        "Regular reinforcement, not one-time events",
+    ];
+
+    const deliverables = [
+        "Role-based training materials",
+        "Real scenario examples",
+        "Escalation guidance",
+        "Ongoing reinforcement plan",
     ];
 
     return (
-        <section id="awareness" className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
+        <section
+            id="awareness"
+            className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50"
+        >
+            {/* soft background (logo theme only) */}
             <div className="absolute inset-0 -z-10">
-                <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-[#1d3658]/5 blur-3xl" />
-                <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-cyan-500/5 blur-3xl" />
-                <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/5 blur-3xl" />
+                <div className="absolute left-0 top-0 h-[520px] w-[520px] rounded-full bg-[#1d3658]/10 blur-3xl" />
+                <div className="absolute right-0 bottom-0 h-[560px] w-[560px] rounded-full bg-[#001030]/8 blur-3xl" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#0b122005_1px,transparent_1px),linear-gradient(to_bottom,#0b122005_1px,transparent_1px)] bg-[size:44px_44px]" />
             </div>
 
-            <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-            <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                <div className="mb-16 text-center">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-[#1d3658]/20 bg-gradient-to-r from-[#1d3658]/10 to-cyan-500/10 px-5 py-2.5 shadow-sm backdrop-blur-sm">
+            <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+                {/* header */}
+                <div className="mx-auto mb-12 max-w-3xl text-center">
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1d3658]/20 bg-[#1d3658]/5 px-5 py-2.5 shadow-sm backdrop-blur">
                         <Lightbulb className="h-4 w-4 text-[#1d3658]" />
                         <span className="text-sm font-bold uppercase tracking-wide text-[#1d3658]">
                             Service Three
                         </span>
                     </div>
 
-                    <h2 className="mb-6 text-4xl font-black leading-tight tracking-tight text-[#1d3658] sm:text-5xl lg:text-6xl">
+                    <h2 className="mb-5 text-4xl font-black leading-tight tracking-tight text-[#001030] sm:text-5xl lg:text-6xl">
                         Fraud Awareness &{" "}
                         <span className="relative inline-block">
-                            <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 bg-clip-text text-transparent">
-                                Training
-                            </span>
-                            <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/40 via-cyan-500/40 to-violet-500/40 blur-xl" />
+                            <span className="relative z-10 text-[#1d3658]">Training</span>
+                            <span className="absolute -bottom-2 left-0 h-3 w-full bg-[#1d3658]/10 blur-sm" />
                         </span>
                     </h2>
 
-                    <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-                        Practical training that helps staff recognise fraud risks relevant to their roles and environments.
+                    <p className="text-lg leading-relaxed text-slate-600 sm:text-xl">
+                        Practical training that helps staff recognise fraud risks relevant to their roles and
+                        environments.
                     </p>
                 </div>
 
-                <div className="mb-16">
-                    <h3 className="mb-8 text-center text-2xl font-bold text-[#1d3658]">
-                        Focus Areas
+                {/* Focus areas */}
+                <div className="mb-12">
+                    <h3 className="mb-6 text-center text-xl font-bold text-[#1d3658] sm:text-2xl">
+                        Focus areas
                     </h3>
 
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                    {/* Mobile: accordion */}
+                    <div className="md:hidden">
+                        <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-xl">
+                            <Accordion type="single" collapsible className="p-2">
+                                {focusAreas.map((area, idx) => {
+                                    const Icon = area.icon;
+                                    return (
+                                        <AccordionItem
+                                            key={idx}
+                                            value={`focus-${idx}`}
+                                            className="mb-2 rounded-2xl border border-slate-200 bg-slate-50/60 px-4 py-1 last:mb-0"
+                                        >
+                                            <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#001030] shadow-lg">
+                                                        <Icon className="h-5 w-5 text-white" strokeWidth={2.5} />
+                                                    </div>
+                                                    <span className="font-bold text-[#001030]">{area.title}</span>
+                                                </div>
+                                            </AccordionTrigger>
+                                            <AccordionContent className="pb-4 text-slate-600">
+                                                {area.description}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    );
+                                })}
+                            </Accordion>
+                        </div>
+                    </div>
+
+                    {/* Desktop: cards */}
+                    <div className="hidden md:grid grid-cols-3 gap-6">
                         {focusAreas.map((area, index) => {
                             const Icon = area.icon;
-                            const isHovered = hoveredFocus === index;
-
                             return (
                                 <div
                                     key={index}
-                                    className="group relative"
-                                    onMouseEnter={() => setHoveredFocus(index)}
-                                    onMouseLeave={() => setHoveredFocus(null)}
+                                    className="group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                                 >
-                                    <div
-                                        className={`absolute -inset-1 rounded-3xl bg-gradient-to-r ${area.gradient} opacity-0 blur-2xl transition-all duration-500 ${isHovered ? "opacity-40" : ""
-                                            }`}
-                                    />
-
-                                    <div
-                                        className={`relative h-full overflow-hidden rounded-3xl border-2 bg-white p-8 transition-all duration-500 ${isHovered
-                                                ? "scale-105 border-transparent shadow-2xl"
-                                                : "border-slate-200 shadow-lg"
-                                            }`}
-                                    >
-                                        <div
-                                            className={`absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-violet-50 opacity-0 transition-opacity duration-500 ${isHovered ? "opacity-60" : ""
-                                                }`}
-                                        />
-
-                                        <div className="relative">
-                                            <div className="mb-6 flex items-center justify-between">
-                                                <div
-                                                    className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${area.gradient} shadow-lg transition-all duration-500 ${isHovered ? "rotate-12 scale-110" : ""
-                                                        }`}
-                                                >
-                                                    <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
-                                                </div>
-                                            </div>
-
-                                            <h4 className="mb-3 text-2xl font-bold text-[#1d3658]">
-                                                {area.title}
-                                            </h4>
-
-                                            <p className="leading-relaxed text-slate-600">
-                                                {area.description}
-                                            </p>
+                                    <div className="absolute -inset-1 rounded-3xl bg-[#1d3658]/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                                    <div className="relative">
+                                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#001030] shadow-lg transition-transform duration-300 group-hover:rotate-6">
+                                            <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
                                         </div>
+
+                                        <h4 className="mb-3 text-2xl font-bold text-[#001030]">{area.title}</h4>
+                                        <p className="leading-relaxed text-slate-600">{area.description}</p>
                                     </div>
+                                    <div className="absolute bottom-0 left-0 h-1 w-full bg-[#1d3658]/15" />
                                 </div>
                             );
                         })}
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-                    <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-xl lg:p-10">
-                        <div className="mb-8">
-                            <h3 className="mb-4 text-3xl font-bold text-[#1d3658]">
-                                Training Approach
-                            </h3>
-                            <p className="text-lg text-slate-600">
-                                Role-based training designed for how fraud actually presents in your operating environment.
-                            </p>
-                        </div>
-
-                        <div className="space-y-5">
-                            {[
-                                "Scenarios based on real fraud patterns",
-                                "Practical examples from your industry",
-                                "Clear guidance on what to do and who to tell",
-                                "Regular reinforcement, not one-time events",
-                            ].map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="group flex items-start gap-4 rounded-2xl border-2 border-slate-200 bg-white p-5 transition-all duration-300 hover:scale-105 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/20"
-                                >
-                                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#1d3658] to-blue-600 transition-transform duration-300 group-hover:rotate-6">
-                                        <CheckCircle2 className="h-5 w-5 text-white" strokeWidth={3} />
+                {/* Two column: Approach + Benefits */}
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+                    {/* Approach */}
+                    <div className="lg:col-span-7">
+                        <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-2xl lg:p-10">
+                            <div className="absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[#1d3658]/10 blur-3xl" />
+                            <div className="relative">
+                                <div className="mb-8 flex items-start justify-between gap-4">
+                                    <div>
+                                        <h3 className="text-3xl font-bold text-[#001030]">Training approach</h3>
+                                        <p className="mt-3 text-lg leading-relaxed text-slate-600">
+                                            Role-based training designed for how fraud actually presents in your operating
+                                            environment.
+                                        </p>
                                     </div>
-                                    <p className="flex-1 font-semibold text-slate-700">{item}</p>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="mt-8 rounded-2xl bg-gradient-to-r from-[#1d3658]/10 via-blue-500/10 to-cyan-500/10 p-6 backdrop-blur-sm">
-                            <div className="flex items-start gap-3">
-                                <Shield className="h-6 w-6 flex-shrink-0 text-[#1d3658]" />
-                                <div>
-                                    <p className="mb-2 font-bold text-[#1d3658]">
-                                        Relevant to Your Environment
-                                    </p>
-                                    <p className="text-sm text-slate-600">
-                                        Training is tailored to the fraud risks present in your specific operations, not generic content.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-[#1d3658] via-blue-800 to-cyan-700 p-8 shadow-xl lg:p-10">
-                        <div className="mb-8">
-                            <h3 className="mb-4 text-3xl font-bold text-white">
-                                Service Benefits
-                            </h3>
-                            <p className="text-lg text-blue-100">
-                                Staff who can recognise fraud risks and respond appropriately, reducing successful fraud attempts.
-                            </p>
-                        </div>
-
-                        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            {benefits.map((benefit, index) => {
-                                const Icon = benefit.icon;
-                                return (
-                                    <div
-                                        key={index}
-                                        className="group overflow-hidden rounded-2xl border-2 border-white/20 bg-white/10 p-5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/20 hover:shadow-lg"
-                                    >
-                                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-400 transition-transform duration-300 group-hover:rotate-6">
-                                            <Icon className="h-5 w-5 text-white" />
-                                        </div>
-                                        <h4 className="mb-1 text-sm font-bold text-white">
-                                            {benefit.title}
-                                        </h4>
-                                        <p className="text-xs text-blue-100">{benefit.description}</p>
+                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-[#1d3658]/15 bg-[#1d3658]/5">
+                                        <Shield className="h-6 w-6 text-[#1d3658]" />
                                     </div>
-                                );
-                            })}
-                        </div>
+                                </div>
 
-                        <div className="space-y-4">
-                            <div className="rounded-2xl border-2 border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-                                <h4 className="mb-3 text-lg font-bold text-white">
-                                    Deliverables
-                                </h4>
-                                <div className="space-y-2">
-                                    {[
-                                        "Role-based training materials",
-                                        "Real scenario examples",
-                                        "Escalation guidance",
-                                        "Ongoing reinforcement plan",
-                                    ].map((item, idx) => (
-                                        <div key={idx} className="flex items-center gap-2">
-                                            <CheckCircle2 className="h-4 w-4 text-cyan-300" strokeWidth={3} />
-                                            <span className="text-sm text-white">{item}</span>
+                                <div className="space-y-4">
+                                    {approachPoints.map((item, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="flex items-start gap-4 rounded-2xl border-2 border-slate-200 bg-slate-50/60 p-5 transition-all duration-300 hover:border-[#1d3658]/25 hover:bg-white hover:shadow-lg"
+                                        >
+                                            <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-[#001030]">
+                                                <CheckCircle2 className="h-5 w-5 text-white" strokeWidth={3} />
+                                            </div>
+                                            <p className="font-semibold text-slate-700">{item}</p>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
 
-                            <div className="rounded-2xl border-2 border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-                                <div className="mb-4 flex items-center gap-2">
-                                    <div className="h-2 w-2 rounded-full bg-cyan-300" />
-                                    <span className="text-sm font-bold text-white">Programme Duration</span>
+                                <div className="mt-8 rounded-2xl border-2 border-[#1d3658]/10 bg-[#1d3658]/5 p-6">
+                                    <div className="flex items-start gap-3">
+                                        <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1d3658]" />
+                                        <div>
+                                            <p className="text-sm font-bold text-[#001030]">Relevant to your environment</p>
+                                            <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                                                Training is tailored to the fraud risks present in your specific operations,
+                                                not generic content.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="flex items-baseline gap-2">
-                                    <span className="text-3xl font-black text-white">4-6</span>
-                                    <span className="text-lg font-semibold text-blue-200">weeks</span>
-                                </div>
-                                <p className="mt-2 text-xs text-blue-200">
-                                    Initial delivery with ongoing support
-                                </p>
                             </div>
                         </div>
+                    </div>
 
-                        <Button className="mt-6 w-full rounded-xl border-2 border-white/30 bg-white/20 py-6 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/30 hover:shadow-xl">
-                            <span className="flex items-center justify-center gap-2">
-                                Start Training Programme
-                                <ArrowRight className="h-5 w-5" />
-                            </span>
-                        </Button>
+                    {/* Benefits */}
+                    <div className="lg:col-span-5">
+                        <div className="relative overflow-hidden rounded-3xl border-2 border-[#001030]/10 bg-[#001030] p-8 shadow-2xl lg:p-10">
+                            <div className="absolute -left-24 -bottom-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+                            <div className="relative">
+                                <div className="mb-7">
+                                    <h3 className="text-3xl font-bold text-white">Service benefits</h3>
+                                    <p className="mt-3 text-lg text-white/80">
+                                        Staff who can recognise fraud risks and respond appropriately, reducing
+                                        successful fraud attempts.
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                    {benefits.map((b, index) => {
+                                        const Icon = b.icon;
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="rounded-2xl border-2 border-white/15 bg-white/5 p-5 backdrop-blur-sm transition-all duration-300 hover:border-white/25 hover:bg-white/10"
+                                            >
+                                                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+                                                    <Icon className="h-5 w-5 text-white" />
+                                                </div>
+                                                <p className="text-sm font-bold text-white">{b.title}</p>
+                                                <p className="mt-1 text-xs text-white/75">{b.description}</p>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                <div className="mt-6 rounded-2xl border-2 border-white/15 bg-white/5 p-6 backdrop-blur-sm">
+                                    <p className="text-sm font-bold text-white">Deliverables</p>
+                                    <div className="mt-3 space-y-2">
+                                        {deliverables.map((item, idx) => (
+                                            <div key={idx} className="flex items-center gap-2">
+                                                <CheckCircle2 className="h-4 w-4 text-white" strokeWidth={3} />
+                                                <span className="text-sm text-white">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <Button className="mt-6 w-full rounded-2xl bg-white px-6 py-6 text-base font-bold text-[#001030] shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-slate-100">
+                                    <span className="flex items-center justify-center gap-2">
+                                        Start training programme
+                                        <ArrowRight className="h-5 w-5" />
+                                    </span>
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div className="absolute bottom-0 left-0 h-px w-full bg-slate-200" />
         </section>
     );
 }
