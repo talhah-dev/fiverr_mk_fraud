@@ -1,11 +1,29 @@
 "use client";
 
 import Wrapper from "@/app/Wrapper";
-import { FileText, Shield, AlertTriangle, Scale, Globe, UserCheck, Mail, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import {
+    FileText,
+    Shield,
+    AlertTriangle,
+    Scale,
+    Globe,
+    UserCheck,
+    Mail,
+    CheckCircle2,
+} from "lucide-react";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function TermsOfUse() {
-    const [activeSection, setActiveSection] = useState<string | null>(null);
+    // Brand palette (logo)
+    const brand = {
+        navy: "#1d3658",
+        deep: "#001030",
+    };
 
     const sections = [
         {
@@ -83,7 +101,7 @@ export default function TermsOfUse() {
                 },
                 {
                     subtitle: "No Warranties",
-                    text: "This website and all content are provided on an as is and as available basis. To the fullest extent permitted by law, MK Fraud Insights disclaims all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.",
+                    text: "This website and all content are provided on an \"as is\" and \"as available\" basis. To the fullest extent permitted by law, MK Fraud Insights disclaims all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.",
                 },
                 {
                     subtitle: "Limitation of Liability",
@@ -174,135 +192,113 @@ export default function TermsOfUse() {
     return (
         <Wrapper>
             <div className="bg-white">
-                <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#1d3658] to-slate-800">
+                {/* HERO (brand dark, softer typography) */}
+                <section className="relative overflow-hidden bg-gradient-to-br from-[#001030] via-[#1d3658] to-[#0b1b33]">
                     <div className="absolute inset-0">
-                        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-blue-500/10 blur-3xl" />
-                        <div className="absolute right-0 bottom-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
+                        <div className="absolute left-0 top-0 h-[620px] w-[620px] rounded-full bg-white/10 blur-3xl" />
+                        <div className="absolute right-0 bottom-0 h-[520px] w-[520px] rounded-full bg-white/5 blur-3xl" />
                     </div>
 
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:50px_50px]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:52px_52px]" />
 
-                    <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+                    <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
                         <div className="text-center">
-                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-blue-400/30 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-5 py-2.5 shadow-lg backdrop-blur-xl">
-                                <Scale className="h-4 w-4 text-blue-300" />
-                                <span className="text-sm font-bold uppercase tracking-wide text-blue-100">
+                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 shadow-lg backdrop-blur">
+                                <Scale className="h-4 w-4 text-white" />
+                                <span className="text-sm font-semibold uppercase tracking-wide text-white">
                                     Legal Terms
                                 </span>
                             </div>
 
-                            <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-                                Terms of{" "}
-                                <span className="relative inline-block">
-                                    <span className="relative z-10 bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-                                        Use
-                                    </span>
-                                    <span className="absolute -bottom-2 left-0 h-4 w-full bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-violet-500/50 blur-xl" />
-                                </span>
+                            <h1 className="mb-6 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                                Terms of <span className="text-white/95">Use</span>
                             </h1>
 
-                            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-300">
-                                Please read these Terms of Use carefully before using the MK Fraud Insights website. These terms govern your access to and use of our website and services.
+                            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-white/80 sm:text-xl">
+                                Please read these Terms of Use carefully before using the MK Fraud Insights
+                                website. These terms govern your access to and use of our website and
+                                services.
                             </p>
 
-                            <div className="mt-8 inline-flex items-center gap-2 rounded-xl border-2 border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
-                                <CheckCircle2 className="h-5 w-5 text-cyan-300" />
+                            <div className="mt-8 inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 backdrop-blur">
+                                <CheckCircle2 className="h-5 w-5 text-white" />
                                 <span className="text-sm font-semibold text-white">
                                     Effective Date: January 2026
                                 </span>
                             </div>
                         </div>
                     </div>
+
+                    <div className="absolute bottom-0 left-0 h-px w-full bg-white/15" />
                 </section>
 
+                {/* CONTENT (light, brand accents) */}
                 <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
                     <div className="absolute inset-0 -z-10">
-                        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-[#1d3658]/5 blur-3xl" />
-                        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-blue-500/5 blur-3xl" />
+                        <div className="absolute left-0 top-0 h-[560px] w-[560px] rounded-full bg-[#1d3658]/8 blur-3xl" />
+                        <div className="absolute right-0 bottom-0 h-[560px] w-[560px] rounded-full bg-[#001030]/6 blur-3xl" />
                     </div>
+                    <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#0b122005_1px,transparent_1px),linear-gradient(to_bottom,#0b122005_1px,transparent_1px)] bg-[size:44px_44px]" />
 
-                    <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-                    <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="mb-12">
-                            <div className="overflow-hidden rounded-3xl border-2 border-[#1d3658]/10 bg-gradient-to-r from-blue-50 to-cyan-50 p-8 shadow-lg">
+                    <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+                        {/* Notice */}
+                        <div className="mb-10 overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-xl">
+                            <div className="p-8 sm:p-10">
                                 <div className="flex items-start gap-4">
-                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#1d3658] to-blue-600">
+                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#1d3658] shadow-lg">
                                         <AlertTriangle className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
-                                        <h2 className="mb-2 text-xl font-bold text-[#1d3658]">
+                                        <h2 className="mb-2 text-xl font-semibold text-[#001030]">
                                             Important Notice
                                         </h2>
                                         <p className="leading-relaxed text-slate-700">
-                                            By accessing or using this website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use and our Privacy Policy. If you do not agree to these terms, please discontinue use of this website immediately.
+                                            By accessing or using this website, you acknowledge that you have
+                                            read, understood, and agree to be bound by these Terms of Use and
+                                            our Privacy Policy. If you do not agree to these terms, please
+                                            discontinue use of this website immediately.
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            <div className="h-1 w-full bg-[#1d3658]/15" />
                         </div>
 
-                        <div className="space-y-6">
-                            {sections.map((section) => {
-                                const Icon = section.icon;
-                                const isActive = activeSection === section.id;
+                        {/* Accordion */}
+                        <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-2xl">
+                            <div className="border-b border-slate-200 bg-slate-50/60 px-7 py-6">
+                                <p className="text-sm font-semibold uppercase tracking-wide text-[#1d3658]">
+                                    Terms sections
+                                </p>
+                                <p className="mt-1 text-sm text-slate-600">Tap a section to expand.</p>
+                            </div>
 
-                                return (
-                                    <div key={section.id} className="group relative">
-                                        <div
-                                            className={`absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#1d3658] to-blue-600 opacity-0 blur-xl transition-all duration-500 ${isActive ? "opacity-20" : ""
-                                                }`}
-                                        />
-
-                                        <div
-                                            className={`relative overflow-hidden rounded-3xl border-2 bg-white shadow-lg transition-all duration-500 ${isActive
-                                                ? "border-blue-500/30 shadow-2xl"
-                                                : "border-slate-200 hover:border-slate-300"
-                                                }`}
+                            <Accordion type="single" collapsible className="p-3 sm:p-4">
+                                {sections.map((section) => {
+                                    const Icon = section.icon;
+                                    return (
+                                        <AccordionItem
+                                            key={section.id}
+                                            value={section.id}
+                                            className="mb-3 overflow-hidden rounded-2xl border border-slate-200 bg-white last:mb-0"
                                         >
-                                            <button
-                                                onClick={() => setActiveSection(isActive ? null : section.id)}
-                                                className="w-full p-8 text-left transition-all duration-300"
-                                            >
-                                                <div className="flex items-center gap-6">
-                                                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1d3658] to-blue-600 shadow-lg">
-                                                        <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
+                                            <AccordionTrigger className="px-5 py-5 text-left no-underline hover:no-underline">
+                                                <div className="flex w-full items-center gap-4">
+                                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#1d3658] shadow-md">
+                                                        <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
                                                     </div>
-
-                                                    <div className="flex-1">
-                                                        <h3 className="text-2xl font-bold text-[#1d3658]">
-                                                            {section.title}
-                                                        </h3>
-                                                    </div>
-
-                                                    <div
-                                                        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 transition-all duration-300 ${isActive ? "rotate-180 bg-blue-100" : ""
-                                                            }`}
-                                                    >
-                                                        <svg
-                                                            className={`h-5 w-5 transition-colors ${isActive ? "text-blue-600" : "text-slate-400"
-                                                                }`}
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M19 9l-7 7-7-7"
-                                                            />
-                                                        </svg>
-                                                    </div>
+                                                    <span className="text-base font-semibold text-[#001030] sm:text-lg">
+                                                        {section.title}
+                                                    </span>
                                                 </div>
-                                            </button>
+                                            </AccordionTrigger>
 
-                                            {isActive && (
-                                                <div className="border-t-2 border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50/30 p-8">
+                                            <AccordionContent className="px-5 pb-6">
+                                                <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-5">
                                                     <div className="space-y-6">
                                                         {section.content.map((item, idx) => (
                                                             <div key={idx}>
-                                                                <h4 className="mb-3 text-lg font-bold text-[#1d3658]">
+                                                                <h4 className="mb-2 text-base font-semibold text-[#001030]">
                                                                     {item.subtitle}
                                                                 </h4>
                                                                 <p className="leading-relaxed text-slate-700">
@@ -312,36 +308,43 @@ export default function TermsOfUse() {
                                                         ))}
                                                     </div>
                                                 </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    );
+                                })}
+                            </Accordion>
                         </div>
 
-                        <div className="mt-12 overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-xl lg:p-12">
-                            <div className="rounded-2xl border-2 border-blue-500/20 bg-gradient-to-r from-blue-50 to-cyan-50 p-6">
+                        {/* Contact */}
+                        <div className="mt-10 overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-xl lg:p-12">
+                            <div className="rounded-3xl border-2 border-[#1d3658]/15 bg-[#1d3658]/5 p-6 sm:p-8">
                                 <div className="flex items-start gap-4">
                                     <Mail className="h-6 w-6 flex-shrink-0 text-[#1d3658]" />
                                     <div>
-                                        <p className="mb-2 font-bold text-[#1d3658]">
+                                        <p className="mb-2 font-semibold text-[#001030]">
                                             Questions About These Terms?
                                         </p>
-                                        <p className="mb-3 text-sm leading-relaxed text-slate-700">
-                                            If you have any questions or concerns about these Terms of Use, please contact us:
+                                        <p className="mb-4 text-sm leading-relaxed text-slate-700">
+                                            If you have any questions or concerns about these Terms of Use,
+                                            please contact us:
                                         </p>
                                         <a
                                             href="mailto:hello@mkfraud.co.za"
-                                            className="inline-flex items-center gap-2 rounded-lg bg-[#1d3658] px-4 py-2 font-semibold text-white transition-all hover:bg-blue-700"
+                                            className="inline-flex items-center gap-2 rounded-2xl bg-[#001030] px-5 py-3 font-semibold text-white transition-all hover:opacity-95"
                                         >
                                             <Mail className="h-4 w-4" />
                                             hello@mkfraud.co.za
                                         </a>
+                                        <p className="mt-3 text-xs text-slate-600">
+                                            We aim to respond within a reasonable timeframe.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div className="absolute bottom-0 left-0 h-px w-full bg-[#1d3658]/15" />
                 </section>
             </div>
         </Wrapper>

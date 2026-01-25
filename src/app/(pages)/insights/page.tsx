@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { useMemo, useState } from "react";
 import Wrapper from "@/app/Wrapper";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/insights/LatestInsightsSection";
 
 export default function Insights() {
     const [activeCategory, setActiveCategory] = useState("all");
@@ -262,122 +263,7 @@ export default function Insights() {
                     </div>
                 </section>
 
-                <section id="latest" className="relative overflow-hidden bg-white">
-                    <div className="absolute inset-0 -z-10">
-                        <div className="absolute -left-24 top-24 h-[480px] w-[480px] rounded-full bg-[#1d3658]/8 blur-3xl" />
-                        <div className="absolute -right-24 bottom-0 h-[520px] w-[520px] rounded-full bg-slate-900/5 blur-3xl" />
-                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0b12240a_1px,transparent_1px),linear-gradient(to_bottom,#0b12240a_1px,transparent_1px)] bg-[size:56px_56px]" />
-                    </div>
-
-                    <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-                        <div className="mx-auto mb-10 max-w-4xl text-center">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-[#1d3658]/15 bg-white px-5 py-2.5 shadow-sm">
-                                <span className="flex h-2 w-2 rounded-full bg-[#1d3658]" />
-                                <span className="text-sm font-bold uppercase tracking-wide text-[#001030]">
-                                    Latest
-                                </span>
-                            </div>
-                            <h2 className="mt-6 text-4xl font-bold tracking-tight text-[#001030] sm:text-5xl">
-                                Browse insights by category
-                            </h2>
-                            <p className="mt-4 text-lg text-slate-600">
-                                Select a category to filter content. New posts are added regularly.
-                            </p>
-                        </div>
-
-                        <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
-                            {categories.map((category) => {
-                                const Icon = category.icon;
-                                const isActive = activeCategory === category.id;
-                                return (
-                                    <button
-                                        key={category.id}
-                                        onClick={() => setActiveCategory(category.id)}
-                                        className={`group flex items-center gap-2 rounded-full border px-6 py-3 font-bold transition-all duration-300 ${isActive
-                                                ? "border-[#001030] bg-[#001030] text-white shadow-lg"
-                                                : "border-slate-200 bg-white text-slate-700 hover:border-[#1d3658]/40 hover:bg-slate-50"
-                                            }`}
-                                    >
-                                        <Icon className="h-5 w-5" />
-                                        <span>{category.label}</span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {filteredInsights.map((insight, index) => {
-                                const isHovered = hoveredCard === index;
-                                return (
-                                    <article
-                                        key={`${insight.title}-${index}`}
-                                        className="group relative"
-                                        onMouseEnter={() => setHoveredCard(index)}
-                                        onMouseLeave={() => setHoveredCard(null)}
-                                    >
-                                        <div
-                                            className={`absolute -inset-1 rounded-3xl bg-[#1d3658]/15 opacity-0 blur-xl transition-all duration-500 ${isHovered ? "opacity-100" : ""
-                                                }`}
-                                        />
-
-                                        <div
-                                            className={`relative h-full overflow-hidden rounded-3xl border bg-white shadow-lg transition-all duration-500 ${isHovered
-                                                    ? "scale-[1.03] border-[#1d3658]/20 shadow-2xl"
-                                                    : "border-slate-200"
-                                                }`}
-                                        >
-                                            <div className="border-b border-slate-200 bg-white p-6">
-                                                <div className="flex items-start justify-between gap-4">
-                                                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1">
-                                                        <span className="text-xs font-bold text-[#001030]">{insight.type}</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="rounded-full bg-[#1d3658]/10 px-3 py-1">
-                                                            <span className="text-xs font-bold text-[#1d3658]">
-                                                                {categoryLabel(insight.category)}
-                                                            </span>
-                                                        </div>
-                                                        <Tag className="h-4 w-4 text-slate-400" />
-                                                    </div>
-                                                </div>
-
-                                                <h3 className="mt-4 text-xl font-bold leading-snug text-[#001030] transition-colors duration-300 group-hover:text-[#1d3658]">
-                                                    {insight.title}
-                                                </h3>
-                                            </div>
-
-                                            <div className="p-6">
-                                                <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-slate-600">
-                                                    {insight.excerpt}
-                                                </p>
-
-                                                <div className="flex items-center gap-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
-                                                    <div className="flex items-center gap-1">
-                                                        <Calendar className="h-3 w-3" />
-                                                        <span>{insight.date}</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-1">
-                                                        <Clock className="h-3 w-3" />
-                                                        <span>{insight.readTime}</span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="mt-5">
-                                                    <Button className="w-full rounded-xl bg-[#001030] py-6 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#0b1b44]">
-                                                        <span className="flex items-center justify-between">
-                                                            Read
-                                                            <ArrowRight className="h-4 w-4" />
-                                                        </span>
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </section>
+                <LatestInsightsSection />
 
                 <section className="relative overflow-hidden bg-[#001030]">
                     <div className="absolute inset-0">

@@ -2,18 +2,48 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Lock, Mail, Shield } from "lucide-react";
 
 export default function AdminLoginPage() {
+    const router = useRouter();
+    const search = useSearchParams();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    function handleSubmit(e: React.FormEvent) {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        // requested: log email & password
-        console.log("ADMIN_LOGIN", { email, password });
+        setError(null);
+        setLoading(true);
+
+        try {
+            const res = await fetch("/api/auth/admin-login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok || !data?.success) {
+                setError(data?.message || "Login failed");
+                return;
+            }
+
+            const next = search.get("next") || "/admin/insights";
+            router.replace(next);
+            router.refresh();
+        } catch (err: any) {
+            setError(err?.message || "Something went wrong");
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -40,22 +70,22 @@ export default function AdminLoginPage() {
                     <div className="overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-2xl">
                         {/* header */}
                         <div className="border-b border-slate-200 bg-slate-50/60 px-7 py-6">
-                            <h1 className="text-2xl font-bold tracking-tight text-[#001030]">
-                                Sign in
-                            </h1>
-                            <p className="mt-1 text-sm text-slate-600">
-                                Access is restricted to administrators.
-                            </p>
+                            <h1 className="text-2xl font-bold tracking-tight text-[#001030]">Sign in</h1>
+                            <p className="mt-1 text-sm text-slate-600">Access is restricted to administrators.</p>
                         </div>
 
                         {/* form */}
                         <form onSubmit={handleSubmit} className="space-y-5 px-7 py-7">
+                            {/* error */}
+                            {error ? (
+                                <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                                    {error}
+                                </div>
+                            ) : null}
+
                             {/* email */}
                             <div className="space-y-2">
-                                <label
-                                    htmlFor="email"
-                                    className="text-sm font-semibold text-[#001030]"
-                                >
+                                <label htmlFor="email" className="text-sm font-semibold text-[#001030]">
                                     Email
                                 </label>
                                 <div className="relative">
@@ -75,10 +105,7 @@ export default function AdminLoginPage() {
 
                             {/* password */}
                             <div className="space-y-2">
-                                <label
-                                    htmlFor="password"
-                                    className="text-sm font-semibold text-[#001030]"
-                                >
+                                <label htmlFor="password" className="text-sm font-semibold text-[#001030]">
                                     Password
                                 </label>
                                 <div className="relative">
@@ -100,11 +127,7 @@ export default function AdminLoginPage() {
                                         className="absolute right-3 top-1/2 -translate-y-1/2 rounded-xl p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
                                         aria-label={showPassword ? "Hide password" : "Show password"}
                                     >
-                                        {showPassword ? (
-                                            <EyeOff className="h-5 w-5" />
-                                        ) : (
-                                            <Eye className="h-5 w-5" />
-                                        )}
+                                        {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                                     </button>
                                 </div>
                             </div>
@@ -112,17 +135,15 @@ export default function AdminLoginPage() {
                             {/* submit */}
                             <Button
                                 type="submit"
-                                className="h-12 w-full rounded-lg bg-[#001030] text-base font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.01] hover:bg-[#001030]/95"
+                                disabled={loading}
+                                className="h-12 w-full rounded-lg bg-[#001030] text-base font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.01] hover:bg-[#001030]/95 disabled:opacity-60"
                             >
-                                Sign in
+                                {loading ? "Signing in..." : "Sign in"}
                             </Button>
 
                             <div className="flex items-center justify-between pt-1 text-xs text-slate-500">
                                 <span>© {new Date().getFullYear()} MK Fraud Insights</span>
-                                <Link
-                                    href="/"
-                                    className="font-semibold text-[#1d3658] hover:underline"
-                                >
+                                <Link href="/" className="font-semibold text-[#1d3658] hover:underline">
                                     Back to site
                                 </Link>
                             </div>
@@ -136,9 +157,8 @@ export default function AdminLoginPage() {
                                 <Shield className="h-5 w-5 text-[#1d3658]" />
                             </div>
                             <p className="leading-relaxed">
-                                This page only logs the submitted <span className="font-semibold">email</span> and
-                                <span className="font-semibold"> password</span> to the console for now.
-                                Replace <span className="font-mono">handleSubmit</span> with your real auth later.
+                                Login is validated server-side and only users with{" "}
+                                <span className="font-mono">role=admin</span> can access admin routes.
                             </p>
                         </div>
                     </div>
