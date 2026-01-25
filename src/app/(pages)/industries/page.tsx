@@ -218,7 +218,7 @@ export default function Industries() {
                                         >
                                             <AccordionTrigger className="px-5 py-5 text-left hover:no-underline">
                                                 <div className="flex w-full items-start gap-4">
-                                                    <div className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                                                    <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
                                                         <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
                                                     </div>
                                                     <div className="flex-1">
@@ -235,7 +235,7 @@ export default function Industries() {
                                                     <div className="space-y-5">
                                                         <div>
                                                             <div className="mb-2 flex items-center gap-2">
-                                                                <AlertTriangle className="h-4 w-4 text-[#001030]" />
+                                                                <AlertTriangle className="h-4 w-4 text-[#001030] shrink-0" />
                                                                 <p className="text-sm font-bold text-[#001030]">What it looks like</p>
                                                             </div>
                                                             <ul className="space-y-2">
@@ -250,7 +250,7 @@ export default function Industries() {
 
                                                         <div>
                                                             <div className="mb-2 flex items-center gap-2">
-                                                                <AlertTriangle className="h-4 w-4 text-[#001030]" />
+                                                                <AlertTriangle className="h-4 w-4 text-[#001030] shrink-0" />
                                                                 <p className="text-sm font-bold text-[#001030]">Why it persists</p>
                                                             </div>
                                                             <ul className="space-y-2">
@@ -265,7 +265,7 @@ export default function Industries() {
 
                                                         <div>
                                                             <div className="mb-2 flex items-center gap-2">
-                                                                <CheckCircle2 className="h-4 w-4 text-[#001030]" />
+                                                                <CheckCircle2 className="h-4 w-4 text-[#001030] shrink-0" />
                                                                 <p className="text-sm font-bold text-[#001030]">Affects</p>
                                                             </div>
                                                             <div className="flex flex-wrap gap-2">
@@ -309,7 +309,7 @@ export default function Industries() {
                                                 href={`#${industry.key}`}
                                                 className="group flex items-start gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1d3658]/25 hover:shadow-lg"
                                             >
-                                                <div className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
+                                                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#001030]">
                                                     <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
                                                 </div>
                                                 <div>
@@ -370,7 +370,7 @@ export default function Industries() {
                                                         <ul className="space-y-2">
                                                             {industry.what.map((t) => (
                                                                 <li key={t} className="flex items-start gap-2">
-                                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#001030]" />
+                                                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001030]" />
                                                                     <span className="text-sm font-medium text-slate-700">{t}</span>
                                                                 </li>
                                                             ))}
@@ -382,7 +382,7 @@ export default function Industries() {
                                                         <ul className="space-y-2">
                                                             {industry.why.map((t) => (
                                                                 <li key={t} className="flex items-start gap-2">
-                                                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#001030]" />
+                                                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001030]" />
                                                                     <span className="text-sm font-medium text-slate-700">{t}</span>
                                                                 </li>
                                                             ))}
