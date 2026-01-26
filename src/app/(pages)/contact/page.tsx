@@ -134,8 +134,8 @@ export default function ContactUs() {
                             onFocus={() => setFocusedField("name")}
                             onBlur={() => setFocusedField(null)}
                             className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "name"
-                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
-                                : "border-slate-200"
+                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                              : "border-slate-200"
                               }`}
                             placeholder="John Doe"
                           />
@@ -158,8 +158,8 @@ export default function ContactUs() {
                             onFocus={() => setFocusedField("email")}
                             onBlur={() => setFocusedField(null)}
                             className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "email"
-                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
-                                : "border-slate-200"
+                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                              : "border-slate-200"
                               }`}
                             placeholder="john@company.com"
                           />
@@ -183,8 +183,8 @@ export default function ContactUs() {
                             onFocus={() => setFocusedField("company")}
                             onBlur={() => setFocusedField(null)}
                             className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "company"
-                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
-                                : "border-slate-200"
+                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                              : "border-slate-200"
                               }`}
                             placeholder="Your Company Ltd"
                           />
@@ -206,10 +206,10 @@ export default function ContactUs() {
                             onFocus={() => setFocusedField("phone")}
                             onBlur={() => setFocusedField(null)}
                             className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "phone"
-                                ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
-                                : "border-slate-200"
+                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                              : "border-slate-200"
                               }`}
-                            placeholder="+27 123 456 789"
+                            placeholder="+27 82 301 4351"
                           />
                         </div>
                       </div>
@@ -230,8 +230,8 @@ export default function ContactUs() {
                           onFocus={() => setFocusedField("service")}
                           onBlur={() => setFocusedField(null)}
                           className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "service"
-                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
-                              : "border-slate-200"
+                            ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                            : "border-slate-200"
                             }`}
                         >
                           <option value="">Select a service</option>
@@ -260,8 +260,8 @@ export default function ContactUs() {
                           onFocus={() => setFocusedField("message")}
                           onBlur={() => setFocusedField(null)}
                           className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-900 transition-all duration-300 focus:outline-none ${focusedField === "message"
-                              ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
-                              : "border-slate-200"
+                            ? "border-[#1d3658]/45 shadow-lg shadow-[#1d3658]/10"
+                            : "border-slate-200"
                             }`}
                           placeholder="Tell us about your fraud challenges and what you want to achieve..."
                         />
@@ -341,25 +341,22 @@ export default function ContactUs() {
                 </div>
 
                 <div className="p-6">
-                  <div className="h-[520px] rounded-2xl border border-dashed border-slate-300 bg-white">
-                    <div className="flex h-full items-center justify-center px-6">
-                      <div className="max-w-sm text-center">
-                        <CalendarIcon />
-                        <p className="mt-4 font-semibold text-slate-700">Calendly embed</p>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                          Replace this box with your Calendly component or embed code.
-                        </p>
-                      </div>
-                    </div>
+                  <div className="h-[520px] rounded-2xl border border-dashed border-slate-300 bg-white overflow-hidden">
+                    <iframe
+                      src="https://calendly.com/mkfraud/30min?embed_domain=yourdomain.com&embed_type=Inline"
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      title="Calendly Scheduling"
+                    />
                   </div>
                 </div>
+
+
               </div>
 
               <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
                 <div className="flex items-start gap-4">
-                  {/* <div className="flex flex-col h-12 w-12 items-center justify-center rounded-2xl bg-[#001030]">
-                    <CheckCircle2 className="h-6 w-6 text-white" />
-                  </div> */}
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-[#001030]">What to expect</h3>
                     <div className="mt-5 grid grid-cols-1 gap-3">
@@ -389,7 +386,7 @@ export default function ContactUs() {
 
                     <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <a
-                        href="tel:+27123456789"
+                        href="tel:+27823014351"
                         className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
                       >
                         <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#001030]">
@@ -397,7 +394,7 @@ export default function ContactUs() {
                         </div>
                         <div>
                           <p className="text-xs font-semibold text-slate-500">Phone</p>
-                          <p className="text-sm font-bold text-[#001030]">+27 123 456 789</p>
+                          <p className="text-sm font-bold text-[#001030]">+27 82 301 4351</p>
                         </div>
                       </a>
 
